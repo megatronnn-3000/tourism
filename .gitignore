@@ -1,0 +1,16 @@
+# Video master export (179 MB). Over GitHub's 100 MB per-file limit, so it can
+# never be pushed. Kept locally as the source; the web version is video-gast.mp4,
+# cropped out of the pillarbox and re-encoded with faststart.
+/Video Project 2.mp4
+
+# Superseded first cut of the guest testimonial, replaced by video-gast.mp4.
+/1.mp4
+
+# Loose WhatsApp source media dropped at the project root. The photos actually
+# used by the site live in images/ and stay tracked.
+/WhatsApp *
+
+# OS and editor noise
+Thumbs.db
+.DS_Store
+*~

@@ -774,6 +774,48 @@
       font-weight: 800;
     }
 
+    /* Video testimonial. Filmed upright on a phone, so it gets its own band
+       above the written quotes instead of a cell in the three-column grid,
+       where a 9:16 frame would tower over the cards beside it. */
+    .testimonial-video {
+      display: grid;
+      gap: 26px;
+      align-items: center;
+      margin-bottom: 34px;
+    }
+
+    .testimonial-video-frame {
+      width: 100%;
+      max-width: 300px;
+      margin: 0 auto;
+      border: 1px solid var(--line);
+      background: #10141b;
+      box-shadow: 0 14px 34px rgba(31, 58, 95, 0.16);
+    }
+
+    .testimonial-video-frame video {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 604 / 1080;
+      object-fit: cover;
+      background: #10141b;
+    }
+
+    .testimonial-video-copy {
+      max-width: 620px;
+    }
+
+    .testimonial-video-copy h3 {
+      font-size: clamp(1.7rem, 6vw, 2.4rem);
+    }
+
+    .testimonial-video-copy p:not(.eyebrow) {
+      margin: 16px 0 0;
+      color: rgba(43, 41, 38, 0.75);
+      font-size: 1.05rem;
+    }
+
     .info {
       background: var(--palm);
       color: var(--ivory);
@@ -1227,6 +1269,17 @@
         gap: 68px;
       }
 
+      .testimonial-video {
+        grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
+        gap: 52px;
+        margin-bottom: 46px;
+      }
+
+      .testimonial-video-frame {
+        max-width: none;
+        margin: 0;
+      }
+
       .tour-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
       }
@@ -1607,6 +1660,20 @@
           <p class="eyebrow" data-i18n="reviews.eyebrow">Stimmen der Gäste</p>
           <h2 id="testimonials-title" data-i18n="reviews.title">Bewertungen</h2>
         </div>
+        <div class="testimonial-video reveal">
+          <figure class="testimonial-video-frame">
+            <video controls playsinline preload="none" poster="images/video-gast-poster.jpg" width="604" height="1080" data-i18n-aria-label="reviews.videoAria" aria-label="Videobotschaft eines Gastes über die Reise mit Govind">
+              <source src="video-gast.mp4" type="video/mp4">
+              <p data-i18n="reviews.videoFallback">Ihr Browser kann dieses Video leider nicht abspielen.</p>
+            </video>
+          </figure>
+          <div class="testimonial-video-copy">
+            <p class="eyebrow" data-i18n="reviews.videoEyebrow">Videobotschaft</p>
+            <h3 data-i18n="reviews.videoTitle">Ein Gast erzählt</h3>
+            <p data-i18n="reviews.videoText">Ein Gast berichtet in eigenen Worten von der gemeinsamen Reise durch Indien mit Govind.</p>
+          </div>
+        </div>
+
         <div class="testimonials-grid">
           <figure class="testimonial-card reveal">
             <blockquote data-i18n="reviews.1.quote">„Mit Govind wurde Indien nicht nur sichtbar, sondern wirklich erlebbar. Seine Ruhe, sein Wissen und seine persönliche Art haben die Reise besonders gemacht.”</blockquote>
@@ -1844,6 +1911,11 @@
 
         "reviews.eyebrow": "Stimmen der Gäste",
         "reviews.title": "Bewertungen",
+        "reviews.videoEyebrow": "Videobotschaft",
+        "reviews.videoTitle": "Ein Gast erzählt",
+        "reviews.videoText": "Ein Gast berichtet in eigenen Worten von der gemeinsamen Reise durch Indien mit Govind.",
+        "reviews.videoAria": "Videobotschaft eines Gastes über die Reise mit Govind",
+        "reviews.videoFallback": "Ihr Browser kann dieses Video leider nicht abspielen.",
         "reviews.1.quote": "„Mit Govind wurde Indien nicht nur sichtbar, sondern wirklich erlebbar. Seine Ruhe, sein Wissen und seine persönliche Art haben die Reise besonders gemacht.”",
         "reviews.1.author": "— Anna, München",
         "reviews.2.quote": "„Govind hat die Route sehr fein auf persönliche Interessen abgestimmt. Besonders wertvoll war, wie sicher und gut begleitet sich jeder Reisetag angefühlt hat.”",
@@ -1999,6 +2071,11 @@
 
         "reviews.eyebrow": "Guest voices",
         "reviews.title": "Reviews",
+        "reviews.videoEyebrow": "Video message",
+        "reviews.videoTitle": "A guest speaks",
+        "reviews.videoText": "A guest describes the journey through India with Govind in their own words.",
+        "reviews.videoAria": "Video message from a guest about their journey with Govind",
+        "reviews.videoFallback": "Your browser cannot play this video.",
         "reviews.1.quote": "“With Govind, India did not just become visible - it became something we truly experienced. His calm, his knowledge and his personal manner made the journey special.”",
         "reviews.1.author": "— Anna, Munich",
         "reviews.2.quote": "“Govind tailored the route very finely to our personal interests. What mattered most was how safe and well looked after every single day felt.”",
