@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(node \"/c/Users/omGaw/AppData/Local/Temp/claude/c--project-German-1/daf607e9-3767-4c5b-b35f-ade54b0aa609/scratchpad/check.js\")"
+      "Bash(node \"/c/Users/omGaw/AppData/Local/Temp/claude/c--project-German-1/daf607e9-3767-4c5b-b35f-ade54b0aa609/scratchpad/check.js\")",
+      "PowerShell(Start-Process \"c:\\\\project\\\\German\\\\1\\\\index.html\")",
+      "PowerShell(Start-Process \"C:\\\\project\\\\German\\\\1\\\\index.html\")"
     ]
   }
 }

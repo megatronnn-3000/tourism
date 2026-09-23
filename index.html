@@ -535,6 +535,16 @@
       font-size: 1.02rem;
     }
 
+    .about-quote {
+      margin: 24px 0 0;
+      padding-left: 18px;
+      border-left: 3px solid var(--sandstone);
+      color: var(--indigo);
+      font-size: 1.08rem;
+      font-style: italic;
+      line-height: 1.6;
+    }
+
     .credentials {
       display: grid;
       gap: 10px;
@@ -1038,6 +1048,21 @@
       resize: vertical;
     }
 
+    input[type="date"] {
+      -webkit-appearance: none;
+      appearance: none;
+      color: var(--charcoal);
+    }
+
+    input[type="date"]::-webkit-calendar-picker-indicator {
+      cursor: pointer;
+      opacity: 0.55;
+    }
+
+    input[type="date"]:focus::-webkit-calendar-picker-indicator {
+      opacity: 1;
+    }
+
     input:focus,
     textarea:focus {
       border-color: var(--marigold);
@@ -1069,6 +1094,36 @@
       font-weight: 500;
       letter-spacing: 0;
       text-transform: none;
+    }
+
+    .honeypot {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      min-height: 0;
+      padding: 0;
+      border: 0;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .form-status {
+      margin: 0;
+      font-size: 0.94rem;
+      font-weight: 600;
+      line-height: 1.5;
+    }
+
+    .form-status[data-state="pending"] {
+      color: rgba(43, 41, 38, 0.72);
+    }
+
+    .form-status[data-state="success"] {
+      color: var(--palm);
+    }
+
+    .form-status[data-state="error"] {
+      color: var(--sandstone-text);
     }
 
     .site-footer {
@@ -1206,6 +1261,7 @@
 
       .field-full,
       .consent,
+      .form-status,
       .form-card .btn {
         grid-column: 1 / -1;
       }
@@ -1438,7 +1494,7 @@
       <img src="images/hero-taj.jpg" width="1080" height="820" fetchpriority="high" data-i18n-alt="hero.alt" alt="Das Taj Mahal in Agra im Sonnenaufgang – Aufnahme von Govind">
       <div class="hero-content reveal">
         <p class="eyebrow" data-i18n="hero.eyebrow">Private Reisen · Indien</p>
-        <h1 id="hero-title" data-i18n="hero.title">Indien entdecken - persönlich mit Govind.</h1>
+        <h1 id="hero-title" data-i18n="hero.title">Indien, persönlich kuratiert mit Govind</h1>
         <p class="hero-lede" data-i18n="hero.lede">Private Reisen, persönliche Begleitung und echte Begegnungen - individuell geplant für deutschsprachige Reisende.</p>
         <a class="btn btn-primary" href="#anfrage" data-i18n="hero.cta">Jetzt unverbindlich anfragen</a>
         <div class="hero-detail" aria-hidden="true"></div>
@@ -1456,7 +1512,7 @@
           <span class="trust-label" data-i18n="trust.2.label">Jahre Erfahrung</span>
         </div>
         <div class="trust-item">
-          <span class="trust-figure" data-i18n="trust.3.figure">1.000+</span>
+          <span class="trust-figure" data-i18n="trust.3.figure">3.000+</span>
           <span class="trust-label" data-i18n="trust.3.label">Begleitete Gäste</span>
         </div>
         <div class="trust-item">
@@ -1474,9 +1530,13 @@
         <div class="about-copy reveal">
           <p class="eyebrow" data-i18n="about.eyebrow">Persönlich geführt</p>
           <h2 id="about-title" data-i18n="about.title">Über Govind</h2>
-          <p data-i18n="about.p1">Ich heiße Govind und begleite seit vielen Jahren Reisende durch Indien. Jede Route entsteht im direkten Gespräch: mit Zeit für Ihre Wünsche, Ihrem Reisetempo und den Momenten, die Indien wirklich spürbar machen.</p>
-          <p data-i18n="about.p2">Meine Gäste schätzen lokale Kenntnis, klare Vorbereitung und ruhige Begleitung vor Ort. Ich verbinde klassische Höhepunkte mit persönlichen Begegnungen, kleinen Details und verlässlicher Organisation.</p>
-          <p data-i18n="about.p3">Ob Rajasthan, Kerala, Ladakh, Varanasi oder Südindien: Ich führe deutschsprachige Reisende mit kulturellem Verständnis, Flexibilität und einem sicheren Gefühl durch mein Land.</p>
+          <p data-i18n="about.p1">Ich heiße Govind Singh Shekhawat. Ich bin ein erfahrener und von Rajasthan Tourism anerkannter deutsch- und englischsprachiger Reiseleiter aus Rajasthan. Meine Leidenschaft gilt der indischen Geschichte, Kultur, Architektur und den lebendigen Traditionen des Landes.</p>
+          <p data-i18n="about.p2">Als gebürtiger Rajasthani kenne ich Indien nicht nur aus touristischer Perspektive. Für mich bedeutet eine Reise mehr als der Besuch berühmter Sehenswürdigkeiten. Ich möchte meinen Gästen die Geschichten, Menschen, Traditionen und den Alltag Indiens näherbringen und Ihnen einen authentischen Einblick ins Land ermöglichen.</p>
+          <p data-i18n="about.p3">Ein besonderer Bestandteil meiner Erfahrung ist auch meine enge persönliche Verbindung zu Deutschland. Ich bin bereits mehrfach nach Deutschland gereist und habe dabei die deutsche Kultur, Lebensweise und die Menschen vor Ort intensiv kennengelernt. Diese persönlichen Erfahrungen haben mir ein gutes Verständnis für die Mentalität, Erwartungen und Reisegewohnheiten deutschsprachiger Gäste vermittelt.</p>
+          <p data-i18n="about.p4">Dadurch kann ich eine besondere Brücke zwischen der indischen und der deutschen Kultur schaffen. Bei meinen Führungen erkläre ich nicht nur historische Fakten und kulturelle Zusammenhänge, sondern zeige meinen Gästen auch Gemeinsamkeiten und Unterschiede zwischen Deutschland und Indien – verständlich, persönlich und mit vielen interessanten Geschichten.</p>
+          <p data-i18n="about.p5">Ob bei einer Reise durch die historischen Städte und Festungen Rajasthans, bei kulturellen Begegnungen, auf Märkten oder bei der Entdeckung weniger bekannter Orte – ich lege großen Wert auf Authentizität, persönliche Betreuung und einen respektvollen kulturellen Austausch.</p>
+          <p data-i18n="about.p6">Mein Ziel ist es, meinen Gästen nicht einfach nur Sehenswürdigkeiten zu zeigen, sondern Ihnen ein echtes und persönliches Indien-Erlebnis zu ermöglichen.</p>
+          <blockquote class="about-quote" data-i18n="about.quote">„Indien ist nicht nur ein Reiseziel – Indien ist eine Geschichte, die man erleben und verstehen sollte.“</blockquote>
           <ul class="credentials" aria-label="Qualifikationen" data-i18n-aria-label="about.credentialsAria">
             <li data-i18n="about.cred1">Lizenzierter privater Reiseleiter</li>
             <li data-i18n="about.cred2">Deutschsprachige Reisebegleitung</li>
@@ -1743,8 +1803,11 @@
             </a>
           </div>
         </div>
-        <form class="form-card reveal" action="#" method="post" data-enquiry-form>
-          <!-- TODO: Connect enquiry form to production form endpoint before launch. -->
+        <form class="form-card reveal" action="https://api.web3forms.com/submit" method="post" data-enquiry-form>
+          <input type="hidden" name="access_key" value="97d8b22f-eeff-4241-8cf9-9bdedc1f32de">
+          <input type="hidden" name="subject" value="New Enquiry">
+          <input type="hidden" name="from_name" value="Govind Website">
+          <input type="checkbox" name="botcheck" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
           <div class="form-grid">
             <div class="field">
               <label for="name" data-i18n="form.name">Name</label>
@@ -1755,12 +1818,20 @@
               <input id="email" name="email" type="email" autocomplete="email" required>
             </div>
             <div class="field">
-              <label for="travel-time" data-i18n="form.dates">Reisezeitraum</label>
-              <input id="travel-time" name="travel-time" type="text" autocomplete="off">
+              <label for="phone" data-i18n="form.phone">Telefon</label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" data-i18n-placeholder="form.phonePlaceholder" placeholder="+49 170 1234567">
             </div>
             <div class="field">
               <label for="people" data-i18n="form.people">Personen</label>
               <input id="people" name="people" type="number" min="1" inputmode="numeric">
+            </div>
+            <div class="field">
+              <label for="travel-from" data-i18n="form.dateFrom">Reisebeginn</label>
+              <input id="travel-from" name="travel_from" type="date" autocomplete="off" data-travel-from>
+            </div>
+            <div class="field">
+              <label for="travel-to" data-i18n="form.dateTo">Reiseende</label>
+              <input id="travel-to" name="travel_to" type="date" autocomplete="off" data-travel-to>
             </div>
             <div class="field field-full">
               <label for="interests" data-i18n="form.interests">Interessen</label>
@@ -1775,6 +1846,7 @@
               <label for="privacy" data-i18n="form.consent">Ich stimme zu, dass Govind meine Angaben zur persönlichen Beantwortung der Anfrage verwenden darf.</label>
             </div>
             <button class="btn btn-primary" type="submit" data-i18n="form.submit">Jetzt unverbindlich anfragen</button>
+            <p class="form-status" role="status" aria-live="polite" data-form-status hidden></p>
           </div>
         </form>
       </div>
@@ -1827,7 +1899,7 @@
         "nav.contact": "Kontakt",
 
         "hero.eyebrow": "Private Reisen · Indien",
-        "hero.title": "Indien entdecken - persönlich mit Govind.",
+        "hero.title": "Indien, persönlich kuratiert mit Govind",
         "hero.lede": "Private Reisen, persönliche Begleitung und echte Begegnungen - individuell geplant für deutschsprachige Reisende.",
         "hero.cta": "Jetzt unverbindlich anfragen",
         "hero.alt": "Das Taj Mahal in Agra im Sonnenaufgang – Aufnahme von Govind",
@@ -1837,7 +1909,7 @@
         "trust.1.label": "Staatlich geprüfter Reiseleiter",
         "trust.2.figure": "15+",
         "trust.2.label": "Jahre Erfahrung",
-        "trust.3.figure": "1.000+",
+        "trust.3.figure": "3.000+",
         "trust.3.label": "Begleitete Gäste",
         "trust.4.figure": "3",
         "trust.4.label": "Sprachen · Deutsch, Englisch, Hindi",
@@ -1845,9 +1917,13 @@
         "about.eyebrow": "Persönlich geführt",
         "about.title": "Über Govind",
         "about.alt": "Porträt von Govind, privater deutschsprachiger Reiseleiter in Indien",
-        "about.p1": "Ich heiße Govind und begleite seit vielen Jahren Reisende durch Indien. Jede Route entsteht im direkten Gespräch: mit Zeit für Ihre Wünsche, Ihrem Reisetempo und den Momenten, die Indien wirklich spürbar machen.",
-        "about.p2": "Meine Gäste schätzen lokale Kenntnis, klare Vorbereitung und ruhige Begleitung vor Ort. Ich verbinde klassische Höhepunkte mit persönlichen Begegnungen, kleinen Details und verlässlicher Organisation.",
-        "about.p3": "Ob Rajasthan, Kerala, Ladakh, Varanasi oder Südindien: Ich führe deutschsprachige Reisende mit kulturellem Verständnis, Flexibilität und einem sicheren Gefühl durch mein Land.",
+        "about.p1": "Ich heiße Govind Singh Shekhawat. Ich bin ein erfahrener und von Rajasthan Tourism anerkannter deutsch- und englischsprachiger Reiseleiter aus Rajasthan. Meine Leidenschaft gilt der indischen Geschichte, Kultur, Architektur und den lebendigen Traditionen des Landes.",
+        "about.p2": "Als gebürtiger Rajasthani kenne ich Indien nicht nur aus touristischer Perspektive. Für mich bedeutet eine Reise mehr als der Besuch berühmter Sehenswürdigkeiten. Ich möchte meinen Gästen die Geschichten, Menschen, Traditionen und den Alltag Indiens näherbringen und Ihnen einen authentischen Einblick ins Land ermöglichen.",
+        "about.p3": "Ein besonderer Bestandteil meiner Erfahrung ist auch meine enge persönliche Verbindung zu Deutschland. Ich bin bereits mehrfach nach Deutschland gereist und habe dabei die deutsche Kultur, Lebensweise und die Menschen vor Ort intensiv kennengelernt. Diese persönlichen Erfahrungen haben mir ein gutes Verständnis für die Mentalität, Erwartungen und Reisegewohnheiten deutschsprachiger Gäste vermittelt.",
+        "about.p4": "Dadurch kann ich eine besondere Brücke zwischen der indischen und der deutschen Kultur schaffen. Bei meinen Führungen erkläre ich nicht nur historische Fakten und kulturelle Zusammenhänge, sondern zeige meinen Gästen auch Gemeinsamkeiten und Unterschiede zwischen Deutschland und Indien – verständlich, persönlich und mit vielen interessanten Geschichten.",
+        "about.p5": "Ob bei einer Reise durch die historischen Städte und Festungen Rajasthans, bei kulturellen Begegnungen, auf Märkten oder bei der Entdeckung weniger bekannter Orte – ich lege großen Wert auf Authentizität, persönliche Betreuung und einen respektvollen kulturellen Austausch.",
+        "about.p6": "Mein Ziel ist es, meinen Gästen nicht einfach nur Sehenswürdigkeiten zu zeigen, sondern Ihnen ein echtes und persönliches Indien-Erlebnis zu ermöglichen.",
+        "about.quote": "„Indien ist nicht nur ein Reiseziel – Indien ist eine Geschichte, die man erleben und verstehen sollte.“",
         "about.credentialsAria": "Qualifikationen",
         "about.cred1": "Lizenzierter privater Reiseleiter",
         "about.cred2": "Deutschsprachige Reisebegleitung",
@@ -1943,7 +2019,10 @@
         "enquiry.lede": "Erzählen Sie mir kurz, was Sie sich von Ihrer Indienreise wünschen. Ich melde mich persönlich bei Ihnen.",
         "form.name": "Name",
         "form.email": "E-Mail",
-        "form.dates": "Reisezeitraum",
+        "form.phone": "Telefon",
+        "form.phonePlaceholder": "+49 170 1234567",
+        "form.dateFrom": "Reisebeginn",
+        "form.dateTo": "Reiseende",
         "form.people": "Personen",
         "form.interests": "Interessen",
         "form.interestsPlaceholder": "Rajasthan, Kerala, Kultur, Natur",
@@ -1951,7 +2030,9 @@
         "form.messagePlaceholder": "Welche Art von Indienreise wünschen Sie sich?",
         "form.consent": "Ich stimme zu, dass Govind meine Angaben zur persönlichen Beantwortung der Anfrage verwenden darf.",
         "form.submit": "Jetzt unverbindlich anfragen",
-        "form.sent": "Anfrage bereit",
+        "form.sending": "Anfrage wird gesendet …",
+        "form.success": "Vielen Dank! Ihre Anfrage ist angekommen. Ich melde mich innerhalb von 24 Stunden persönlich bei Ihnen.",
+        "form.error": "Die Anfrage konnte leider nicht gesendet werden. Bitte versuchen Sie es erneut oder schreiben Sie mir direkt über WhatsApp.",
 
         "footer.note": "Private Indienreisen, persönlich geführt von Govind für deutschsprachige Reisende.",
         "footer.response": "Antwort innerhalb von 24 Stunden",
@@ -1987,7 +2068,7 @@
         "nav.contact": "Contact",
 
         "hero.eyebrow": "Private journeys · India",
-        "hero.title": "Discover India - personally, with Govind.",
+        "hero.title": "India, Curated Personally with Govind",
         "hero.lede": "Private journeys, personal guidance and genuine encounters - planned individually for German-speaking travellers.",
         "hero.cta": "Send a no-obligation enquiry",
         "hero.alt": "The Taj Mahal in Agra at sunrise – photographed by Govind",
@@ -1997,7 +2078,7 @@
         "trust.1.label": "Government-certified guide",
         "trust.2.figure": "15+",
         "trust.2.label": "Years of experience",
-        "trust.3.figure": "1,000+",
+        "trust.3.figure": "3,000+",
         "trust.3.label": "Guests guided",
         "trust.4.figure": "3",
         "trust.4.label": "Languages · German, English, Hindi",
@@ -2005,9 +2086,13 @@
         "about.eyebrow": "Personally guided",
         "about.title": "About Govind",
         "about.alt": "Portrait of Govind, private German-speaking tour guide in India",
-        "about.p1": "My name is Govind, and I have been guiding travellers through India for many years. Every route takes shape in conversation: with time for your wishes, your pace and the moments that make India truly tangible.",
-        "about.p2": "My guests value local knowledge, careful preparation and calm guidance on the ground. I combine the classic highlights with personal encounters, small details and dependable organisation.",
-        "about.p3": "Whether Rajasthan, Kerala, Ladakh, Varanasi or South India: I guide travellers through my country with cultural understanding, flexibility and a reassuring sense of ease.",
+        "about.p1": "My name is Govind Singh Shekhawat. I am an experienced German- and English-speaking tour guide from Rajasthan, accredited by Rajasthan Tourism. My passion lies in India's history, culture, architecture and the country's living traditions.",
+        "about.p2": "As a native Rajasthani, I know India from far more than a tourist's perspective. To me, a journey means more than visiting famous sights. I want to bring my guests closer to the stories, people, traditions and everyday life of India, and to give you an authentic insight into the country.",
+        "about.p3": "A particular part of my experience is my close personal connection to Germany. I have travelled to Germany several times and have come to know German culture, ways of life and people there in depth. Those experiences have given me a real understanding of the mentality, expectations and travel habits of German-speaking guests.",
+        "about.p4": "This allows me to build a special bridge between Indian and German culture. On my tours I explain not only historical facts and cultural context, but also show my guests what Germany and India have in common and where they differ – clearly, personally and with plenty of interesting stories.",
+        "about.p5": "Whether on a journey through the historic cities and forts of Rajasthan, at cultural encounters, in the markets or discovering lesser-known places – I place great value on authenticity, personal care and respectful cultural exchange.",
+        "about.p6": "My aim is not simply to show my guests sights, but to make a genuine and personal India experience possible for you.",
+        "about.quote": "“India is not merely a destination – India is a story that should be experienced and understood.”",
         "about.credentialsAria": "Qualifications",
         "about.cred1": "Licensed private tour guide",
         "about.cred2": "German-speaking travel companion",
@@ -2103,7 +2188,10 @@
         "enquiry.lede": "Tell me briefly what you would like from your journey through India. I will get back to you personally.",
         "form.name": "Name",
         "form.email": "Email",
-        "form.dates": "Travel dates",
+        "form.phone": "Phone",
+        "form.phonePlaceholder": "+49 170 1234567",
+        "form.dateFrom": "Departure",
+        "form.dateTo": "Return",
         "form.people": "Travellers",
         "form.interests": "Interests",
         "form.interestsPlaceholder": "Rajasthan, Kerala, culture, nature",
@@ -2111,7 +2199,9 @@
         "form.messagePlaceholder": "What kind of journey through India do you have in mind?",
         "form.consent": "I agree that Govind may use my details to respond to my enquiry personally.",
         "form.submit": "Send a no-obligation enquiry",
-        "form.sent": "Enquiry ready",
+        "form.sending": "Sending your enquiry …",
+        "form.success": "Thank you! Your enquiry has arrived. I will get back to you personally within 24 hours.",
+        "form.error": "Your enquiry could not be sent. Please try again, or message me directly on WhatsApp.",
 
         "footer.note": "Private journeys through India, personally guided by Govind for German-speaking travellers.",
         "footer.response": "Reply within 24 hours",
@@ -2220,12 +2310,55 @@
       }
     });
 
-    form.addEventListener("submit", (event) => {
+    const travelFrom = document.querySelector("[data-travel-from]");
+    const travelTo = document.querySelector("[data-travel-to]");
+    const now = new Date();
+    const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
+
+    travelFrom.min = today;
+    travelTo.min = today;
+
+    travelFrom.addEventListener("change", () => {
+      travelTo.min = travelFrom.value || today;
+      if (travelTo.value && travelTo.value < travelTo.min) {
+        travelTo.value = "";
+      }
+    });
+
+    const formStatus = document.querySelector("[data-form-status]");
+
+    function setFormStatus(key, state) {
+      // Re-key the element so a later language switch keeps the message.
+      formStatus.setAttribute("data-i18n", key);
+      formStatus.textContent = TRANSLATIONS[document.documentElement.lang][key];
+      formStatus.dataset.state = state;
+      formStatus.hidden = false;
+    }
+
+    form.addEventListener("submit", async (event) => {
       event.preventDefault();
       const submitButton = form.querySelector("button[type='submit']");
-      // Re-key the button so a later language switch keeps the confirmation.
-      submitButton.setAttribute("data-i18n", "form.sent");
-      submitButton.textContent = TRANSLATIONS[document.documentElement.lang]["form.sent"];
+      submitButton.disabled = true;
+      setFormStatus("form.sending", "pending");
+
+      try {
+        const response = await fetch(form.action, {
+          method: "POST",
+          headers: { Accept: "application/json" },
+          body: new FormData(form)
+        });
+        const result = await response.json();
+        if (!result.success) {
+          throw new Error(result.message);
+        }
+        form.reset();
+        travelTo.min = today;
+        setFormStatus("form.success", "success");
+      } catch (error) {
+        setFormStatus("form.error", "error");
+      } finally {
+        submitButton.disabled = false;
+      }
     });
 
     if (reduceMotion) {
