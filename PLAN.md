@@ -192,21 +192,38 @@ Studio → approve it → confirm it appears on the site after rebuild.
 
 ## Phase D — Automation and launch
 
-### Step 12. Auto-rebuild on publish
+### Step 12. Deploy the Studio
+
+`npx sanity deploy` from `studio/` publishes it to `<name>.sanity.studio`.
+Until this is done the admin panel exists only on localhost, so Govind cannot
+reach it at all — everything before this point is unusable by the person it
+was built for.
+
+Then add him: sanity.io/manage → Members → Invite. The free plan allows two
+non-admin editors.
+
+### Step 13. Auto-rebuild on publish
 
 Vercel → Settings → Git → **Deploy Hooks** → create one, copy the URL.
 Sanity → API → Webhooks → fire on publish of `siteContent`, `siteImage`,
 `review` → POST to that URL. Publish-to-live becomes ~60 seconds, hands-off.
 
-### Step 13. Legal copy
+Without this, every change Govind publishes sits invisible until someone runs
+a build by hand.
 
-Add the UWG §5b review-disclosure line near the reviews stating they are not
-verified, and fill the Impressum placeholder still in the footer.
+### Step 14. Legal copy
 
-### Step 14. Launch
+The UWG §5b review disclosure shipped with Phase C. Still outstanding: the
+Impressum placeholder in the footer, which is a legal requirement for a
+German-facing business, not a nicety.
 
-Merge to `master`. Then the pre-launch items outstanding regardless of this
-work: `robots.txt`, `sitemap.xml`, favicon, Open Graph image, 404 page.
+### Step 15. Launch
+
+Merge `cms` to `master`. Vercel then builds production from the same pipeline
+the preview has been proving out.
+
+Pre-launch items outstanding regardless of this work: `robots.txt`,
+`sitemap.xml`, favicon, Open Graph image, 404 page.
 
 ---
 
