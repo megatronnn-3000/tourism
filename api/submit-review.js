@@ -18,6 +18,10 @@ const json = (body, status = 200) =>
 
 const clean = (value) => (typeof value === 'string' ? value.trim() : '')
 
+// Same cleaning the build does: dashboard-pasted values arrive wrapped in
+// quotes often enough that trimming whitespace alone is not sufficient.
+const cleanEnv = (value) => (value ?? '').trim().replace(/^["']|["']$/g, '').trim()
+
 const validate = (payload) => {
   const author = clean(payload.author)
   const city = clean(payload.city)
@@ -54,20 +58,37 @@ export default {
     const {error, review} = validate(payload)
     if (error) return json({ok: false, message: `Invalid field: ${error}`}, 422)
 
-    const projectId = process.env.SANITY_PROJECT_ID?.trim()
-    const token = process.env.SANITY_WRITE_TOKEN?.trim()
-    if (!projectId || !token) {
-      console.error('submit-review: SANITY_PROJECT_ID or SANITY_WRITE_TOKEN is not set')
+    const projectId = cleanEnv(process.env.SANITY_PROJECT_ID)
+    const token = cleanEnv(process.env.SANITY_WRITE_TOKEN)
+
+    if (!projectId) {
+      console.error('submit-review: SANITY_PROJECT_ID is not set')
+      return json({ok: false, message: 'Server not configured'}, 500)
+    }
+    if (!token) {
+      console.error('submit-review: SANITY_WRITE_TOKEN is not set')
+      return json({ok: false, message: 'Server not configured'}, 500)
+    }
+    if (!/^[a-z0-9-]+$/.test(projectId)) {
+      console.error(`submit-review: SANITY_PROJECT_ID is malformed: ${JSON.stringify(projectId)}`)
       return json({ok: false, message: 'Server not configured'}, 500)
     }
 
-    const client = createClient({
-      projectId,
-      dataset: process.env.SANITY_DATASET?.trim() || 'production',
-      token,
-      apiVersion: '2024-10-01',
-      useCdn: false,
-    })
+    // createClient validates its arguments and throws. Left uncaught it would
+    // surface as a bare 500 with nothing in the response to explain it.
+    let client
+    try {
+      client = createClient({
+        projectId,
+        dataset: cleanEnv(process.env.SANITY_DATASET) || 'production',
+        token,
+        apiVersion: '2024-10-01',
+        useCdn: false,
+      })
+    } catch (cause) {
+      console.error('submit-review: could not create the Sanity client', cause)
+      return json({ok: false, message: 'Server not configured'}, 500)
+    }
 
     try {
       await client.create({
