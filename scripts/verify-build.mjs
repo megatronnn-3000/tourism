@@ -6,6 +6,11 @@
 // A plain `diff` is useless here: image URLs change by design and the
 // TRANSLATIONS block gets reformatted. What actually matters is that no key and
 // no visible string was lost on the way through Sanity.
+//
+// Once anyone edits content in the Studio, values legitimately diverge from the
+// template. So a changed value is reported as drift, not a failure; only
+// structural loss — a missing key, a vanished element, an image that never made
+// it to the CDN — exits non-zero.
 
 import * as cheerio from 'cheerio'
 import {readFile} from 'node:fs/promises'
@@ -20,6 +25,7 @@ const BUILT = path.join(root, 'dist', 'index.html')
 const REVIEW_KEY = /^reviews\.\d+\./
 
 const problems = []
+const drift = []
 const notes = []
 
 const textByKey = ($) => {
@@ -39,11 +45,8 @@ const compareDictionary = (label, before, after) => {
   if (dropped.length) problems.push(`${label}: ${dropped.length} key(s) missing — ${dropped.join(', ')}`)
 
   const changed = beforeKeys.filter((key) => afterKeys.has(key) && before[key] !== after[key])
-  if (changed.length) {
-    problems.push(`${label}: ${changed.length} value(s) changed`)
-    for (const key of changed.slice(0, 5)) {
-      problems.push(`    ${key}\n      was: ${JSON.stringify(before[key])}\n      now: ${JSON.stringify(after[key])}`)
-    }
+  for (const key of changed) {
+    drift.push(`${label}  ${key}\n      template: ${JSON.stringify(before[key])}\n      Sanity:   ${JSON.stringify(after[key])}`)
   }
 }
 
@@ -65,11 +68,9 @@ const run = async () => {
   const textAfter = textByKey($after)
   for (const [key, value] of textBefore) {
     if (REVIEW_KEY.test(key)) continue
-    if (!textAfter.has(key)) {
-      problems.push(`markup: element for "${key}" disappeared`)
-    } else if (textAfter.get(key) !== value) {
-      problems.push(`markup: "${key}" text changed\n      was: ${JSON.stringify(value)}\n      now: ${JSON.stringify(textAfter.get(key))}`)
-    }
+    // Changed text is already reported as dictionary drift; only a missing
+    // element means the build actually dropped something.
+    if (!textAfter.has(key)) problems.push(`markup: element for "${key}" disappeared`)
   }
 
   // Images must all be absolute Sanity URLs; a leftover relative path means a
@@ -93,13 +94,19 @@ const run = async () => {
 
   for (const note of notes) console.log(`  ${note}`)
 
+  if (drift.length) {
+    console.log(`\n  ${drift.length} value(s) edited in the Studio since the template was written:`)
+    for (const entry of drift.slice(0, 10)) console.log(`    ${entry}`)
+    if (drift.length > 10) console.log(`    … and ${drift.length - 10} more`)
+  }
+
   if (problems.length) {
     console.error(`\n✗ ${problems.length} problem(s):\n`)
     for (const problem of problems) console.error(`  ${problem}`)
     process.exit(1)
   }
 
-  console.log('\n✓ Build matches the template — no key or string lost.')
+  console.log('\n✓ Structure intact — no key, element or image lost.')
 }
 
 run().catch((error) => {

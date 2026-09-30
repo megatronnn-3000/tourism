@@ -39,6 +39,15 @@ const QUERY = `{
   }
 }`
 
+// Review text is written by the public. It reaches the page twice — as markup
+// and as a string inside a <script> block — so both paths need escaping, even
+// though Govind reads every review first. "</" would otherwise let a quote
+// close the script tag early.
+const escapeHtml = (value) =>
+  String(value).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
+
+const jsonForScript = (value) => JSON.stringify(value).replace(/<\//g, '<\\/')
+
 // Renders one dictionary in the page's existing shape: 8-space indent, a blank
 // line whenever the key namespace changes.
 const renderDictionary = (dictionary) => {
@@ -50,7 +59,7 @@ const renderDictionary = (dictionary) => {
     const group = key.split('.')[0]
     if (previousGroup && group !== previousGroup) lines.push('')
     const comma = index === entries.length - 1 ? '' : ','
-    lines.push(`        ${JSON.stringify(key)}: ${JSON.stringify(value)}${comma}`)
+    lines.push(`        ${jsonForScript(key)}: ${jsonForScript(value)}${comma}`)
     previousGroup = group
   })
 
@@ -102,12 +111,16 @@ const buildDictionaries = (content, reviews, keyOrder) => {
 
 const renderReviewCards = (reviews, de) =>
   reviews
-    .map((_, index) => {
+    .map((review, index) => {
       const n = index + 1
+      const rating = Math.min(5, Math.max(1, Math.round(Number(review.rating)) || 5))
+      // "4/5" rather than a translated label, so the toggle cannot leave it stale.
+      const stars = `${'★'.repeat(rating)}${'☆'.repeat(5 - rating)}`
       return (
         `          <figure class="testimonial-card reveal">\n` +
-        `            <blockquote data-i18n="reviews.${n}.quote">${de[`reviews.${n}.quote`]}</blockquote>\n` +
-        `            <figcaption data-i18n="reviews.${n}.author">${de[`reviews.${n}.author`]}</figcaption>\n` +
+        `            <div class="testimonial-rating" role="img" aria-label="${rating}/5">${stars}</div>\n` +
+        `            <blockquote data-i18n="reviews.${n}.quote">${escapeHtml(de[`reviews.${n}.quote`])}</blockquote>\n` +
+        `            <figcaption data-i18n="reviews.${n}.author">${escapeHtml(de[`reviews.${n}.author`])}</figcaption>\n` +
         `          </figure>`
       )
     })

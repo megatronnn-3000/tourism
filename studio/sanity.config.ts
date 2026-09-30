@@ -3,6 +3,7 @@ import {structureTool} from 'sanity/structure'
 import {visionTool} from '@sanity/vision'
 import {schemaTypes} from './schemas'
 import {structure} from './structure'
+import {approveReview, rejectReview} from './actions/reviewActions'
 
 const projectId = process.env.SANITY_STUDIO_PROJECT_ID || ''
 const dataset = process.env.SANITY_STUDIO_DATASET || 'production'
@@ -27,9 +28,14 @@ export default defineConfig({
     templates: (prev) => prev.filter((t) => t.schemaType !== 'siteContent'),
   },
   document: {
-    actions: (prev, {schemaType}) =>
-      schemaType === 'siteContent'
-        ? prev.filter(({action}) => action !== 'unpublish' && action !== 'delete' && action !== 'duplicate')
-        : prev,
+    actions: (prev, {schemaType}) => {
+      if (schemaType === 'siteContent') {
+        return prev.filter(({action}) => action !== 'unpublish' && action !== 'delete' && action !== 'duplicate')
+      }
+      if (schemaType === 'review') {
+        return [approveReview, rejectReview, ...prev]
+      }
+      return prev
+    },
   },
 })

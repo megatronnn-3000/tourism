@@ -2,12 +2,15 @@
 // Sanity, so the Studio becomes the source of truth.
 //
 //   node scripts/migrate-content.mjs --dry-run   # show what would happen
-//   node scripts/migrate-content.mjs             # do it
-//   node scripts/migrate-content.mjs --force     # re-upload images that exist
+//   node scripts/migrate-content.mjs             # add anything missing
+//   node scripts/migrate-content.mjs --force     # overwrite everything
 //
 // Needs SANITY_PROJECT_ID, SANITY_DATASET and SANITY_WRITE_TOKEN in .env.
-// Safe to re-run: the text document is replaced wholesale and images are
-// skipped if already present.
+//
+// Safe to re-run. By default only keys that do not exist yet are written, so
+// running this after adding new strings to the template cannot clobber copy
+// that has since been edited in the Studio. --force resets every field back to
+// whatever the template says, discarding those edits.
 
 import {createClient} from '@sanity/client'
 import {readdir, readFile} from 'node:fs/promises'
@@ -78,8 +81,21 @@ const run = async () => {
     useCdn: false,
   })
 
-  await client.createOrReplace(document)
-  console.log(`✓ ${CONTENT_ID}`)
+  const {_id, _type, ...fields} = document
+  if (force) {
+    await client.createOrReplace(document)
+    console.log(`✓ ${CONTENT_ID} — all ${Object.keys(fields).length} keys overwritten`)
+  } else {
+    const existing = (await client.fetch('*[_id == $id][0]', {id: _id})) ?? {}
+    const added = Object.keys(fields).filter((key) => existing[key] === undefined)
+    await client.createIfNotExists({_id, _type})
+    if (added.length) await client.patch(_id).setIfMissing(fields).commit()
+    console.log(
+      added.length
+        ? `✓ ${CONTENT_ID} — ${added.length} new key(s): ${added.slice(0, 6).join(', ')}${added.length > 6 ? ' …' : ''}`
+        : `· ${CONTENT_ID} — no new keys`,
+    )
+  }
 
   for (const image of images) {
     const slot = slotFor(image.relative)

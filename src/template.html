@@ -826,6 +826,99 @@
       font-size: 1.05rem;
     }
 
+    .testimonial-rating {
+      margin-bottom: 14px;
+      color: var(--marigold);
+      font-size: 1.05rem;
+      letter-spacing: 0.14em;
+    }
+
+    .review-disclosure {
+      margin: 26px 0 0;
+      color: rgba(43, 41, 38, 0.6);
+      font-size: 0.88rem;
+      line-height: 1.6;
+    }
+
+    .review-form-block {
+      display: grid;
+      gap: 26px;
+      margin-top: 40px;
+      padding-top: 36px;
+      border-top: 1px solid var(--line);
+    }
+
+    .review-form-copy h3 {
+      margin: 0 0 12px;
+      font-size: clamp(1.5rem, 5vw, 2rem);
+    }
+
+    .review-form-copy p {
+      margin: 0;
+      max-width: 620px;
+      color: rgba(43, 41, 38, 0.75);
+      font-size: 1.02rem;
+    }
+
+    .review-form-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .rating-field {
+      margin: 0;
+      padding: 0;
+      border: 0;
+    }
+
+    .rating-field legend {
+      padding: 0;
+      color: var(--indigo);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* Radios sit 5-to-1 in the DOM and are flipped visually, so `:checked ~ label`
+       reaches exactly the stars at or below the chosen value. */
+    .rating-stars {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: flex-end;
+      gap: 4px;
+      margin-top: 7px;
+    }
+
+    .rating-stars input {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      min-height: 0;
+      padding: 0;
+      border: 0;
+      opacity: 0;
+    }
+
+    .rating-stars label {
+      color: rgba(31, 58, 95, 0.22);
+      font-size: 1.9rem;
+      line-height: 1;
+      cursor: pointer;
+      transition: color 140ms ease;
+    }
+
+    .rating-stars input:checked ~ label,
+    .rating-stars label:hover,
+    .rating-stars label:hover ~ label {
+      color: var(--marigold);
+    }
+
+    .rating-stars input:focus-visible + label {
+      outline: 2px solid var(--marigold);
+      outline-offset: 3px;
+    }
+
     .info {
       background: var(--palm);
       color: var(--ivory);
@@ -1255,14 +1348,16 @@
         padding: 28px;
       }
 
-      .form-grid {
+      .form-grid,
+      .review-form-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
       .field-full,
       .consent,
       .form-status,
-      .form-card .btn {
+      .form-card .btn,
+      .review-form .btn {
         grid-column: 1 / -1;
       }
     }
@@ -1355,6 +1450,12 @@
 
       .testimonials-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .review-form-block {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+        gap: 52px;
+        align-items: start;
       }
 
       .info-layout {
@@ -1748,6 +1849,48 @@
             <figcaption data-i18n="reviews.3.author">— Claudia, Köln</figcaption>
           </figure>
         </div>
+
+        <p class="review-disclosure" data-i18n="reviews.disclosure">Bewertungen werden von Gästen selbst eingereicht und vor der Veröffentlichung gesichtet. Eine Prüfung, ob die verfassende Person tatsächlich eine Reise gebucht hat, findet nicht statt.</p>
+
+        <div class="review-form-block reveal">
+          <div class="review-form-copy">
+            <h3 data-i18n="reviews.formTitle">Ihre Bewertung</h3>
+            <p data-i18n="reviews.formLede">Waren Sie mit Govind unterwegs? Erzählen Sie kurz, wie Sie die Reise erlebt haben. Ich lese jede Bewertung persönlich, bevor sie erscheint.</p>
+          </div>
+          <form class="review-form" method="post" action="/api/submit-review" data-review-form>
+            <input type="checkbox" name="botcheck" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <div class="review-form-grid">
+              <div class="field">
+                <label for="review-author" data-i18n="reviews.formName">Name</label>
+                <input id="review-author" name="author" type="text" autocomplete="name" maxlength="80" required>
+              </div>
+              <div class="field">
+                <label for="review-city" data-i18n="reviews.formCity">Stadt</label>
+                <input id="review-city" name="city" type="text" maxlength="80">
+              </div>
+              <fieldset class="field field-full rating-field">
+                <legend data-i18n="reviews.formRating">Sterne</legend>
+                <div class="rating-stars">
+                  <input id="star-5" name="rating" type="radio" value="5" required><label for="star-5" data-i18n-aria-label="reviews.star5" aria-label="5 Sterne">★</label>
+                  <input id="star-4" name="rating" type="radio" value="4"><label for="star-4" data-i18n-aria-label="reviews.star4" aria-label="4 Sterne">★</label>
+                  <input id="star-3" name="rating" type="radio" value="3"><label for="star-3" data-i18n-aria-label="reviews.star3" aria-label="3 Sterne">★</label>
+                  <input id="star-2" name="rating" type="radio" value="2"><label for="star-2" data-i18n-aria-label="reviews.star2" aria-label="2 Sterne">★</label>
+                  <input id="star-1" name="rating" type="radio" value="1"><label for="star-1" data-i18n-aria-label="reviews.star1" aria-label="1 Stern">★</label>
+                </div>
+              </fieldset>
+              <div class="field field-full">
+                <label for="review-text" data-i18n="reviews.formText">Ihre Bewertung</label>
+                <textarea id="review-text" name="quote" maxlength="1200" required data-i18n-placeholder="reviews.formTextPlaceholder" placeholder="Was hat Ihre Reise mit Govind besonders gemacht?"></textarea>
+              </div>
+              <div class="consent">
+                <input id="review-consent" name="consent" type="checkbox" required>
+                <label for="review-consent" data-i18n="reviews.formConsent">Ich stimme zu, dass mein Name, meine Stadt und mein Text auf dieser Website veröffentlicht werden dürfen.</label>
+              </div>
+              <button class="btn btn-primary" type="submit" data-i18n="reviews.formSubmit">Bewertung senden</button>
+              <p class="form-status" role="status" aria-live="polite" data-review-status hidden></p>
+            </div>
+          </form>
+        </div>
       </div>
     </section>
 
@@ -1998,6 +2141,24 @@
         "reviews.2.author": "— Markus, Hamburg",
         "reviews.3.quote": "„Die Gespräche mit Govind haben uns Indien nähergebracht als jeder Reiseführer. Alles war persönlich, entspannt und sehr zuverlässig organisiert.”",
         "reviews.3.author": "— Claudia, Köln",
+        "reviews.disclosure": "Bewertungen werden von Gästen selbst eingereicht und vor der Veröffentlichung gesichtet. Eine Prüfung, ob die verfassende Person tatsächlich eine Reise gebucht hat, findet nicht statt.",
+        "reviews.formTitle": "Ihre Bewertung",
+        "reviews.formLede": "Waren Sie mit Govind unterwegs? Erzählen Sie kurz, wie Sie die Reise erlebt haben. Ich lese jede Bewertung persönlich, bevor sie erscheint.",
+        "reviews.formName": "Name",
+        "reviews.formCity": "Stadt",
+        "reviews.formRating": "Sterne",
+        "reviews.star1": "1 Stern",
+        "reviews.star2": "2 Sterne",
+        "reviews.star3": "3 Sterne",
+        "reviews.star4": "4 Sterne",
+        "reviews.star5": "5 Sterne",
+        "reviews.formText": "Ihre Bewertung",
+        "reviews.formTextPlaceholder": "Was hat Ihre Reise mit Govind besonders gemacht?",
+        "reviews.formConsent": "Ich stimme zu, dass mein Name, meine Stadt und mein Text auf dieser Website veröffentlicht werden dürfen.",
+        "reviews.formSubmit": "Bewertung senden",
+        "reviews.formSending": "Wird gesendet …",
+        "reviews.formSuccess": "Vielen Dank! Ihre Bewertung ist eingegangen. Sie erscheint, sobald Govind sie gesichtet hat.",
+        "reviews.formError": "Die Bewertung konnte leider nicht gesendet werden. Bitte versuchen Sie es später erneut.",
 
         "info.eyebrow": "Gut vorbereitet",
         "info.title": "Reiseinfos",
@@ -2167,6 +2328,24 @@
         "reviews.2.author": "— Markus, Hamburg",
         "reviews.3.quote": "“The conversations with Govind brought us closer to India than any guidebook. Everything was personal, relaxed and very reliably organised.”",
         "reviews.3.author": "— Claudia, Cologne",
+        "reviews.disclosure": "Reviews are submitted by guests themselves and are read before publication. There is no check that the person writing has actually booked a journey.",
+        "reviews.formTitle": "Your review",
+        "reviews.formLede": "Have you travelled with Govind? Tell us briefly how you experienced the journey. I read every review personally before it appears.",
+        "reviews.formName": "Name",
+        "reviews.formCity": "City",
+        "reviews.formRating": "Rating",
+        "reviews.star1": "1 star",
+        "reviews.star2": "2 stars",
+        "reviews.star3": "3 stars",
+        "reviews.star4": "4 stars",
+        "reviews.star5": "5 stars",
+        "reviews.formText": "Your review",
+        "reviews.formTextPlaceholder": "What made your journey with Govind special?",
+        "reviews.formConsent": "I agree that my name, city and text may be published on this website.",
+        "reviews.formSubmit": "Send review",
+        "reviews.formSending": "Sending …",
+        "reviews.formSuccess": "Thank you! Your review has arrived. It will appear once Govind has read it.",
+        "reviews.formError": "Your review could not be sent. Please try again later.",
 
         "info.eyebrow": "Well prepared",
         "info.title": "Travel info",
@@ -2325,15 +2504,17 @@
       }
     });
 
-    const formStatus = document.querySelector("[data-form-status]");
-
-    function setFormStatus(key, state) {
-      // Re-key the element so a later language switch keeps the message.
-      formStatus.setAttribute("data-i18n", key);
-      formStatus.textContent = TRANSLATIONS[document.documentElement.lang][key];
-      formStatus.dataset.state = state;
-      formStatus.hidden = false;
+    // Re-keys the element so a later language switch keeps the message.
+    function statusSetter(element) {
+      return (key, state) => {
+        element.setAttribute("data-i18n", key);
+        element.textContent = TRANSLATIONS[document.documentElement.lang][key];
+        element.dataset.state = state;
+        element.hidden = false;
+      };
     }
+
+    const setFormStatus = statusSetter(document.querySelector("[data-form-status]"));
 
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
@@ -2356,6 +2537,37 @@
         setFormStatus("form.success", "success");
       } catch (error) {
         setFormStatus("form.error", "error");
+      } finally {
+        submitButton.disabled = false;
+      }
+    });
+
+    const reviewForm = document.querySelector("[data-review-form]");
+    const setReviewStatus = statusSetter(document.querySelector("[data-review-status]"));
+
+    reviewForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const submitButton = reviewForm.querySelector("button[type='submit']");
+      submitButton.disabled = true;
+      setReviewStatus("reviews.formSending", "pending");
+
+      try {
+        const payload = Object.fromEntries(new FormData(reviewForm));
+        payload.language = document.documentElement.lang;
+
+        const response = await fetch(reviewForm.action, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify(payload)
+        });
+        const result = await response.json();
+        if (!response.ok || !result.ok) {
+          throw new Error(result.message);
+        }
+        reviewForm.reset();
+        setReviewStatus("reviews.formSuccess", "success");
+      } catch (error) {
+        setReviewStatus("reviews.formError", "error");
       } finally {
         submitButton.disabled = false;
       }
