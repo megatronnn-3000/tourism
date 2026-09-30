@@ -14,3 +14,14 @@
 Thumbs.db
 .DS_Store
 *~
+
+# Secrets. SANITY_WRITE_TOKEN grants delete access to the whole dataset.
+.env
+.env.*
+!.env.example
+
+# Dependencies and build output
+node_modules/
+dist/
+studio/dist/
+studio/.sanity/
