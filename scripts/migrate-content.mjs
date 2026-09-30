@@ -14,6 +14,7 @@ import {readdir, readFile} from 'node:fs/promises'
 import {fileURLToPath} from 'node:url'
 import path from 'node:path'
 import {extractTranslations, toFieldName, assertRoundTrips} from './lib/translations.mjs'
+import {requireEnv, optionalEnv, requireProjectId} from './lib/env.mjs'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const SOURCE = path.join(root, 'src', 'template.html')
@@ -24,12 +25,6 @@ const dryRun = process.argv.includes('--dry-run')
 const force = process.argv.includes('--force')
 
 const MIME = {'.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.png': 'image/png', '.webp': 'image/webp', '.avif': 'image/avif'}
-
-const requireEnv = (name) => {
-  const value = process.env[name]
-  if (!value) throw new Error(`${name} is not set. Copy .env.example to .env and fill it in.`)
-  return value
-}
 
 // "images/gallery/taj-mahal.jpg" -> slot "gallery/taj-mahal", id "siteImage.gallery-taj-mahal"
 const slotFor = (relativePath) => relativePath.split(path.sep).join('/').replace(/\.[^.]+$/, '')
@@ -76,8 +71,8 @@ const run = async () => {
   }
 
   const client = createClient({
-    projectId: requireEnv('SANITY_PROJECT_ID'),
-    dataset: process.env.SANITY_DATASET || 'production',
+    projectId: requireProjectId(),
+    dataset: optionalEnv('SANITY_DATASET', 'production'),
     token: requireEnv('SANITY_WRITE_TOKEN'),
     apiVersion: '2024-10-01',
     useCdn: false,

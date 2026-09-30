@@ -13,6 +13,7 @@ import {readFile, writeFile, mkdir, rm, cp} from 'node:fs/promises'
 import {fileURLToPath} from 'node:url'
 import path from 'node:path'
 import {locateTranslations, toFieldName} from './scripts/lib/translations.mjs'
+import {requireEnv, optionalEnv, requireProjectId} from './scripts/lib/env.mjs'
 
 const root = path.dirname(fileURLToPath(import.meta.url))
 const TEMPLATE = path.join(root, 'src', 'template.html')
@@ -27,12 +28,6 @@ const STATIC_FILES = ['video-gast.mp4']
 const QUOTES = {de: ['„', '”'], en: ['“', '”']}
 
 const REVIEW_KEY = /^reviews\.\d+\./
-
-const requireEnv = (name) => {
-  const value = process.env[name]
-  if (!value) throw new Error(`${name} is not set. Copy .env.example to .env and fill it in.`)
-  return value
-}
 
 const slotFromSrc = (src) => src.replace(/^images\//, '').replace(/\.[^.]+$/, '')
 
@@ -120,10 +115,10 @@ const renderReviewCards = (reviews, de) =>
 
 const run = async () => {
   const client = createClient({
-    projectId: requireEnv('SANITY_PROJECT_ID'),
-    dataset: process.env.SANITY_DATASET || 'production',
+    projectId: requireProjectId(),
+    dataset: optionalEnv('SANITY_DATASET', 'production'),
     // The dataset is private, so a token is required even to read.
-    token: process.env.SANITY_READ_TOKEN || requireEnv('SANITY_WRITE_TOKEN'),
+    token: optionalEnv('SANITY_READ_TOKEN', null) ?? requireEnv('SANITY_WRITE_TOKEN'),
     apiVersion: '2024-10-01',
     // Builds must see what was just published, not a cached copy.
     useCdn: false,
