@@ -1880,7 +1880,7 @@
               </fieldset>
               <div class="field field-full">
                 <label for="review-text" data-i18n="reviews.formText">Ihre Bewertung</label>
-                <textarea id="review-text" name="quote" maxlength="1200" required data-i18n-placeholder="reviews.formTextPlaceholder" placeholder="Was hat Ihre Reise mit Govind besonders gemacht?"></textarea>
+                <textarea id="review-text" name="quote" minlength="20" maxlength="1200" required data-i18n-placeholder="reviews.formTextPlaceholder" placeholder="Was hat Ihre Reise mit Govind besonders gemacht?"></textarea>
               </div>
               <div class="consent">
                 <input id="review-consent" name="consent" type="checkbox" required>
@@ -2567,6 +2567,8 @@
         reviewForm.reset();
         setReviewStatus("reviews.formSuccess", "success");
       } catch (error) {
+        // The status line stays deliberately vague; the console carries the reason.
+        console.error("Review submission failed:", error);
         setReviewStatus("reviews.formError", "error");
       } finally {
         submitButton.disabled = false;
