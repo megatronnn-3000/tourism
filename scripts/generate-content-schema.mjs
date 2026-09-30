@@ -22,18 +22,18 @@ const LONG_TEXT = 110
 const GROUP_TITLES = {
   meta: 'Meta & SEO',
   nav: 'Navigation',
-  hero: 'Startbereich',
-  trust: 'Vertrauensleiste',
-  about: 'Über Govind',
-  journeys: 'Reisen',
-  tour: 'Einzelne Reisen',
-  why: 'Warum Govind',
-  gallery: 'Impressionen',
-  reviews: 'Bewertungen',
-  info: 'Reiseinfos',
-  enquiry: 'Anfrage',
-  form: 'Formular',
-  footer: 'Fußzeile',
+  hero: 'Hero',
+  trust: 'Trust strip',
+  about: 'About Govind',
+  journeys: 'Journeys',
+  tour: 'Individual tours',
+  why: 'Why Govind',
+  gallery: 'Gallery',
+  reviews: 'Reviews',
+  info: 'Travel info',
+  enquiry: 'Enquiry',
+  form: 'Enquiry form',
+  footer: 'Footer',
   whatsapp: 'WhatsApp',
 }
 
@@ -83,7 +83,7 @@ import {defineType, defineField} from 'sanity'
 
 export const siteContent = defineType({
   name: 'siteContent',
-  title: 'Seitentexte',
+  title: 'Page text',
   type: 'document',
   groups: [
 ${groupLines}
@@ -92,7 +92,7 @@ ${groupLines}
 ${fieldLines}
   ],
   preview: {
-    prepare: () => ({title: 'Seitentexte'}),
+    prepare: () => ({title: 'Page text'}),
   },
 })
 `

@@ -2,7 +2,7 @@ import {defineType, defineField} from 'sanity'
 
 export const review = defineType({
   name: 'review',
-  title: 'Bewertung',
+  title: 'Review',
   type: 'document',
   fields: [
     defineField({
@@ -13,24 +13,24 @@ export const review = defineType({
     }),
     defineField({
       name: 'city',
-      title: 'Stadt',
+      title: 'City',
       type: 'string',
       validation: (rule) => rule.max(80),
     }),
     defineField({
       name: 'rating',
-      title: 'Sterne',
+      title: 'Stars',
       type: 'number',
       options: {list: [1, 2, 3, 4, 5], layout: 'radio', direction: 'horizontal'},
       validation: (rule) => rule.required().min(1).max(5).integer(),
     }),
     defineField({
       name: 'language',
-      title: 'Eingereicht auf',
+      title: 'Submitted in',
       type: 'string',
       options: {
         list: [
-          {title: 'Deutsch', value: 'de'},
+          {title: 'German', value: 'de'},
           {title: 'English', value: 'en'},
         ],
       },
@@ -38,27 +38,27 @@ export const review = defineType({
     }),
     defineField({
       name: 'quoteOriginal',
-      title: 'Originaltext',
+      title: 'Original text',
       type: 'text',
       rows: 6,
       // Kept verbatim and locked. If a review is ever disputed, this is the
       // record of what the guest actually wrote.
       readOnly: true,
-      description: 'Genau so eingereicht. Nicht bearbeitbar.',
+      description: 'Exactly as submitted. Not editable.',
     }),
     defineField({
       name: 'quoteDe',
-      title: 'Text · Deutsch',
+      title: 'Text · German',
       type: 'text',
       rows: 6,
-      description: 'Wird auf der deutschen Seite angezeigt.',
+      description: 'Shown on the German site.',
     }),
     defineField({
       name: 'quoteEn',
       title: 'Text · English',
       type: 'text',
       rows: 6,
-      description: 'Wird auf der englischen Seite angezeigt.',
+      description: 'Shown on the English site.',
     }),
     defineField({
       name: 'status',
@@ -66,9 +66,9 @@ export const review = defineType({
       type: 'string',
       options: {
         list: [
-          {title: 'Neu eingegangen', value: 'pending'},
-          {title: 'Veröffentlichen', value: 'approved'},
-          {title: 'Abgelehnt', value: 'rejected'},
+          {title: 'New', value: 'pending'},
+          {title: 'Published', value: 'approved'},
+          {title: 'Rejected', value: 'rejected'},
         ],
         layout: 'radio',
       },
@@ -77,14 +77,14 @@ export const review = defineType({
     }),
     defineField({
       name: 'submittedAt',
-      title: 'Eingegangen am',
+      title: 'Received',
       type: 'datetime',
       readOnly: true,
     }),
   ],
   orderings: [
     {
-      title: 'Neueste zuerst',
+      title: 'Newest first',
       name: 'submittedAtDesc',
       by: [{field: 'submittedAt', direction: 'desc'}],
     },
@@ -95,7 +95,7 @@ export const review = defineType({
       const stars = '★'.repeat(rating || 0)
       const flag = status === 'pending' ? '• ' : ''
       return {
-        title: `${flag}${author || 'Ohne Namen'}${city ? `, ${city}` : ''}`,
+        title: `${flag}${author || 'No name'}${city ? `, ${city}` : ''}`,
         subtitle: `${stars}  ${(quote || '').slice(0, 90)}`,
       }
     },

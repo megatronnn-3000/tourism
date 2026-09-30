@@ -17,7 +17,7 @@ if (!projectId) {
 
 export default defineConfig({
   name: 'default',
-  title: 'Govind · Reiseleiter Indien',
+  title: 'Govind · India Tour Guide',
   projectId,
   dataset,
   plugins: [structureTool({structure}), visionTool()],

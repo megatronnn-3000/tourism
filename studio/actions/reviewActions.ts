@@ -1,8 +1,8 @@
 import {useState} from 'react'
 import {useDocumentOperation, type DocumentActionComponent, type DocumentActionProps} from 'sanity'
 
-// Govind should not have to find a dropdown, set it correctly and then remember
-// to publish. One button per outcome does both.
+// Moderating should not mean finding a dropdown, setting it correctly and then
+// remembering to publish. One button per outcome does both.
 
 const statusOf = (props: DocumentActionProps) =>
   ((props.draft ?? props.published) as {status?: string} | null)?.status
@@ -34,5 +34,5 @@ const makeAction = (
   return action
 }
 
-export const approveReview = makeAction('approved', 'Veröffentlichen', 'Wird veröffentlicht …', 'positive')
-export const rejectReview = makeAction('rejected', 'Ablehnen', 'Wird abgelehnt …', 'critical')
+export const approveReview = makeAction('approved', 'Publish', 'Publishing …', 'positive')
+export const rejectReview = makeAction('rejected', 'Reject', 'Rejecting …', 'critical')

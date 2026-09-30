@@ -1,47 +1,46 @@
 import type {StructureResolver} from 'sanity/structure'
 
-// Govind is the person who uses this Studio, so the sidebar is in German and
-// shows only the three things he ever needs: the page text, new reviews waiting
-// on him, and the photos.
+// The sidebar shows only the three things anyone ever needs here: the page
+// text, reviews waiting on a decision, and the photos.
 export const structure: StructureResolver = (S) =>
   S.list()
-    .title('Inhalt')
+    .title('Content')
     .items([
       S.listItem()
-        .title('Seitentexte')
+        .title('Page text')
         .id('siteContent')
-        .child(S.document().schemaType('siteContent').documentId('siteContent').title('Seitentexte')),
+        .child(S.document().schemaType('siteContent').documentId('siteContent').title('Page text')),
 
       S.divider(),
 
       S.listItem()
-        .title('Bewertungen · Neu eingegangen')
+        .title('Reviews · New')
         .id('reviewsPending')
         .child(
           S.documentList()
-            .title('Neu eingegangen')
+            .title('New reviews')
             .filter('_type == "review" && status == "pending"')
             .defaultOrdering([{field: 'submittedAt', direction: 'desc'}])
             .apiVersion('2024-10-01'),
         ),
 
       S.listItem()
-        .title('Bewertungen · Veröffentlicht')
+        .title('Reviews · Published')
         .id('reviewsApproved')
         .child(
           S.documentList()
-            .title('Veröffentlicht')
+            .title('Published reviews')
             .filter('_type == "review" && status == "approved"')
             .defaultOrdering([{field: 'submittedAt', direction: 'desc'}])
             .apiVersion('2024-10-01'),
         ),
 
       S.listItem()
-        .title('Bewertungen · Abgelehnt')
+        .title('Reviews · Rejected')
         .id('reviewsRejected')
         .child(
           S.documentList()
-            .title('Abgelehnt')
+            .title('Rejected reviews')
             .filter('_type == "review" && status == "rejected"')
             .defaultOrdering([{field: 'submittedAt', direction: 'desc'}])
             .apiVersion('2024-10-01'),
@@ -49,5 +48,5 @@ export const structure: StructureResolver = (S) =>
 
       S.divider(),
 
-      S.listItem().title('Bilder').id('siteImage').child(S.documentTypeList('siteImage').title('Bilder')),
+      S.listItem().title('Images').id('siteImage').child(S.documentTypeList('siteImage').title('Images')),
     ])
