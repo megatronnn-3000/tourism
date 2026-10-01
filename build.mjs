@@ -21,7 +21,12 @@ const KEY_ORDER = path.join(root, 'scripts', 'key-order.json')
 const DIST = path.join(root, 'dist')
 
 // Copied verbatim into dist. Everything else the page needs comes from Sanity.
-const STATIC_FILES = ['video-gast.mp4']
+// [source, published name]
+const STATIC_FILES = [
+  ['video-gast.mp4', 'video-gast.mp4'],
+  ['src/404.html', '404.html'],
+  ['src/favicon.svg', 'favicon.svg'],
+]
 
 // Review text is stored bare so a guest who never types „ or “ renders the same
 // as the seeded testimonials. DE opens low, EN opens high, both close high.
@@ -197,6 +202,15 @@ const run = async () => {
     })
   }
 
+  // Only emitted when the production origin is known. On preview deploys it is
+  // absent, which is correct: a canonical pointing at production would tell
+  // Google to credit production for the preview's content.
+  const siteUrl = optionalEnv('SITE_URL', null)?.replace(/\/+$/, '')
+  if (siteUrl) {
+    $('head').append(`\n  <link rel="canonical" href="${siteUrl}/">`)
+    $('head').append(`\n  <meta property="og:url" content="${siteUrl}/">\n`)
+  }
+
   const html = $.html()
   const {start, end} = locateTranslations(html)
   const output = html.slice(0, start) + renderTranslations(de, en) + html.slice(end)
@@ -204,13 +218,38 @@ const run = async () => {
   await rm(DIST, {recursive: true, force: true})
   await mkdir(DIST, {recursive: true})
   await writeFile(path.join(DIST, 'index.html'), output, 'utf8')
-  for (const file of STATIC_FILES) {
-    await cp(path.join(root, file), path.join(DIST, file))
+  for (const [source, published] of STATIC_FILES) {
+    await cp(path.join(root, source), path.join(DIST, published))
+  }
+
+  await writeFile(
+    path.join(DIST, 'robots.txt'),
+    `User-agent: *\nAllow: /\n${siteUrl ? `\nSitemap: ${siteUrl}/sitemap.xml\n` : ''}`,
+    'utf8',
+  )
+
+  if (siteUrl) {
+    await writeFile(
+      path.join(DIST, 'sitemap.xml'),
+      `<?xml version="1.0" encoding="UTF-8"?>\n` +
+        `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
+        `  <url>\n` +
+        `    <loc>${siteUrl}/</loc>\n` +
+        `    <lastmod>${new Date().toISOString().slice(0, 10)}</lastmod>\n` +
+        `  </url>\n` +
+        `</urlset>\n`,
+      'utf8',
+    )
   }
 
   console.log(`✓ dist/index.html`)
   console.log(`  ${Object.keys(de).length} keys · ${images.length} images · ${reviews.length} reviews`)
   console.log(`  ${(Buffer.byteLength(output) / 1024).toFixed(1)} KB`)
+  console.log(
+    siteUrl
+      ? `  canonical, robots.txt and sitemap.xml for ${siteUrl}`
+      : `  SITE_URL not set — no canonical or sitemap (fine for previews)`,
+  )
 }
 
 run().catch((error) => {
