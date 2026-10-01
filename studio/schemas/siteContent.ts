@@ -1239,13 +1239,6 @@ export const siteContent = defineType({
       group: 'reviews',
     }),
     defineField({
-      name: 'reviews_disclosure',
-      title: 'disclosure',
-      description: 'reviews.disclosure',
-      type: 'localeText',
-      group: 'reviews',
-    }),
-    defineField({
       name: 'reviews_formTitle',
       title: 'formTitle',
       description: 'reviews.formTitle',
