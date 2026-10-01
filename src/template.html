@@ -15,10 +15,12 @@
   <meta property="og:locale" content="de_DE">
   <meta name="theme-color" content="#1F3A5F">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-  <!-- TODO: Self-host Google Fonts before launch for EU privacy/GDPR requirements. -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
+  <!-- Served from our own origin, so no visitor IP reaches Google. The two
+       latin files cover almost all of the page, so they are preloaded; the
+       latin-ext pair loads only if a glyph needs it. -->
+  <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/lora-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/fonts.css">
   <style>
     :root {
       --indigo: #1F3A5F;

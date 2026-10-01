@@ -30,6 +30,8 @@ const STATIC_FILES = [
   ['src/legal-notice.html', 'legal-notice.html'],
   ['src/privacy.html', 'privacy.html'],
   ['src/terms.html', 'terms.html'],
+  ['src/fonts.css', 'fonts.css'],
+  ['src/fonts', 'fonts'],
 ]
 
 // The legal pages ship with marked blanks (postal address, email, cancellation
@@ -230,7 +232,7 @@ const run = async () => {
   let placeholders = 0
   for (const [source, published] of STATIC_FILES) {
     const from = path.join(root, source)
-    await cp(from, path.join(DIST, published))
+    await cp(from, path.join(DIST, published), {recursive: true})
     if (published.endsWith('.html')) {
       placeholders += ((await readFile(from, 'utf8')).match(PLACEHOLDER) ?? []).length
     }
