@@ -3056,7 +3056,12 @@
             observer.unobserve(entry.target);
           }
         });
-      }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+        // threshold must stay 0. A ratio-based threshold is unreachable for any
+        // element taller than the viewport: the 20-tile gallery is ~6,900px on a
+        // phone, so 12% of it is ~820px and never fits on screen. The element
+        // then never gets .is-visible and stays at opacity 0 forever. The
+        // bottom rootMargin is what delays the reveal until it is properly in view.
+      }, { threshold: 0, rootMargin: "0px 0px -40px 0px" });
 
       document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
     }
