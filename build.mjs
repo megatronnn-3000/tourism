@@ -26,7 +26,16 @@ const STATIC_FILES = [
   ['video-gast.mp4', 'video-gast.mp4'],
   ['src/404.html', '404.html'],
   ['src/favicon.svg', 'favicon.svg'],
+  ['src/legal.css', 'legal.css'],
+  ['src/legal-notice.html', 'legal-notice.html'],
+  ['src/privacy.html', 'privacy.html'],
+  ['src/terms.html', 'terms.html'],
 ]
+
+// The legal pages ship with marked blanks (postal address, email, cancellation
+// percentages). Launching with those visible would be worse than having no page,
+// so the build counts them and says so rather than letting them slip through.
+const PLACEHOLDER = /class="todo"/g
 
 // Review text is stored bare so a guest who never types „ or “ renders the same
 // as the seeded testimonials. DE opens low, EN opens high, both close high.
@@ -218,8 +227,13 @@ const run = async () => {
   await rm(DIST, {recursive: true, force: true})
   await mkdir(DIST, {recursive: true})
   await writeFile(path.join(DIST, 'index.html'), output, 'utf8')
+  let placeholders = 0
   for (const [source, published] of STATIC_FILES) {
-    await cp(path.join(root, source), path.join(DIST, published))
+    const from = path.join(root, source)
+    await cp(from, path.join(DIST, published))
+    if (published.endsWith('.html')) {
+      placeholders += ((await readFile(from, 'utf8')).match(PLACEHOLDER) ?? []).length
+    }
   }
 
   await writeFile(
@@ -250,6 +264,9 @@ const run = async () => {
       ? `  canonical, robots.txt and sitemap.xml for ${siteUrl}`
       : `  SITE_URL not set — no canonical or sitemap (fine for previews)`,
   )
+  if (placeholders) {
+    console.log(`\n⚠ ${placeholders} unfilled placeholder(s) in the legal pages — do not launch with these.`)
+  }
 }
 
 run().catch((error) => {
