@@ -1078,6 +1078,13 @@ export const siteContent = defineType({
       group: 'gallery',
     }),
     defineField({
+      name: 'gallery_govindGuest',
+      title: 'govindGuest',
+      description: 'gallery.govindGuest',
+      type: 'localeString',
+      group: 'gallery',
+    }),
+    defineField({
       name: 'gallery_hawaMahal',
       title: 'hawaMahal',
       description: 'gallery.hawaMahal',
