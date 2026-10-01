@@ -842,15 +842,20 @@
       border-bottom: 1px solid var(--line);
     }
 
+    /* Grid rather than CSS multi-column. Lazy-loaded images inside a
+       multi-column container frequently never load: the column cannot size
+       itself until the image loads, and the browser will not load the image
+       until layout says it is in view. Twenty images in one mobile column made
+       that deadlock reliable. */
     .gallery-grid {
-      columns: 1;
-      column-gap: 16px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
     }
 
     .gallery-item {
       display: block;
-      break-inside: avoid;
-      margin: 0 0 16px;
+      margin: 0;
       overflow: hidden;
       border: 1px solid var(--line);
       background: var(--ivory);
@@ -863,9 +868,14 @@
       box-shadow: 0 20px 46px rgba(31, 58, 95, 0.14);
     }
 
+    /* Uniform square tiles: the set mixes 4:3, 3:4 and 1:1 originals, and a
+       square centre crop keeps the subject in frame for both orientations. */
     .gallery-item img {
+      display: block;
       width: 100%;
-      height: auto;
+      height: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
       transition: transform 460ms ease;
     }
 
@@ -1450,7 +1460,7 @@
       }
 
       .gallery-grid {
-        columns: 2;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
       .form-card {
@@ -1559,12 +1569,8 @@
       }
 
       .gallery-grid {
-        columns: 3;
-        column-gap: 18px;
-      }
-
-      .gallery-item {
-        margin-bottom: 18px;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
       }
 
       .testimonials-grid {

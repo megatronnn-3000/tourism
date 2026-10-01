@@ -171,7 +171,11 @@ const run = async () => {
 
   $('img[src^="images/"]').each((_, element) => {
     const img = $(element)
-    const width = Number(img.attr('width')) || 1080
+    const declared = Number(img.attr('width')) || 1080
+    // A gallery tile never renders wider than about 400 CSS pixels, so the
+    // declared source width is several times what any screen can use. 800
+    // still covers a 2x display.
+    const width = img.closest('.gallery-item').length ? Math.min(declared, 800) : declared
     img.attr('src', urlFor(slotFromSrc(img.attr('src')), width))
   })
 
