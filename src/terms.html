@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="de">
 <head>
   <meta charset="utf-8">
@@ -14,13 +14,18 @@
   <header class="bar">
     <a class="home" href="/">Govind</a>
     <nav>
-      <a href="/legal-notice.html">Impressum</a>
-      <a href="/privacy.html">Datenschutz</a>
-      <a href="/terms.html" aria-current="page">AGB</a>
-      <a href="/">Zur Startseite</a>
+      <a href="/legal-notice.html"><span data-lang-block="de">Impressum</span><span data-lang-block="en">Legal notice</span></a>
+      <a href="/privacy.html"><span data-lang-block="de">Datenschutz</span><span data-lang-block="en">Privacy</span></a>
+      <a href="/terms.html" aria-current="page"><span data-lang-block="de">AGB</span><span data-lang-block="en">Terms</span></a>
+      <a href="/"><span data-lang-block="de">Zur Startseite</span><span data-lang-block="en">Home</span></a>
     </nav>
+    <div class="lang-switch">
+      <button type="button" data-lang="de" aria-pressed="true">DE</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+    </div>
   </header>
 
+  <section data-lang-block="de" lang="de">
   <h1>Allgemeine Geschäftsbedingungen</h1>
   <p class="updated">Zuletzt aktualisiert: 1. Oktober 2026</p>
 
@@ -34,7 +39,7 @@
   <h2>1. Geltungsbereich und Vertragspartner</h2>
   <p>
     Diese Bedingungen gelten für alle Leistungen von Govind Singh Shekhawat
-    (nachfolgend „Reiseleiter“), Anschrift siehe <a href="/legal-notice.html">Impressum</a>,
+    (nachfolgend „Reiseleiter“), Anschrift siehe <a href="/legal-notice.html"><span data-lang-block="de">Impressum</span><span data-lang-block="en">Legal notice</span></a>,
     gegenüber seinen Auftraggebern (nachfolgend „Gast“).
   </p>
 
@@ -147,7 +152,10 @@
     Bestimmungen unberührt.
   </p>
 
-  <p class="lang-divider">English translation — the German version above is authoritative</p>
+  </section>
+
+  <section data-lang-block="en" lang="en">
+  <p class="lang-note">English translation. In case of dispute the German version is authoritative.</p>
 
   <h1>Terms and Conditions</h1>
   <p class="updated">Last updated: 1 October 2026</p>
@@ -264,9 +272,12 @@
     unaffected.
   </p>
 
+  </section>
+
   <footer class="bar">
     <a href="/">← Zur Startseite · Back to the homepage</a>
   </footer>
 </div>
+<script src="/legal.js"></script>
 </body>
 </html>

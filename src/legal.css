@@ -97,15 +97,37 @@ a { color: var(--sandstone-text); }
   font-size: 0.95rem;
 }
 
-.lang-divider {
-  margin: 72px 0 40px;
-  padding-top: 28px;
+.lang-switch { display: flex; gap: 6px; }
+
+.lang-switch button {
+  padding: 5px 11px;
+  border: 1px solid var(--line);
+  background: none;
+  color: rgba(43, 41, 38, 0.65);
+  font: inherit;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+}
+
+.lang-switch button[aria-pressed="true"] {
+  border-color: var(--indigo);
+  background: var(--indigo);
+  color: var(--ivory);
+}
+
+/* Both languages stay visible without JavaScript, which is the right fallback
+   for a legal document. The note only makes sense in that state. */
+.lang-note {
+  margin: 56px 0 32px;
+  padding-top: 24px;
   border-top: 1px solid var(--line);
   color: rgba(43, 41, 38, 0.55);
   font-size: 0.88rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
 }
+
+[data-lang-block][hidden] { display: none; }
 
 table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 0.95rem; }
 th, td { padding: 9px 10px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }

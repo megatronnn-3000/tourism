@@ -14,13 +14,18 @@
   <header class="bar">
     <a class="home" href="/">Govind</a>
     <nav>
-      <a href="/legal-notice.html">Impressum</a>
-      <a href="/privacy.html" aria-current="page">Datenschutz</a>
-      <a href="/terms.html">AGB</a>
-      <a href="/">Zur Startseite</a>
+      <a href="/legal-notice.html"><span data-lang-block="de">Impressum</span><span data-lang-block="en">Legal notice</span></a>
+      <a href="/privacy.html" aria-current="page"><span data-lang-block="de">Datenschutz</span><span data-lang-block="en">Privacy</span></a>
+      <a href="/terms.html"><span data-lang-block="de">AGB</span><span data-lang-block="en">Terms</span></a>
+      <a href="/"><span data-lang-block="de">Zur Startseite</span><span data-lang-block="en">Home</span></a>
     </nav>
+    <div class="lang-switch">
+      <button type="button" data-lang="de" aria-pressed="true">DE</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+    </div>
   </header>
 
+  <section data-lang-block="de" lang="de">
   <h1>Datenschutzerklärung</h1>
   <p class="updated">Zuletzt aktualisiert: 1. Oktober 2026</p>
 
@@ -161,7 +166,10 @@
     Ohne Name und E-Mail-Adresse kann eine Anfrage jedoch nicht beantwortet werden.
   </p>
 
-  <p class="lang-divider">English translation — the German version above is authoritative</p>
+  </section>
+
+  <section data-lang-block="en" lang="en">
+  <p class="lang-note">English translation. In case of dispute the German version is authoritative.</p>
 
   <h1>Privacy Policy</h1>
   <p class="updated">Last updated: 1 October 2026</p>
@@ -283,9 +291,12 @@
     without a name and email address an enquiry cannot be answered.
   </p>
 
+  </section>
+
   <footer class="bar">
     <a href="/">← Zur Startseite · Back to the homepage</a>
   </footer>
 </div>
+<script src="/legal.js"></script>
 </body>
 </html>

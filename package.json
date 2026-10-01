@@ -9,6 +9,7 @@
   "scripts": {
     "build": "node --env-file-if-exists=.env build.mjs",
     "verify": "node scripts/verify-build.mjs",
+    "serve": "node scripts/serve.mjs",
     "generate:schema": "node scripts/generate-content-schema.mjs",
     "migrate": "node --env-file-if-exists=.env scripts/migrate-content.mjs",
     "migrate:dry": "node scripts/migrate-content.mjs --dry-run",

@@ -27,6 +27,7 @@ const STATIC_FILES = [
   ['src/404.html', '404.html'],
   ['src/favicon.svg', 'favicon.svg'],
   ['src/legal.css', 'legal.css'],
+  ['src/legal.js', 'legal.js'],
   ['src/legal-notice.html', 'legal-notice.html'],
   ['src/privacy.html', 'privacy.html'],
   ['src/terms.html', 'terms.html'],
