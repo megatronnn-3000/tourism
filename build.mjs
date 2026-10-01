@@ -155,7 +155,6 @@ const run = async () => {
 
   const {content, images, reviews} = await client.fetch(QUERY)
   if (!content) throw new Error('No siteContent document found. Run: npm run migrate')
-  if (!reviews.length) throw new Error('No approved reviews found. Run: npm run seed:reviews')
 
   const keyOrder = JSON.parse(await readFile(KEY_ORDER, 'utf8'))
   const {de, en} = buildDictionaries(content, reviews, keyOrder)
@@ -189,7 +188,14 @@ const run = async () => {
     meta.attr('content', urlFor(slotFromSrc(meta.attr('content')), 1200))
   })
 
-  $('.testimonials-grid').html(`\n${renderReviewCards(reviews, de)}\n        `)
+  // No approved reviews is a legitimate content state — the first guest review
+  // has not been published yet, or every one was rejected. Dropping the grid is
+  // correct; failing the build over it would let content take the site down.
+  if (reviews.length) {
+    $('.testimonials-grid').html(`\n${renderReviewCards(reviews, de)}\n        `)
+  } else {
+    $('.testimonials-grid').remove()
+  }
 
   // Bake the German copy into the markup. The dictionary still drives the
   // EN toggle at runtime, exactly as before.

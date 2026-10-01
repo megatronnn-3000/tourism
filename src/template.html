@@ -308,7 +308,10 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center 42%;
+      /* The camel sits left of centre and the sun just right of it. Biasing the
+         crop left keeps both in frame on a phone, where cover otherwise keeps
+         only the middle and loses the camel entirely. */
+      object-position: 38% 52%;
       animation: hero-drift 26s ease-out forwards;
     }
 
@@ -665,6 +668,116 @@
     .text-link:hover span:last-child,
     .text-link:focus-visible span:last-child {
       transform: translateX(3px);
+    }
+
+    /* The journey links became buttons when they started opening a dialog
+       rather than navigating. Strip the UA button chrome so nothing moves. */
+    button.text-link {
+      padding: 0;
+      border: 0;
+      background: none;
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    .tour-dialog {
+      width: min(100% - 32px, 640px);
+      max-height: min(88vh, 760px);
+      padding: 0;
+      border: 1px solid rgba(181, 100, 60, 0.34);
+      background: var(--ivory);
+      color: var(--charcoal);
+      box-shadow: 0 30px 80px rgba(31, 58, 95, 0.3);
+    }
+
+    .tour-dialog::backdrop {
+      background: rgba(22, 41, 67, 0.62);
+    }
+
+    .tour-dialog-inner {
+      position: relative;
+      padding: 32px 28px 30px;
+    }
+
+    .tour-dialog-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 40px;
+      height: 40px;
+      padding: 0;
+      border: 0;
+      background: none;
+      color: rgba(43, 41, 38, 0.55);
+      font-size: 1.7rem;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .tour-dialog-close:hover { color: var(--sandstone-text); }
+
+    .tour-dialog h3 {
+      margin: 0 36px 12px 0;
+      color: var(--indigo);
+      font-size: clamp(1.6rem, 5vw, 2.1rem);
+      line-height: 1.15;
+    }
+
+    .tour-dialog-lede {
+      margin: 0 0 24px;
+      color: rgba(43, 41, 38, 0.8);
+      font-size: 1.02rem;
+    }
+
+    .tour-dialog h4 {
+      margin: 0 0 10px;
+      color: var(--indigo);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .tour-facts {
+      display: grid;
+      gap: 10px;
+      margin: 0 0 22px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .tour-facts li {
+      display: flex;
+      gap: 10px;
+      color: rgba(43, 41, 38, 0.8);
+      font-size: 0.97rem;
+      line-height: 1.6;
+    }
+
+    .tour-facts li::before {
+      content: "—";
+      flex: none;
+      color: var(--sandstone);
+    }
+
+    .tour-best {
+      margin: 0 0 26px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+      color: rgba(43, 41, 38, 0.8);
+      font-size: 0.97rem;
+    }
+
+    .tour-best strong {
+      display: block;
+      color: var(--indigo);
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    @media (min-width: 640px) {
+      .tour-dialog-inner { padding: 40px 40px 36px; }
     }
 
     .why {
@@ -1423,6 +1536,16 @@
         gap: 68px;
       }
 
+      /* Wellness reuses the About layout, mirrored, so two portrait-and-copy
+         bands on one page do not read as the same block twice. */
+      .about-grid.is-mirrored {
+        grid-template-columns: minmax(0, 1fr) minmax(340px, 0.82fr);
+      }
+
+      .about-grid.is-mirrored > figure {
+        order: 2;
+      }
+
       .testimonial-video {
         grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
         gap: 52px;
@@ -1584,6 +1707,7 @@
         <div class="nav-links">
           <a href="#ueber-govind" data-i18n="nav.about">Über Govind</a>
           <a href="#reisen" data-i18n="nav.journeys">Reisen</a>
+          <a href="#wellness" data-i18n="nav.wellness">Wellness</a>
           <a href="#impressionen" data-i18n="nav.gallery">Galerie</a>
           <a href="#reiseinfos" data-i18n="nav.info">Reiseinfos</a>
           <a href="#bewertungen" data-i18n="nav.reviews">Bewertungen</a>
@@ -1595,7 +1719,7 @@
 
   <main id="top">
     <section class="hero" aria-labelledby="hero-title">
-      <img src="images/hero-taj.jpg" width="1080" height="820" fetchpriority="high" data-i18n-alt="hero.alt" alt="Das Taj Mahal in Agra im Sonnenaufgang – Aufnahme von Govind">
+      <img src="images/hero-camel.jpg" width="1280" height="960" fetchpriority="high" data-i18n-alt="hero.alt" alt="Kamel in den Dünen der Thar-Wüste bei Sonnenuntergang – Aufnahme von Govind">
       <div class="hero-content reveal">
         <p class="eyebrow" data-i18n="hero.eyebrow">Private Reisen · Indien</p>
         <h1 id="hero-title" data-i18n="hero.title">Indien, persönlich kuratiert mit Govind</h1>
@@ -1629,7 +1753,7 @@
     <section id="ueber-govind" aria-labelledby="about-title">
       <div class="section-inner about-grid">
         <figure class="portrait-frame reveal">
-          <img src="images/govind.jpg" width="960" height="1200" loading="lazy" decoding="async" data-i18n-alt="about.alt" alt="Porträt von Govind, privater deutschsprachiger Reiseleiter in Indien">
+          <img src="images/govind-guest-taj.jpg" width="960" height="1280" loading="lazy" decoding="async" data-i18n-alt="about.alt" alt="Govind mit einem Gast vor dem Taj Mahal in Agra">
         </figure>
         <div class="about-copy reveal">
           <p class="eyebrow" data-i18n="about.eyebrow">Persönlich geführt</p>
@@ -1661,24 +1785,34 @@
         <div class="tour-grid">
           <article class="tour-card reveal">
             <div class="tour-image">
-              <img src="images/tour-golden-triangle.jpg" width="1080" height="810" loading="lazy" decoding="async" data-i18n-alt="tour.goldenTriangle.alt" alt="Qutub Minar in Delhi, fotografiert auf einer Golden-Triangle-Reise mit Govind">
+              <img src="images/golden-triangle-taj.jpg" width="1280" height="960" loading="lazy" decoding="async" data-i18n-alt="tour.goldenTriangle.alt" alt="Das Taj Mahal in Agra, fotografiert auf einer Golden-Triangle-Reise mit Govind">
             </div>
             <div class="tour-content">
               <h3 data-i18n="tour.goldenTriangle.title">Golden Triangle</h3>
               <p data-i18n="tour.goldenTriangle.text">Delhi, Agra und Jaipur mit privaten Einblicken, eleganten Hotels und ruhigem Reisetempo.</p>
-              <a class="text-link" href="#anfrage"><span data-i18n="tour.cta">Reise entdecken</span> <span aria-hidden="true">→</span></a>
+              <button class="text-link" type="button" data-tour-open="tour-golden-triangle"><span data-i18n="tour.cta">Reise entdecken</span> <span aria-hidden="true">→</span></button>
             </div>
           </article>
 
           <article class="tour-card reveal">
             <div class="tour-image">
-              <!-- REAL PHOTO TODO: Premium Rajasthan photograph with Govind near palaces, forts or desert landscapes. -->
-              <img src="images/rajasthan.jpg" width="1200" height="896" loading="lazy" decoding="async" data-i18n-alt="tour.rajasthan.alt" alt="Rajasthan Privatreise mit Govind zu Palästen und Wüstenlandschaften">
+              <img src="images/jaisalmer-fort.jpg" width="1280" height="960" loading="lazy" decoding="async" data-i18n-alt="tour.rajasthan.alt" alt="Das Fort von Jaisalmer über der goldenen Altstadt in Rajasthan">
             </div>
             <div class="tour-content">
               <h3 data-i18n="tour.rajasthan.title">Rajasthan</h3>
               <p data-i18n="tour.rajasthan.text">Paläste, Wüstenstädte und Heritage-Aufenthalte mit viel Raum für echte Begegnungen.</p>
-              <a class="text-link" href="#anfrage"><span data-i18n="tour.cta">Reise entdecken</span> <span aria-hidden="true">→</span></a>
+              <button class="text-link" type="button" data-tour-open="tour-rajasthan"><span data-i18n="tour.cta">Reise entdecken</span> <span aria-hidden="true">→</span></button>
+            </div>
+          </article>
+
+          <article class="tour-card reveal">
+            <div class="tour-image">
+              <img src="images/ranthambore-tiger.jpg" width="1280" height="960" loading="lazy" decoding="async" data-i18n-alt="tour.ranthambore.alt" alt="Ein Tiger im Nationalpark Ranthambore in Rajasthan">
+            </div>
+            <div class="tour-content">
+              <h3 data-i18n="tour.ranthambore.title">Ranthambore</h3>
+              <p data-i18n="tour.ranthambore.text">Tigersafari im früheren Jagdrevier der Maharadschas, im offenen Jeep und in aller Ruhe.</p>
+              <button class="text-link" type="button" data-tour-open="tour-ranthambore"><span data-i18n="tour.cta">Reise entdecken</span> <span aria-hidden="true">→</span></button>
             </div>
           </article>
 
@@ -1690,7 +1824,7 @@
             <div class="tour-content">
               <h3 data-i18n="tour.kerala.title">Kerala</h3>
               <p data-i18n="tour.kerala.text">Backwaters, Gewürzgärten und Küste mit sanfter Planung und persönlicher Begleitung.</p>
-              <a class="text-link" href="#anfrage"><span data-i18n="tour.cta">Reise entdecken</span> <span aria-hidden="true">→</span></a>
+              <button class="text-link" type="button" data-tour-open="tour-kerala"><span data-i18n="tour.cta">Reise entdecken</span> <span aria-hidden="true">→</span></button>
             </div>
           </article>
 
@@ -1702,7 +1836,7 @@
             <div class="tour-content">
               <h3 data-i18n="tour.ladakh.title">Ladakh</h3>
               <p data-i18n="tour.ladakh.text">Klöster, klare Höhenluft und Himalaya-Panoramen mit sorgfältiger Akklimatisierung.</p>
-              <a class="text-link" href="#anfrage"><span data-i18n="tour.cta">Reise entdecken</span> <span aria-hidden="true">→</span></a>
+              <button class="text-link" type="button" data-tour-open="tour-ladakh"><span data-i18n="tour.cta">Reise entdecken</span> <span aria-hidden="true">→</span></button>
             </div>
           </article>
 
@@ -1714,7 +1848,7 @@
             <div class="tour-content">
               <h3 data-i18n="tour.varanasi.title">Varanasi</h3>
               <p data-i18n="tour.varanasi.text">Rituale, Altstadtgassen und stille Morgen am Ganges, sensibel und respektvoll geführt.</p>
-              <a class="text-link" href="#anfrage"><span data-i18n="tour.cta">Reise entdecken</span> <span aria-hidden="true">→</span></a>
+              <button class="text-link" type="button" data-tour-open="tour-varanasi"><span data-i18n="tour.cta">Reise entdecken</span> <span aria-hidden="true">→</span></button>
             </div>
           </article>
 
@@ -1725,9 +1859,152 @@
             <div class="tour-content">
               <h3 data-i18n="tour.southIndia.title">Südindien</h3>
               <p data-i18n="tour.southIndia.text">Tempelkunst, Plantagen und Küstenorte in einer ruhigen, genussvollen Komposition.</p>
-              <a class="text-link" href="#anfrage"><span data-i18n="tour.cta">Reise entdecken</span> <span aria-hidden="true">→</span></a>
+              <button class="text-link" type="button" data-tour-open="tour-south-india"><span data-i18n="tour.cta">Reise entdecken</span> <span aria-hidden="true">→</span></button>
             </div>
           </article>
+        </div>
+      </div>
+
+      <!-- One dialog per journey. Native <dialog> brings its own focus trap,
+           Esc handling and backdrop, and every string inside is a plain text
+           leaf so the existing language toggle reaches it unchanged. -->
+      <dialog class="tour-dialog" id="tour-golden-triangle" aria-labelledby="tour-golden-triangle-title">
+        <div class="tour-dialog-inner">
+          <form method="dialog"><button class="tour-dialog-close" data-i18n-aria-label="tour.close" aria-label="Schließen">&times;</button></form>
+          <h3 id="tour-golden-triangle-title" data-i18n="tour.goldenTriangle.title">Golden Triangle</h3>
+          <p class="tour-dialog-lede" data-i18n="tour.goldenTriangle.lede">Delhi, Agra und Jaipur — drei Städte, drei Epochen und der klassische Einstieg nach Nordindien.</p>
+          <h4 data-i18n="tour.factsLabel">Gut zu wissen</h4>
+          <ul class="tour-facts">
+            <li data-i18n="tour.goldenTriangle.fact1">Das Taj Mahal entstand zwischen 1632 und 1653 als Grabmal für Mumtaz Mahal; rund 20.000 Handwerker waren beteiligt.</li>
+            <li data-i18n="tour.goldenTriangle.fact2">Delhi ist auf den Resten von acht Städten gebaut, die über tausend Jahre nacheinander entstanden.</li>
+            <li data-i18n="tour.goldenTriangle.fact3">Jaipur wurde 1727 am Reißbrett geplant — ein Rastergrundriss nach den Regeln des Vastu Shastra.</li>
+            <li data-i18n="tour.goldenTriangle.fact4">Im Amber Fort liegt der Sheesh Mahal, ein Spiegelsaal, in dem eine Kerze tausendfach reflektiert wird.</li>
+          </ul>
+          <p class="tour-best"><strong data-i18n="tour.bestLabel">Beste Reisezeit</strong> <span data-i18n="tour.goldenTriangle.best">Oktober bis März</span></p>
+          <a class="btn btn-primary" href="#anfrage" data-tour-enquire data-i18n="tour.enquire">Diese Reise anfragen</a>
+        </div>
+      </dialog>
+
+      <dialog class="tour-dialog" id="tour-rajasthan" aria-labelledby="tour-rajasthan-title">
+        <div class="tour-dialog-inner">
+          <form method="dialog"><button class="tour-dialog-close" data-i18n-aria-label="tour.close" aria-label="Schließen">&times;</button></form>
+          <h3 id="tour-rajasthan-title" data-i18n="tour.rajasthan.title">Rajasthan</h3>
+          <p class="tour-dialog-lede" data-i18n="tour.rajasthan.lede">Wüstenkönigreiche, Festungen und Farbe — die Region, aus der ich selbst stamme.</p>
+          <h4 data-i18n="tour.factsLabel">Gut zu wissen</h4>
+          <ul class="tour-facts">
+            <li data-i18n="tour.rajasthan.fact1">Jaisalmer ist eine der wenigen bewohnten Festungen der Welt: Rund 3.000 Menschen leben bis heute innerhalb der Mauern.</li>
+            <li data-i18n="tour.rajasthan.fact2">In der Thar-Wüste sind Kamelritte über die Dünen und Nächte unter freiem Himmel möglich.</li>
+            <li data-i18n="tour.rajasthan.fact3">Jodhpur heißt die blaue Stadt: Die Häuser unterhalb des Forts Mehrangarh sind traditionell indigoblau gestrichen.</li>
+            <li data-i18n="tour.rajasthan.fact4">Udaipur liegt am Pichola-See, mit Stadtpalast und Seepalästen direkt am Wasser.</li>
+          </ul>
+          <p class="tour-best"><strong data-i18n="tour.bestLabel">Beste Reisezeit</strong> <span data-i18n="tour.rajasthan.best">Oktober bis März</span></p>
+          <a class="btn btn-primary" href="#anfrage" data-tour-enquire data-i18n="tour.enquire">Diese Reise anfragen</a>
+        </div>
+      </dialog>
+
+      <dialog class="tour-dialog" id="tour-ranthambore" aria-labelledby="tour-ranthambore-title">
+        <div class="tour-dialog-inner">
+          <form method="dialog"><button class="tour-dialog-close" data-i18n-aria-label="tour.close" aria-label="Schließen">&times;</button></form>
+          <h3 id="tour-ranthambore-title" data-i18n="tour.ranthambore.title">Ranthambore</h3>
+          <p class="tour-dialog-lede" data-i18n="tour.ranthambore.lede">Einer der besten Orte Indiens, um wilde Tiger zu sehen — früher das Jagdrevier der Maharadschas von Jaipur.</p>
+          <h4 data-i18n="tour.factsLabel">Gut zu wissen</h4>
+          <ul class="tour-facts">
+            <li data-i18n="tour.ranthambore.fact1">Der Nationalpark umfasst rund 1.700 Quadratkilometer und beherbergt etwa 80 Tiger.</li>
+            <li data-i18n="tour.ranthambore.fact2">Mitten im Park steht das Fort Ranthambore aus dem 10. Jahrhundert, heute UNESCO-Welterbe.</li>
+            <li data-i18n="tour.ranthambore.fact3">Safaris finden im offenen Jeep statt, morgens und am späten Nachmittag — dann sind die Tiere aktiv.</li>
+            <li data-i18n="tour.ranthambore.fact4">Neben Tigern leben hier Leoparden, Lippenbären, Sumpfkrokodile und über 300 Vogelarten.</li>
+          </ul>
+          <p class="tour-best"><strong data-i18n="tour.bestLabel">Beste Reisezeit</strong> <span data-i18n="tour.ranthambore.best">Oktober bis April — im Monsun ist der Park geschlossen</span></p>
+          <a class="btn btn-primary" href="#anfrage" data-tour-enquire data-i18n="tour.enquire">Diese Reise anfragen</a>
+        </div>
+      </dialog>
+
+      <dialog class="tour-dialog" id="tour-kerala" aria-labelledby="tour-kerala-title">
+        <div class="tour-dialog-inner">
+          <form method="dialog"><button class="tour-dialog-close" data-i18n-aria-label="tour.close" aria-label="Schließen">&times;</button></form>
+          <h3 id="tour-kerala-title" data-i18n="tour.kerala.title">Kerala</h3>
+          <p class="tour-dialog-lede" data-i18n="tour.kerala.lede">Der grüne, langsame Süden: Wasserwege, Gewürze und eine Küche, die mit Nordindien wenig gemeinsam hat.</p>
+          <h4 data-i18n="tour.factsLabel">Gut zu wissen</h4>
+          <ul class="tour-facts">
+            <li data-i18n="tour.kerala.fact1">Die Backwaters sind ein Netz aus rund 900 Kilometern miteinander verbundener Kanäle, Seen und Flüsse.</li>
+            <li data-i18n="tour.kerala.fact2">Kerala gilt als Heimat des Ayurveda — hier sind authentische Kuren und Behandlungen möglich.</li>
+            <li data-i18n="tour.kerala.fact3">In Fort Kochi stehen bis heute die chinesischen Fischernetze, ein Erbe des Handels mit China.</li>
+            <li data-i18n="tour.kerala.fact4">Kathakali ist das traditionelle Tanztheater Keralas, erkennbar an den aufwendig geschminkten Gesichtern.</li>
+          </ul>
+          <p class="tour-best"><strong data-i18n="tour.bestLabel">Beste Reisezeit</strong> <span data-i18n="tour.kerala.best">September bis März</span></p>
+          <a class="btn btn-primary" href="#anfrage" data-tour-enquire data-i18n="tour.enquire">Diese Reise anfragen</a>
+        </div>
+      </dialog>
+
+      <dialog class="tour-dialog" id="tour-ladakh" aria-labelledby="tour-ladakh-title">
+        <div class="tour-dialog-inner">
+          <form method="dialog"><button class="tour-dialog-close" data-i18n-aria-label="tour.close" aria-label="Schließen">&times;</button></form>
+          <h3 id="tour-ladakh-title" data-i18n="tour.ladakh.title">Ladakh</h3>
+          <p class="tour-dialog-lede" data-i18n="tour.ladakh.lede">Hochgebirge, tibetisch-buddhistische Klöster und eine Landschaft, die eher an Tibet erinnert als an Indien.</p>
+          <h4 data-i18n="tour.factsLabel">Gut zu wissen</h4>
+          <ul class="tour-facts">
+            <li data-i18n="tour.ladakh.fact1">Leh liegt auf etwa 3.500 Metern — die ersten zwei Tage dienen ausschließlich der Akklimatisierung.</li>
+            <li data-i18n="tour.ladakh.fact2">Die Klöster Thiksey und Hemis gehören zu den bedeutendsten des tibetischen Buddhismus in Indien.</li>
+            <li data-i18n="tour.ladakh.fact3">Der See Pangong Tso liegt auf 4.350 Metern und wechselt im Tagesverlauf mehrfach die Farbe.</li>
+            <li data-i18n="tour.ladakh.fact4">Die Pässe sind nur im Sommer offen; im Winter ist die Region über Land nicht erreichbar.</li>
+          </ul>
+          <p class="tour-best"><strong data-i18n="tour.bestLabel">Beste Reisezeit</strong> <span data-i18n="tour.ladakh.best">Juni bis September</span></p>
+          <a class="btn btn-primary" href="#anfrage" data-tour-enquire data-i18n="tour.enquire">Diese Reise anfragen</a>
+        </div>
+      </dialog>
+
+      <dialog class="tour-dialog" id="tour-varanasi" aria-labelledby="tour-varanasi-title">
+        <div class="tour-dialog-inner">
+          <form method="dialog"><button class="tour-dialog-close" data-i18n-aria-label="tour.close" aria-label="Schließen">&times;</button></form>
+          <h3 id="tour-varanasi-title" data-i18n="tour.varanasi.title">Varanasi</h3>
+          <p class="tour-dialog-lede" data-i18n="tour.varanasi.lede">Die spirituelle Hauptstadt Indiens — intensiv, uralt und am schönsten in den ersten Stunden des Tages.</p>
+          <h4 data-i18n="tour.factsLabel">Gut zu wissen</h4>
+          <ul class="tour-facts">
+            <li data-i18n="tour.varanasi.fact1">Varanasi gilt als eine der ältesten durchgehend bewohnten Städte der Welt, mit über 3.000 Jahren Siedlungsgeschichte.</li>
+            <li data-i18n="tour.varanasi.fact2">Entlang des Ganges liegen 88 Ghats — breite Steintreppen, die zum Wasser hinabführen.</li>
+            <li data-i18n="tour.varanasi.fact3">Am Dashashwamedh Ghat findet jeden Abend die Ganga Aarti statt, eine Lichtzeremonie mit Feuerschalen.</li>
+            <li data-i18n="tour.varanasi.fact4">Im nahen Sarnath hielt Buddha seine erste Lehrrede — ein ruhiger Gegenpol zur Stadt.</li>
+          </ul>
+          <p class="tour-best"><strong data-i18n="tour.bestLabel">Beste Reisezeit</strong> <span data-i18n="tour.varanasi.best">Oktober bis März</span></p>
+          <a class="btn btn-primary" href="#anfrage" data-tour-enquire data-i18n="tour.enquire">Diese Reise anfragen</a>
+        </div>
+      </dialog>
+
+      <dialog class="tour-dialog" id="tour-south-india" aria-labelledby="tour-south-india-title">
+        <div class="tour-dialog-inner">
+          <form method="dialog"><button class="tour-dialog-close" data-i18n-aria-label="tour.close" aria-label="Schließen">&times;</button></form>
+          <h3 id="tour-south-india-title" data-i18n="tour.southIndia.title">Südindien</h3>
+          <p class="tour-dialog-lede" data-i18n="tour.southIndia.lede">Dravidische Tempelkunst, Teeplantagen und eine Küste, an der sich das Reisetempo von selbst verlangsamt.</p>
+          <h4 data-i18n="tour.factsLabel">Gut zu wissen</h4>
+          <ul class="tour-facts">
+            <li data-i18n="tour.southIndia.fact1">Die Gopurams, die hohen Tortürme der Tempel, sind über und über mit bemalten Figuren besetzt.</li>
+            <li data-i18n="tour.southIndia.fact2">Der Meenakshi-Tempel in Madurai hat vierzehn solcher Türme und ist eine Stadt für sich.</li>
+            <li data-i18n="tour.southIndia.fact3">Mahabalipuram zeigt Monumente, die im 7. Jahrhundert direkt aus dem Fels gehauen wurden — UNESCO-Welterbe.</li>
+            <li data-i18n="tour.southIndia.fact4">Der Brihadisvara-Tempel in Thanjavur stammt aus dem 11. Jahrhundert und ist ganz aus Granit errichtet.</li>
+          </ul>
+          <p class="tour-best"><strong data-i18n="tour.bestLabel">Beste Reisezeit</strong> <span data-i18n="tour.southIndia.best">November bis März</span></p>
+          <a class="btn btn-primary" href="#anfrage" data-tour-enquire data-i18n="tour.enquire">Diese Reise anfragen</a>
+        </div>
+      </dialog>
+    </section>
+
+    <section id="wellness" aria-labelledby="wellness-title">
+      <div class="section-inner about-grid is-mirrored">
+        <figure class="portrait-frame reveal">
+          <img src="images/rishikesh-shiva.jpg" width="960" height="1280" loading="lazy" decoding="async" data-i18n-alt="wellness.alt" alt="Shiva-Statue am Ganges in Rishikesh">
+        </figure>
+        <div class="about-copy reveal">
+          <p class="eyebrow" data-i18n="wellness.eyebrow">Ayurveda · Yoga · Wellness</p>
+          <h2 id="wellness-title" data-i18n="wellness.title">Ayurveda, Yoga und Wellness</h2>
+          <p data-i18n="wellness.p1">Neben klassischen Rundreisen begleite ich Gäste auch zu Ayurveda-, Yoga- und Wellnessaufenthalten. Indien ist der Ursprungsort beider Traditionen, und der Unterschied zwischen einem ernsthaften Haus und einem Wellnessangebot für Touristen ist von außen kaum zu erkennen.</p>
+          <p data-i18n="wellness.p2">Ich kenne die Einrichtungen, mit denen ich arbeite, persönlich, übersetze im Erstgespräch mit den Ärztinnen und Ärzten und sorge dafür, dass Behandlungen, Ernährung und Tagesablauf wirklich zu Ihnen passen. Auch eine Kombination ist möglich: erst Kultur und Städte, danach eine ruhige Woche zur Erholung.</p>
+          <ul class="credentials" aria-label="Angebote" data-i18n-aria-label="wellness.listAria">
+            <li data-i18n="wellness.item1">Ayurveda-Kuren in Kerala, von der Kurzbehandlung bis zur mehrwöchigen Panchakarma-Kur</li>
+            <li data-i18n="wellness.item2">Yoga und Meditation in Rishikesh am Ganges, dem Ursprungsort des modernen Yoga</li>
+            <li data-i18n="wellness.item3">Begleitung und Übersetzung beim ärztlichen Erstgespräch</li>
+            <li data-i18n="wellness.item4">Verbindung von Rundreise und Erholungsaufenthalt in einer Reise</li>
+          </ul>
+          <a class="text-link" href="#anfrage"><span data-i18n="wellness.cta">Beratung anfragen</span> <span aria-hidden="true">→</span></a>
         </div>
       </div>
     </section>
@@ -1813,6 +2090,33 @@
           </figure>
           <figure class="gallery-item">
             <img src="images/gallery/qutub-minar.jpg" width="900" height="1125" loading="lazy" decoding="async" data-i18n-alt="gallery.qutub" alt="Das Qutub Minar in Delhi, gerahmt von einem alten Steinbogen">
+          </figure>
+          <figure class="gallery-item">
+            <img src="images/gallery/hawa-mahal.jpg" width="960" height="1280" loading="lazy" decoding="async" data-i18n-alt="gallery.hawaMahal" alt="Die Fassade des Hawa Mahal in Jaipur">
+          </figure>
+          <figure class="gallery-item">
+            <img src="images/gallery/goldener-tempel.jpg" width="1280" height="960" loading="lazy" decoding="async" data-i18n-alt="gallery.goldenTemple" alt="Der Goldene Tempel in Amritsar bei Nacht, gespiegelt im Wasser">
+          </figure>
+          <figure class="gallery-item">
+            <img src="images/gallery/taj-haupttor.jpg" width="960" height="1280" loading="lazy" decoding="async" data-i18n-alt="gallery.tajGate" alt="Das Haupttor zum Taj Mahal hinter dem langen Wasserbecken">
+          </figure>
+          <figure class="gallery-item">
+            <img src="images/gallery/jaisalmer-gasse.jpg" width="1280" height="960" loading="lazy" decoding="async" data-i18n-alt="gallery.jaisalmerLane" alt="Eine Kuh auf den Sandsteintreppen einer Gasse in Jaisalmer">
+          </figure>
+          <figure class="gallery-item">
+            <img src="images/gallery/tiger-ranthambore.jpg" width="1280" height="960" loading="lazy" decoding="async" data-i18n-alt="gallery.tiger" alt="Ein Tiger auf einem Hang im Nationalpark Ranthambore">
+          </figure>
+          <figure class="gallery-item">
+            <img src="images/gallery/rajasthani-portrait.jpg" width="960" height="1280" loading="lazy" decoding="async" data-i18n-alt="gallery.rajasthani" alt="Ein älterer Rajasthani mit rotem Turban auf einer Straße in Rajasthan">
+          </figure>
+          <figure class="gallery-item">
+            <img src="images/gallery/fatehpur-sikri.jpg" width="1280" height="960" loading="lazy" decoding="async" data-i18n-alt="gallery.fatehpur" alt="Der Panch Mahal und das Wasserbecken von Fatehpur Sikri">
+          </figure>
+          <figure class="gallery-item">
+            <img src="images/gallery/amber-fort-lichtshow.jpg" width="1280" height="960" loading="lazy" decoding="async" data-i18n-alt="gallery.amberShow" alt="Das Amber Fort bei Jaipur während der abendlichen Lichtshow">
+          </figure>
+          <figure class="gallery-item">
+            <img src="images/gallery/india-gate.jpg" width="960" height="1280" loading="lazy" decoding="async" data-i18n-alt="gallery.indiaGate" alt="Das India Gate in Delhi im Abendlicht">
           </figure>
         </div>
       </div>
@@ -1915,7 +2219,7 @@
           <details class="info-item">
             <summary><span data-i18n="info.season">Beste Reisezeit</span><span class="info-marker" aria-hidden="true"></span></summary>
             <div class="info-panel">
-              <p data-i18n="info.season.text">Für den Großteil Indiens ist Oktober bis März die angenehmste Zeit. Rajasthan und der Golden Triangle zeigen sich von November bis Februar mild und klar, Kerala und Südindien von November bis März. Ladakh ist ein Sommerziel: Die Pässe sind etwa von Juni bis September offen. Von Juni bis September zieht der Monsun über weite Teile des Landes - wir legen Ihre Route entsprechend.</p>
+              <p data-i18n="info.season.text">Für den Großteil Indiens ist Mitte August bis April die angenehmste Reisezeit. Rajasthan und der Golden Triangle zeigen sich von Oktober bis März mild und klar, Kerala und Südindien von September bis März. Ladakh ist ein Sommerziel: Die Pässe sind etwa von Juni bis September offen. Der Südwestmonsun zieht von Juni bis etwa Mitte August über weite Teile des Landes - danach wird es spürbar angenehmer, und wir legen Ihre Route entsprechend.</p>
             </div>
           </details>
           <details class="info-item">
@@ -2009,7 +2313,7 @@
       </div>
       <ul class="footer-list" aria-label="Kontakt" data-i18n-aria-label="footer.contactAria">
         <li><span data-i18n="footer.phone">Telefon</span>: <a href="tel:+919376335552">+91 93763 35552</a></li>
-        <li><span data-i18n="footer.email">E-Mail</span>: <a href="mailto:hello@govind.example">hello@govind.example</a></li>
+        <li><span data-i18n="footer.email">E-Mail</span>: <a href="mailto:govind@indiawithgovind.com">govind@indiawithgovind.com</a></li>
         <li><a href="https://wa.me/919376335552" data-i18n-href="whatsapp.url" target="_blank" rel="noopener" data-i18n="footer.whatsapp">WhatsApp an Govind</a></li>
       </ul>
       <ul class="footer-links" aria-label="Rechtliches" data-i18n-aria-label="footer.legalAria">
@@ -2039,6 +2343,7 @@
         "nav.cta": "Anfragen",
         "nav.about": "Über Govind",
         "nav.journeys": "Reisen",
+        "nav.wellness": "Wellness",
         "nav.gallery": "Galerie",
         "nav.info": "Reiseinfos",
         "nav.reviews": "Bewertungen",
@@ -2048,7 +2353,7 @@
         "hero.title": "Indien, persönlich kuratiert mit Govind",
         "hero.lede": "Private Reisen, persönliche Begleitung und echte Begegnungen - individuell geplant für deutschsprachige Reisende.",
         "hero.cta": "Jetzt unverbindlich anfragen",
-        "hero.alt": "Das Taj Mahal in Agra im Sonnenaufgang – Aufnahme von Govind",
+        "hero.alt": "Kamel in den Dünen der Thar-Wüste bei Sonnenuntergang – Aufnahme von Govind",
 
         "trust.aria": "Vertrauen",
         "trust.1.figure": "Lizenziert",
@@ -2062,7 +2367,7 @@
 
         "about.eyebrow": "Persönlich geführt",
         "about.title": "Über Govind",
-        "about.alt": "Porträt von Govind, privater deutschsprachiger Reiseleiter in Indien",
+        "about.alt": "Govind mit einem Gast vor dem Taj Mahal in Agra",
         "about.p1": "Ich heiße Govind Singh Shekhawat. Ich bin ein erfahrener und von Rajasthan Tourism anerkannter deutsch- und englischsprachiger Reiseleiter aus Rajasthan. Meine Leidenschaft gilt der indischen Geschichte, Kultur, Architektur und den lebendigen Traditionen des Landes.",
         "about.p2": "Als gebürtiger Rajasthani kenne ich Indien nicht nur aus touristischer Perspektive. Für mich bedeutet eine Reise mehr als der Besuch berühmter Sehenswürdigkeiten. Ich möchte meinen Gästen die Geschichten, Menschen, Traditionen und den Alltag Indiens näherbringen und Ihnen einen authentischen Einblick ins Land ermöglichen.",
         "about.p3": "Ein besonderer Bestandteil meiner Erfahrung ist auch meine enge persönliche Verbindung zu Deutschland. Ich bin bereits mehrfach nach Deutschland gereist und habe dabei die deutsche Kultur, Lebensweise und die Menschen vor Ort intensiv kennengelernt. Diese persönlichen Erfahrungen haben mir ein gutes Verständnis für die Mentalität, Erwartungen und Reisegewohnheiten deutschsprachiger Gäste vermittelt.",
@@ -2081,29 +2386,92 @@
         "journeys.lede": "Ausgewählte private Reisen durch Indien, persönlich begleitet von Govind und angepasst an Ihren Stil.",
         "tour.cta": "Reise entdecken",
 
+        "tour.close": "Schließen",
+        "tour.factsLabel": "Gut zu wissen",
+        "tour.bestLabel": "Beste Reisezeit",
+        "tour.enquire": "Diese Reise anfragen",
+
         "tour.goldenTriangle.title": "Golden Triangle",
         "tour.goldenTriangle.text": "Delhi, Agra und Jaipur mit privaten Einblicken, eleganten Hotels und ruhigem Reisetempo.",
-        "tour.goldenTriangle.alt": "Qutub Minar in Delhi, fotografiert auf einer Golden-Triangle-Reise mit Govind",
+        "tour.goldenTriangle.alt": "Das Taj Mahal in Agra, fotografiert auf einer Golden-Triangle-Reise mit Govind",
+        "tour.goldenTriangle.lede": "Delhi, Agra und Jaipur — drei Städte, drei Epochen und der klassische Einstieg nach Nordindien.",
+        "tour.goldenTriangle.fact1": "Das Taj Mahal entstand zwischen 1632 und 1653 als Grabmal für Mumtaz Mahal; rund 20.000 Handwerker waren beteiligt.",
+        "tour.goldenTriangle.fact2": "Delhi ist auf den Resten von acht Städten gebaut, die über tausend Jahre nacheinander entstanden.",
+        "tour.goldenTriangle.fact3": "Jaipur wurde 1727 am Reißbrett geplant — ein Rastergrundriss nach den Regeln des Vastu Shastra.",
+        "tour.goldenTriangle.fact4": "Im Amber Fort liegt der Sheesh Mahal, ein Spiegelsaal, in dem eine Kerze tausendfach reflektiert wird.",
+        "tour.goldenTriangle.best": "Oktober bis März",
 
         "tour.rajasthan.title": "Rajasthan",
         "tour.rajasthan.text": "Paläste, Wüstenstädte und Heritage-Aufenthalte mit viel Raum für echte Begegnungen.",
-        "tour.rajasthan.alt": "Rajasthan Privatreise mit Govind zu Palästen und Wüstenlandschaften",
+        "tour.rajasthan.alt": "Das Fort von Jaisalmer über der goldenen Altstadt in Rajasthan",
+        "tour.rajasthan.lede": "Wüstenkönigreiche, Festungen und Farbe — die Region, aus der ich selbst stamme.",
+        "tour.rajasthan.fact1": "Jaisalmer ist eine der wenigen bewohnten Festungen der Welt: Rund 3.000 Menschen leben bis heute innerhalb der Mauern.",
+        "tour.rajasthan.fact2": "In der Thar-Wüste sind Kamelritte über die Dünen und Nächte unter freiem Himmel möglich.",
+        "tour.rajasthan.fact3": "Jodhpur heißt die blaue Stadt: Die Häuser unterhalb des Forts Mehrangarh sind traditionell indigoblau gestrichen.",
+        "tour.rajasthan.fact4": "Udaipur liegt am Pichola-See, mit Stadtpalast und Seepalästen direkt am Wasser.",
+        "tour.rajasthan.best": "Oktober bis März",
+
+        "tour.ranthambore.title": "Ranthambore",
+        "tour.ranthambore.text": "Tigersafari im früheren Jagdrevier der Maharadschas, im offenen Jeep und in aller Ruhe.",
+        "tour.ranthambore.alt": "Ein Tiger im Nationalpark Ranthambore in Rajasthan",
+        "tour.ranthambore.lede": "Einer der besten Orte Indiens, um wilde Tiger zu sehen — früher das Jagdrevier der Maharadschas von Jaipur.",
+        "tour.ranthambore.fact1": "Der Nationalpark umfasst rund 1.700 Quadratkilometer und beherbergt etwa 80 Tiger.",
+        "tour.ranthambore.fact2": "Mitten im Park steht das Fort Ranthambore aus dem 10. Jahrhundert, heute UNESCO-Welterbe.",
+        "tour.ranthambore.fact3": "Safaris finden im offenen Jeep statt, morgens und am späten Nachmittag — dann sind die Tiere aktiv.",
+        "tour.ranthambore.fact4": "Neben Tigern leben hier Leoparden, Lippenbären, Sumpfkrokodile und über 300 Vogelarten.",
+        "tour.ranthambore.best": "Oktober bis April — im Monsun ist der Park geschlossen",
 
         "tour.kerala.title": "Kerala",
         "tour.kerala.text": "Backwaters, Gewürzgärten und Küste mit sanfter Planung und persönlicher Begleitung.",
         "tour.kerala.alt": "Kerala Reise mit Govind entlang Backwaters, Gewürzgärten und Küste",
+        "tour.kerala.lede": "Der grüne, langsame Süden: Wasserwege, Gewürze und eine Küche, die mit Nordindien wenig gemeinsam hat.",
+        "tour.kerala.fact1": "Die Backwaters sind ein Netz aus rund 900 Kilometern miteinander verbundener Kanäle, Seen und Flüsse.",
+        "tour.kerala.fact2": "Kerala gilt als Heimat des Ayurveda — hier sind authentische Kuren und Behandlungen möglich.",
+        "tour.kerala.fact3": "In Fort Kochi stehen bis heute die chinesischen Fischernetze, ein Erbe des Handels mit China.",
+        "tour.kerala.fact4": "Kathakali ist das traditionelle Tanztheater Keralas, erkennbar an den aufwendig geschminkten Gesichtern.",
+        "tour.kerala.best": "September bis März",
 
         "tour.ladakh.title": "Ladakh",
         "tour.ladakh.text": "Klöster, klare Höhenluft und Himalaya-Panoramen mit sorgfältiger Akklimatisierung.",
         "tour.ladakh.alt": "Ladakh Privatreise mit Govind zu Klöstern und Himalaya-Landschaften",
+        "tour.ladakh.lede": "Hochgebirge, tibetisch-buddhistische Klöster und eine Landschaft, die eher an Tibet erinnert als an Indien.",
+        "tour.ladakh.fact1": "Leh liegt auf etwa 3.500 Metern — die ersten zwei Tage dienen ausschließlich der Akklimatisierung.",
+        "tour.ladakh.fact2": "Die Klöster Thiksey und Hemis gehören zu den bedeutendsten des tibetischen Buddhismus in Indien.",
+        "tour.ladakh.fact3": "Der See Pangong Tso liegt auf 4.350 Metern und wechselt im Tagesverlauf mehrfach die Farbe.",
+        "tour.ladakh.fact4": "Die Pässe sind nur im Sommer offen; im Winter ist die Region über Land nicht erreichbar.",
+        "tour.ladakh.best": "Juni bis September",
 
         "tour.varanasi.title": "Varanasi",
         "tour.varanasi.text": "Rituale, Altstadtgassen und stille Morgen am Ganges, sensibel und respektvoll geführt.",
         "tour.varanasi.alt": "Varanasi Reise mit Govind an den Ghats des Ganges",
+        "tour.varanasi.lede": "Die spirituelle Hauptstadt Indiens — intensiv, uralt und am schönsten in den ersten Stunden des Tages.",
+        "tour.varanasi.fact1": "Varanasi gilt als eine der ältesten durchgehend bewohnten Städte der Welt, mit über 3.000 Jahren Siedlungsgeschichte.",
+        "tour.varanasi.fact2": "Entlang des Ganges liegen 88 Ghats — breite Steintreppen, die zum Wasser hinabführen.",
+        "tour.varanasi.fact3": "Am Dashashwamedh Ghat findet jeden Abend die Ganga Aarti statt, eine Lichtzeremonie mit Feuerschalen.",
+        "tour.varanasi.fact4": "Im nahen Sarnath hielt Buddha seine erste Lehrrede — ein ruhiger Gegenpol zur Stadt.",
+        "tour.varanasi.best": "Oktober bis März",
 
         "tour.southIndia.title": "Südindien",
         "tour.southIndia.text": "Tempelkunst, Plantagen und Küstenorte in einer ruhigen, genussvollen Komposition.",
         "tour.southIndia.alt": "Der Shore Temple von Mahabalipuram an der Küste Südindiens",
+        "tour.southIndia.lede": "Dravidische Tempelkunst, Teeplantagen und eine Küste, an der sich das Reisetempo von selbst verlangsamt.",
+        "tour.southIndia.fact1": "Die Gopurams, die hohen Tortürme der Tempel, sind über und über mit bemalten Figuren besetzt.",
+        "tour.southIndia.fact2": "Der Meenakshi-Tempel in Madurai hat vierzehn solcher Türme und ist eine Stadt für sich.",
+        "tour.southIndia.fact3": "Mahabalipuram zeigt Monumente, die im 7. Jahrhundert direkt aus dem Fels gehauen wurden — UNESCO-Welterbe.",
+        "tour.southIndia.fact4": "Der Brihadisvara-Tempel in Thanjavur stammt aus dem 11. Jahrhundert und ist ganz aus Granit errichtet.",
+        "tour.southIndia.best": "November bis März",
+
+        "wellness.eyebrow": "Ayurveda · Yoga · Wellness",
+        "wellness.title": "Ayurveda, Yoga und Wellness",
+        "wellness.alt": "Shiva-Statue am Ganges in Rishikesh",
+        "wellness.p1": "Neben klassischen Rundreisen begleite ich Gäste auch zu Ayurveda-, Yoga- und Wellnessaufenthalten. Indien ist der Ursprungsort beider Traditionen, und der Unterschied zwischen einem ernsthaften Haus und einem Wellnessangebot für Touristen ist von außen kaum zu erkennen.",
+        "wellness.p2": "Ich kenne die Einrichtungen, mit denen ich arbeite, persönlich, übersetze im Erstgespräch mit den Ärztinnen und Ärzten und sorge dafür, dass Behandlungen, Ernährung und Tagesablauf wirklich zu Ihnen passen. Auch eine Kombination ist möglich: erst Kultur und Städte, danach eine ruhige Woche zur Erholung.",
+        "wellness.listAria": "Angebote",
+        "wellness.item1": "Ayurveda-Kuren in Kerala, von der Kurzbehandlung bis zur mehrwöchigen Panchakarma-Kur",
+        "wellness.item2": "Yoga und Meditation in Rishikesh am Ganges, dem Ursprungsort des modernen Yoga",
+        "wellness.item3": "Begleitung und Übersetzung beim ärztlichen Erstgespräch",
+        "wellness.item4": "Verbindung von Rundreise und Erholungsaufenthalt in einer Reise",
+        "wellness.cta": "Beratung anfragen",
 
         "why.eyebrow": "Vertrauen vor Ort",
         "why.title": "Warum mit Govind reisen",
@@ -2130,6 +2498,15 @@
         "gallery.shiva": "Wandbild des meditierenden Shiva an einer Straßenmauer",
         "gallery.mahabalipuram": "Der Shore Temple von Mahabalipuram unter offenem Himmel",
         "gallery.qutub": "Das Qutub Minar in Delhi, gerahmt von einem alten Steinbogen",
+        "gallery.hawaMahal": "Die Fassade des Hawa Mahal in Jaipur",
+        "gallery.goldenTemple": "Der Goldene Tempel in Amritsar bei Nacht, gespiegelt im Wasser",
+        "gallery.tajGate": "Das Haupttor zum Taj Mahal hinter dem langen Wasserbecken",
+        "gallery.jaisalmerLane": "Eine Kuh auf den Sandsteintreppen einer Gasse in Jaisalmer",
+        "gallery.tiger": "Ein Tiger auf einem Hang im Nationalpark Ranthambore",
+        "gallery.rajasthani": "Ein älterer Rajasthani mit rotem Turban auf einer Straße in Rajasthan",
+        "gallery.fatehpur": "Der Panch Mahal und das Wasserbecken von Fatehpur Sikri",
+        "gallery.amberShow": "Das Amber Fort bei Jaipur während der abendlichen Lichtshow",
+        "gallery.indiaGate": "Das India Gate in Delhi im Abendlicht",
 
         "reviews.eyebrow": "Stimmen der Gäste",
         "reviews.title": "Bewertungen",
@@ -2170,7 +2547,7 @@
         "info.visa": "Visum",
         "info.visa.text": "Für touristische Reisen nach Indien benötigen deutsche Staatsangehörige ein Visum. In der Regel genügt das elektronische Touristenvisum (e-Visa), das Sie vor der Abreise online beantragen. Planen Sie einige Tage Bearbeitungszeit ein; der Reisepass sollte bei der Einreise noch mindestens sechs Monate gültig sein und zwei freie Seiten haben. Ich sage Ihnen rechtzeitig, welche Unterlagen Sie brauchen.",
         "info.season": "Beste Reisezeit",
-        "info.season.text": "Für den Großteil Indiens ist Oktober bis März die angenehmste Zeit. Rajasthan und der Golden Triangle zeigen sich von November bis Februar mild und klar, Kerala und Südindien von November bis März. Ladakh ist ein Sommerziel: Die Pässe sind etwa von Juni bis September offen. Von Juni bis September zieht der Monsun über weite Teile des Landes - wir legen Ihre Route entsprechend.",
+        "info.season.text": "Für den Großteil Indiens ist Mitte August bis April die angenehmste Reisezeit. Rajasthan und der Golden Triangle zeigen sich von Oktober bis März mild und klar, Kerala und Südindien von September bis März. Ladakh ist ein Sommerziel: Die Pässe sind etwa von Juni bis September offen. Der Südwestmonsun zieht von Juni bis etwa Mitte August über weite Teile des Landes - danach wird es spürbar angenehmer, und wir legen Ihre Route entsprechend.",
         "info.health": "Impfungen",
         "info.health.text": "Für die direkte Einreise aus Deutschland sind keine Pflichtimpfungen vorgeschrieben. Ein Gelbfieber-Nachweis wird nur verlangt, wenn Sie aus einem Gelbfiebergebiet einreisen. Empfohlen werden meist die Standardimpfungen sowie Hepatitis A, je nach Reiseart auch Typhus und Hepatitis B. Lassen Sie sich vier bis sechs Wochen vor der Abreise reisemedizinisch beraten.",
         "info.safety": "Sicherheit",
@@ -2226,6 +2603,7 @@
         "nav.cta": "Enquire",
         "nav.about": "About Govind",
         "nav.journeys": "Journeys",
+        "nav.wellness": "Wellness",
         "nav.gallery": "Gallery",
         "nav.info": "Travel info",
         "nav.reviews": "Reviews",
@@ -2235,7 +2613,7 @@
         "hero.title": "India, Curated Personally with Govind",
         "hero.lede": "Private journeys, personal guidance and genuine encounters - planned individually for German-speaking travellers.",
         "hero.cta": "Send a no-obligation enquiry",
-        "hero.alt": "The Taj Mahal in Agra at sunrise – photographed by Govind",
+        "hero.alt": "A camel in the dunes of the Thar Desert at sunset – photographed by Govind",
 
         "trust.aria": "Trust",
         "trust.1.figure": "Licensed",
@@ -2249,7 +2627,7 @@
 
         "about.eyebrow": "Personally guided",
         "about.title": "About Govind",
-        "about.alt": "Portrait of Govind, private German-speaking tour guide in India",
+        "about.alt": "Govind with a guest in front of the Taj Mahal in Agra",
         "about.p1": "My name is Govind Singh Shekhawat. I am an experienced German- and English-speaking tour guide from Rajasthan, accredited by Rajasthan Tourism. My passion lies in India's history, culture, architecture and the country's living traditions.",
         "about.p2": "As a native Rajasthani, I know India from far more than a tourist's perspective. To me, a journey means more than visiting famous sights. I want to bring my guests closer to the stories, people, traditions and everyday life of India, and to give you an authentic insight into the country.",
         "about.p3": "A particular part of my experience is my close personal connection to Germany. I have travelled to Germany several times and have come to know German culture, ways of life and people there in depth. Those experiences have given me a real understanding of the mentality, expectations and travel habits of German-speaking guests.",
@@ -2268,29 +2646,92 @@
         "journeys.lede": "Selected private journeys through India, personally guided by Govind and adapted to your style.",
         "tour.cta": "Explore this journey",
 
+        "tour.close": "Close",
+        "tour.factsLabel": "Worth knowing",
+        "tour.bestLabel": "Best time to travel",
+        "tour.enquire": "Enquire about this journey",
+
         "tour.goldenTriangle.title": "Golden Triangle",
         "tour.goldenTriangle.text": "Delhi, Agra and Jaipur with private insights, elegant hotels and an unhurried pace.",
-        "tour.goldenTriangle.alt": "The Qutub Minar in Delhi, photographed on a Golden Triangle journey with Govind",
+        "tour.goldenTriangle.alt": "The Taj Mahal in Agra, photographed on a Golden Triangle journey with Govind",
+        "tour.goldenTriangle.lede": "Delhi, Agra and Jaipur — three cities, three eras, and the classic introduction to northern India.",
+        "tour.goldenTriangle.fact1": "The Taj Mahal was built between 1632 and 1653 as a tomb for Mumtaz Mahal; around 20,000 craftsmen worked on it.",
+        "tour.goldenTriangle.fact2": "Delhi stands on the remains of eight cities, built one after another over a thousand years.",
+        "tour.goldenTriangle.fact3": "Jaipur was planned on paper in 1727 — a grid laid out according to the rules of Vastu Shastra.",
+        "tour.goldenTriangle.fact4": "Amber Fort holds the Sheesh Mahal, a hall of mirrors where a single candle is reflected a thousand times.",
+        "tour.goldenTriangle.best": "October to March",
 
         "tour.rajasthan.title": "Rajasthan",
         "tour.rajasthan.text": "Palaces, desert cities and heritage stays with plenty of room for real encounters.",
-        "tour.rajasthan.alt": "Rajasthan private journey with Govind to palaces and desert landscapes",
+        "tour.rajasthan.alt": "The fort of Jaisalmer above the golden old town in Rajasthan",
+        "tour.rajasthan.lede": "Desert kingdoms, forts and colour — the region I come from myself.",
+        "tour.rajasthan.fact1": "Jaisalmer is one of the few living forts in the world: around 3,000 people still live inside its walls.",
+        "tour.rajasthan.fact2": "In the Thar Desert you can ride camels over the dunes and spend the night under open sky.",
+        "tour.rajasthan.fact3": "Jodhpur is called the blue city: the houses below Mehrangarh Fort are traditionally painted indigo.",
+        "tour.rajasthan.fact4": "Udaipur sits on Lake Pichola, with the City Palace and lake palaces right on the water.",
+        "tour.rajasthan.best": "October to March",
+
+        "tour.ranthambore.title": "Ranthambore",
+        "tour.ranthambore.text": "A tiger safari in the former hunting grounds of the maharajas, by open jeep and without any rush.",
+        "tour.ranthambore.alt": "A tiger in Ranthambore National Park in Rajasthan",
+        "tour.ranthambore.lede": "One of the best places in India to see wild tigers — once the hunting reserve of the maharajas of Jaipur.",
+        "tour.ranthambore.fact1": "The national park covers around 1,700 square kilometres and is home to roughly 80 tigers.",
+        "tour.ranthambore.fact2": "Ranthambore Fort, dating from the 10th century, stands in the middle of the park and is a UNESCO World Heritage Site.",
+        "tour.ranthambore.fact3": "Safaris run by open jeep in the morning and late afternoon — the hours when the animals are active.",
+        "tour.ranthambore.fact4": "Besides tigers, the park holds leopards, sloth bears, marsh crocodiles and more than 300 bird species.",
+        "tour.ranthambore.best": "October to April — the park closes during the monsoon",
 
         "tour.kerala.title": "Kerala",
         "tour.kerala.text": "Backwaters, spice gardens and coastline with gentle planning and personal guidance.",
         "tour.kerala.alt": "Kerala journey with Govind along backwaters, spice gardens and the coast",
+        "tour.kerala.lede": "The green, slow south: waterways, spices and a cuisine with little in common with northern India.",
+        "tour.kerala.fact1": "The backwaters are a network of around 900 kilometres of interconnected canals, lakes and rivers.",
+        "tour.kerala.fact2": "Kerala is regarded as the home of Ayurveda — authentic treatments and courses are possible here.",
+        "tour.kerala.fact3": "Fort Kochi still has its Chinese fishing nets, a legacy of trade with China.",
+        "tour.kerala.fact4": "Kathakali is Kerala's traditional dance theatre, recognisable by its elaborately painted faces.",
+        "tour.kerala.best": "September to March",
 
         "tour.ladakh.title": "Ladakh",
         "tour.ladakh.text": "Monasteries, clear mountain air and Himalayan panoramas with careful acclimatisation.",
         "tour.ladakh.alt": "Ladakh private journey with Govind to monasteries and Himalayan landscapes",
+        "tour.ladakh.lede": "High mountains, Tibetan Buddhist monasteries and a landscape closer to Tibet than to India.",
+        "tour.ladakh.fact1": "Leh sits at about 3,500 metres — the first two days are given over entirely to acclimatisation.",
+        "tour.ladakh.fact2": "Thiksey and Hemis are among the most important Tibetan Buddhist monasteries in India.",
+        "tour.ladakh.fact3": "Pangong Tso lake lies at 4,350 metres and changes colour several times over the course of a day.",
+        "tour.ladakh.fact4": "The passes open only in summer; in winter the region cannot be reached overland.",
+        "tour.ladakh.best": "June to September",
 
         "tour.varanasi.title": "Varanasi",
         "tour.varanasi.text": "Rituals, old-town lanes and quiet mornings on the Ganges, guided with care and respect.",
         "tour.varanasi.alt": "Varanasi journey with Govind at the ghats of the Ganges",
+        "tour.varanasi.lede": "India's spiritual capital — intense, ancient, and at its finest in the first hours of the day.",
+        "tour.varanasi.fact1": "Varanasi is considered one of the oldest continuously inhabited cities in the world, with over 3,000 years of settlement.",
+        "tour.varanasi.fact2": "Eighty-eight ghats line the Ganges — broad stone staircases leading down to the water.",
+        "tour.varanasi.fact3": "The Ganga Aarti, a ceremony of fire and light, takes place every evening at Dashashwamedh Ghat.",
+        "tour.varanasi.fact4": "Nearby Sarnath is where the Buddha gave his first sermon — a quiet counterpoint to the city.",
+        "tour.varanasi.best": "October to March",
 
         "tour.southIndia.title": "South India",
         "tour.southIndia.text": "Temple art, plantations and coastal towns in a calm, unhurried composition.",
         "tour.southIndia.alt": "The Shore Temple of Mahabalipuram on the coast of South India",
+        "tour.southIndia.lede": "Dravidian temple art, tea plantations and a coastline where the pace slows down by itself.",
+        "tour.southIndia.fact1": "The gopurams, the tall temple gate towers, are covered from top to bottom in painted figures.",
+        "tour.southIndia.fact2": "The Meenakshi Temple in Madurai has fourteen such towers and is a city in its own right.",
+        "tour.southIndia.fact3": "Mahabalipuram has monuments carved directly out of the rock in the 7th century — a UNESCO World Heritage Site.",
+        "tour.southIndia.fact4": "The Brihadisvara Temple in Thanjavur dates from the 11th century and is built entirely of granite.",
+        "tour.southIndia.best": "November to March",
+
+        "wellness.eyebrow": "Ayurveda · Yoga · Wellness",
+        "wellness.title": "Ayurveda, yoga and wellness",
+        "wellness.alt": "Shiva statue on the Ganges at Rishikesh",
+        "wellness.p1": "Alongside classic touring journeys, I also accompany guests on Ayurveda, yoga and wellness stays. India is where both traditions began, and from the outside it is hard to tell a serious establishment from a wellness package aimed at tourists.",
+        "wellness.p2": "I know the places I work with personally, interpret at the first consultation with the doctors, and make sure the treatments, diet and daily rhythm genuinely suit you. A combination also works well: culture and cities first, then a quiet week to recover.",
+        "wellness.listAria": "Services",
+        "wellness.item1": "Ayurveda courses in Kerala, from short treatments to a multi-week Panchakarma programme",
+        "wellness.item2": "Yoga and meditation in Rishikesh on the Ganges, where modern yoga began",
+        "wellness.item3": "Accompaniment and interpreting at the first medical consultation",
+        "wellness.item4": "Touring journey and recovery stay combined into one trip",
+        "wellness.cta": "Ask for advice",
 
         "why.eyebrow": "Trust on the ground",
         "why.title": "Why travel with Govind",
@@ -2317,6 +2758,15 @@
         "gallery.shiva": "Mural of a meditating Shiva on a street wall",
         "gallery.mahabalipuram": "The Shore Temple of Mahabalipuram under open skies",
         "gallery.qutub": "The Qutub Minar in Delhi, framed by an ancient stone arch",
+        "gallery.hawaMahal": "The facade of the Hawa Mahal in Jaipur",
+        "gallery.goldenTemple": "The Golden Temple in Amritsar at night, reflected in the water",
+        "gallery.tajGate": "The great gate of the Taj Mahal behind the long reflecting pool",
+        "gallery.jaisalmerLane": "A cow on the sandstone steps of a lane in Jaisalmer",
+        "gallery.tiger": "A tiger on a slope in Ranthambore National Park",
+        "gallery.rajasthani": "An elderly Rajasthani man in a red turban on a street in Rajasthan",
+        "gallery.fatehpur": "The Panch Mahal and water tank at Fatehpur Sikri",
+        "gallery.amberShow": "Amber Fort near Jaipur during the evening light show",
+        "gallery.indiaGate": "India Gate in Delhi in the evening light",
 
         "reviews.eyebrow": "Guest voices",
         "reviews.title": "Reviews",
@@ -2357,7 +2807,7 @@
         "info.visa": "Visa",
         "info.visa.text": "German citizens need a visa for tourist travel to India. In most cases the electronic tourist visa (e-Visa) is enough and is applied for online before departure. Allow a few days for processing; your passport should still be valid for at least six months on arrival and have two free pages. I will tell you in good time which documents you need.",
         "info.season": "Best time to travel",
-        "info.season.text": "For most of India, October to March is the most comfortable period. Rajasthan and the Golden Triangle are mild and clear from November to February, Kerala and South India from November to March. Ladakh is a summer destination: the passes are usually open from June to September. From June to September the monsoon moves across much of the country - we shape your route around it.",
+        "info.season.text": "For most of India, mid-August to April is the most comfortable period to travel. Rajasthan and the Golden Triangle are mild and clear from October to March, Kerala and South India from September to March. Ladakh is a summer destination: the passes are usually open from June to September. The south-west monsoon moves across much of the country from June until around mid-August - after that it turns noticeably more pleasant, and we shape your route accordingly.",
         "info.health": "Vaccinations",
         "info.health.text": "No vaccinations are compulsory when travelling directly from Germany. Proof of yellow fever vaccination is required only if you arrive from a yellow fever area. The usual recommendations are your standard vaccinations plus hepatitis A, and depending on the trip typhoid and hepatitis B. Please seek travel-medicine advice four to six weeks before departure.",
         "info.safety": "Safety",
@@ -2490,6 +2940,25 @@
         navPanel.classList.remove("is-open");
         menuToggle.setAttribute("aria-expanded", "false");
       }
+    });
+
+    document.querySelectorAll("[data-tour-open]").forEach((button) => {
+      button.addEventListener("click", () => {
+        document.getElementById(button.dataset.tourOpen)?.showModal();
+      });
+    });
+
+    document.querySelectorAll(".tour-dialog").forEach((dialog) => {
+      // The dialog element itself fills the viewport while the panel is the
+      // inner div, so a click landing on the dialog is a click on the backdrop.
+      dialog.addEventListener("click", (event) => {
+        if (event.target === dialog) {
+          dialog.close();
+        }
+      });
+      // Jumping to the enquiry form behind an open modal would leave the modal
+      // covering the thing the visitor just asked to see.
+      dialog.querySelector("[data-tour-enquire]")?.addEventListener("click", () => dialog.close());
     });
 
     const travelFrom = document.querySelector("[data-travel-from]");

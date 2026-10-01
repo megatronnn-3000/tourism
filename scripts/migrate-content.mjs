@@ -27,6 +27,12 @@ const CONTENT_ID = 'siteContent'
 const dryRun = process.argv.includes('--dry-run')
 const force = process.argv.includes('--force')
 
+// --keys a.b,c.d force-updates exactly those keys from the template and leaves
+// everything else alone. Needed because copy authored in the repo has to reach
+// Sanity somehow, and --force would take the Studio's edits with it.
+const keysFlag = process.argv.indexOf('--keys')
+const onlyKeys = keysFlag === -1 ? null : (process.argv[keysFlag + 1] ?? '').split(',').map((k) => k.trim()).filter(Boolean)
+
 const MIME = {'.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.png': 'image/png', '.webp': 'image/webp', '.avif': 'image/avif'}
 
 // "images/gallery/taj-mahal.jpg" -> slot "gallery/taj-mahal", id "siteImage.gallery-taj-mahal"
@@ -82,6 +88,19 @@ const run = async () => {
   })
 
   const {_id, _type, ...fields} = document
+  if (onlyKeys) {
+    const patch = {}
+    const unknown = []
+    for (const key of onlyKeys) {
+      const field = toFieldName(key)
+      if (fields[field] === undefined) unknown.push(key)
+      else patch[field] = fields[field]
+    }
+    if (unknown.length) throw new Error(`Not in the template: ${unknown.join(', ')}`)
+    await client.patch(_id).set(patch).commit()
+    console.log(`✓ ${CONTENT_ID} — ${onlyKeys.length} key(s) updated: ${onlyKeys.join(', ')}`)
+    return
+  }
   if (force) {
     await client.createOrReplace(document)
     console.log(`✓ ${CONTENT_ID} — all ${Object.keys(fields).length} keys overwritten`)

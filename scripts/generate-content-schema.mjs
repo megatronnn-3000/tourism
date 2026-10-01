@@ -27,6 +27,7 @@ const GROUP_TITLES = {
   about: 'About Govind',
   journeys: 'Journeys',
   tour: 'Individual tours',
+  wellness: 'Ayurveda & wellness',
   why: 'Why Govind',
   gallery: 'Gallery',
   reviews: 'Reviews',
