@@ -140,6 +140,13 @@ export const siteContent = defineType({
       group: 'hero',
     }),
     defineField({
+      name: 'hero_brand',
+      title: 'brand',
+      description: 'hero.brand',
+      type: 'localeString',
+      group: 'hero',
+    }),
+    defineField({
       name: 'hero_title',
       title: 'title',
       description: 'hero.title',

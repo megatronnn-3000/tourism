@@ -407,6 +407,21 @@
       text-shadow: 0 2px 30px rgba(16, 28, 46, 0.55);
     }
 
+    /* The heading is two translatable lines: the name at full size, the
+       tagline beneath it at half. Each span is its own text leaf so the
+       language toggle can rewrite one without wiping the other. */
+    .hero-brand,
+    .hero-tagline {
+      display: block;
+    }
+
+    .hero-tagline {
+      margin-top: 0.2em;
+      color: rgba(251, 248, 243, 0.92);
+      font-size: 0.5em;
+      font-weight: 500;
+    }
+
     .hero-lede {
       max-width: 680px;
       margin: 24px 0 30px;
@@ -1724,7 +1739,10 @@
       <img src="images/hero-camel.jpg" width="1280" height="960" fetchpriority="high" data-i18n-alt="hero.alt" alt="Kamel in den Dünen der Thar-Wüste bei Sonnenuntergang – Aufnahme von Govind">
       <div class="hero-content reveal">
         <p class="eyebrow" data-i18n="hero.eyebrow">Private Reisen · Indien</p>
-        <h1 id="hero-title" data-i18n="hero.title">Indien, persönlich kuratiert mit Indivoya Tours</h1>
+        <h1 id="hero-title">
+          <span class="hero-brand" data-i18n="hero.brand">Indivoya Tours</span>
+          <span class="hero-tagline" data-i18n="hero.title">Indien, persönlich kuratiert</span>
+        </h1>
         <p class="hero-lede" data-i18n="hero.lede">Private Reisen, persönliche Begleitung und echte Begegnungen - individuell geplant für deutschsprachige Reisende.</p>
         <a class="btn btn-primary" href="#anfrage" data-i18n="hero.cta">Jetzt unverbindlich anfragen</a>
         <div class="hero-detail" aria-hidden="true"></div>
@@ -2351,7 +2369,8 @@
         "nav.contact": "Kontakt",
 
         "hero.eyebrow": "Private Reisen · Indien",
-        "hero.title": "Indien, persönlich kuratiert mit Indivoya Tours",
+        "hero.brand": "Indivoya Tours",
+        "hero.title": "Indien, persönlich kuratiert",
         "hero.lede": "Private Reisen, persönliche Begleitung und echte Begegnungen - individuell geplant für deutschsprachige Reisende.",
         "hero.cta": "Jetzt unverbindlich anfragen",
         "hero.alt": "Kamel in den Dünen der Thar-Wüste bei Sonnenuntergang – Aufnahme von Govind",
@@ -2611,7 +2630,8 @@
         "nav.contact": "Contact",
 
         "hero.eyebrow": "Private journeys · India",
-        "hero.title": "India, Curated Personally with Indivoya Tours",
+        "hero.brand": "Indivoya Tours",
+        "hero.title": "India, curated personally",
         "hero.lede": "Private journeys, personal guidance and genuine encounters - planned individually for German-speaking travellers.",
         "hero.cta": "Send a no-obligation enquiry",
         "hero.alt": "A camel in the dunes of the Thar Desert at sunset – photographed by Govind",
