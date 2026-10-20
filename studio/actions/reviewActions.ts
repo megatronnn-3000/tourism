@@ -34,5 +34,7 @@ const makeAction = (
   return action
 }
 
-export const approveReview = makeAction('approved', 'Publish', 'Publishing …', 'positive')
+// "Approve", not "Publish": Sanity's own Publish button sits beside these and
+// publishes edits without changing status, so the review would stay off the site.
+export const approveReview = makeAction('approved', 'Approve', 'Approving …', 'positive')
 export const rejectReview = makeAction('rejected', 'Reject', 'Rejecting …', 'critical')
