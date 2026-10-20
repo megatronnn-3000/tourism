@@ -46,13 +46,17 @@ const QUOTES = {de: ['„', '”'], en: ['“', '”']}
 
 const REVIEW_KEY = /^reviews\.\d+\./
 
+// Guests often type their own quotation marks. The build adds the typographic
+// pair, so strip any the guest supplied or the card shows them twice.
+const bareQuote = (text) => String(text ?? '').trim().replace(/^["'„“”‚‘’«»]+/, '').replace(/["'„“”‚‘’«»]+$/, '').trim()
+
 const slotFromSrc = (src) => src.replace(/^images\//, '').replace(/\.[^.]+$/, '')
 
 const QUERY = `{
   "content": *[_id == "siteContent"][0],
   "images": *[_type == "siteImage"]{slot, image, alt},
   "reviews": *[_type == "review" && status == "approved"] | order(submittedAt desc){
-    author, city, rating, quoteDe, quoteEn
+    author, city, rating, quoteDe, quoteEn, quoteOriginal
   }
 }`
 
@@ -98,9 +102,14 @@ const buildDictionaries = (content, reviews, keyOrder) => {
       if (reviewsEmitted) continue
       reviews.forEach((review, index) => {
         const n = index + 1
-        de[`reviews.${n}.quote`] = `${QUOTES.de[0]}${review.quoteDe ?? ''}${QUOTES.de[1]}`
+        // Fall back across languages: a guest browsing in English fills only
+        // the English field, and an untranslated review must still show its
+        // text rather than an empty pair of quotation marks.
+        const textDe = bareQuote(review.quoteDe || review.quoteEn || review.quoteOriginal)
+        const textEn = bareQuote(review.quoteEn || review.quoteDe || review.quoteOriginal)
+        de[`reviews.${n}.quote`] = `${QUOTES.de[0]}${textDe}${QUOTES.de[1]}`
         de[`reviews.${n}.author`] = `— ${review.author}${review.city ? `, ${review.city}` : ''}`
-        en[`reviews.${n}.quote`] = `${QUOTES.en[0]}${review.quoteEn || review.quoteDe || ''}${QUOTES.en[1]}`
+        en[`reviews.${n}.quote`] = `${QUOTES.en[0]}${textEn}${QUOTES.en[1]}`
         en[`reviews.${n}.author`] = de[`reviews.${n}.author`]
       })
       reviewsEmitted = true

@@ -6,10 +6,10 @@
   <!-- Sections are revealed on scroll by JS. This flag gates the hiding, so the
        page stays fully readable if JS is blocked or fails. -->
   <script>document.documentElement.classList.add("js");</script>
-  <title>Govind – Ihr privater Reiseleiter in Indien</title>
-  <meta name="description" data-i18n-content="meta.description" content="Private Indienreisen mit Govind: persönliche Begleitung, deutschsprachige Beratung und kuratierte Routen durch Rajasthan, Kerala, Ladakh, Varanasi und den Golden Triangle.">
-  <meta property="og:title" data-i18n-content="meta.title" content="Govind – Ihr privater Reiseleiter in Indien">
-  <meta property="og:description" data-i18n-content="meta.ogDescription" content="Luxuriöse private Indienreisen, persönlich begleitet von Govind für deutschsprachige Reisende.">
+  <title>Indivoya Tours – Private Indienreisen</title>
+  <meta name="description" data-i18n-content="meta.description" content="Private Indienreisen mit Indivoya Tours: persönliche Begleitung, deutschsprachige Beratung und kuratierte Routen durch Rajasthan, Kerala, Ladakh, Varanasi und den Golden Triangle.">
+  <meta property="og:title" data-i18n-content="meta.title" content="Indivoya Tours – Private Indienreisen">
+  <meta property="og:description" data-i18n-content="meta.ogDescription" content="Luxuriöse private Indienreisen von Indivoya Tours, persönlich geplant für deutschsprachige Reisende.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="images/hero-taj.jpg">
   <meta property="og:locale" content="de_DE">
@@ -133,10 +133,14 @@
       min-height: 64px;
     }
 
+    /* "Indivoya Tours" is more than twice the length of the old "Govind". On a
+       320px phone the header row also holds the DE/EN switch and the menu
+       button, which leaves about 140px; the lower floor keeps the name inside
+       that without wrapping. */
     .wordmark {
       font-family: var(--serif);
       color: var(--indigo);
-      font-size: clamp(1.45rem, 4vw, 1.95rem);
+      font-size: clamp(1.05rem, 4.2vw, 1.95rem);
       font-weight: 700;
       letter-spacing: 0;
       white-space: nowrap;
@@ -1689,8 +1693,7 @@
 <body>
   <header class="site-header" data-header>
     <nav class="nav" aria-label="Hauptnavigation" data-i18n-aria-label="nav.aria">
-      <!-- TODO: Add Govind's surname to the wordmark before launch. -->
-      <a class="wordmark" href="#top" aria-label="Govind Startseite" data-i18n-aria-label="nav.home">Govind</a>
+      <a class="wordmark" href="#top" aria-label="Indivoya Tours Startseite" data-i18n-aria-label="nav.home">Indivoya Tours</a>
       <div class="nav-actions">
         <div class="language-switch" aria-label="Sprachauswahl" data-i18n-aria-label="nav.language">
           <button type="button" data-lang="de" aria-pressed="true">DE</button>
@@ -1704,7 +1707,7 @@
       </div>
       <div class="nav-panel" id="nav-panel" data-nav-panel>
         <div class="nav-links">
-          <a href="#ueber-govind" data-i18n="nav.about">Über Govind</a>
+          <a href="#ueber-uns" data-i18n="nav.about">Über uns</a>
           <a href="#reisen" data-i18n="nav.journeys">Reisen</a>
           <a href="#wellness" data-i18n="nav.wellness">Wellness</a>
           <a href="#impressionen" data-i18n="nav.gallery">Galerie</a>
@@ -1721,7 +1724,7 @@
       <img src="images/hero-camel.jpg" width="1280" height="960" fetchpriority="high" data-i18n-alt="hero.alt" alt="Kamel in den Dünen der Thar-Wüste bei Sonnenuntergang – Aufnahme von Govind">
       <div class="hero-content reveal">
         <p class="eyebrow" data-i18n="hero.eyebrow">Private Reisen · Indien</p>
-        <h1 id="hero-title" data-i18n="hero.title">Indien, persönlich kuratiert mit Govind</h1>
+        <h1 id="hero-title" data-i18n="hero.title">Indien, persönlich kuratiert mit Indivoya Tours</h1>
         <p class="hero-lede" data-i18n="hero.lede">Private Reisen, persönliche Begleitung und echte Begegnungen - individuell geplant für deutschsprachige Reisende.</p>
         <a class="btn btn-primary" href="#anfrage" data-i18n="hero.cta">Jetzt unverbindlich anfragen</a>
         <div class="hero-detail" aria-hidden="true"></div>
@@ -1749,23 +1752,23 @@
       </div>
     </aside>
 
-    <section id="ueber-govind" aria-labelledby="about-title">
+    <section id="ueber-uns" aria-labelledby="about-title">
       <div class="section-inner about-grid">
         <figure class="portrait-frame reveal">
-          <img src="images/govind.jpg" width="960" height="1200" loading="lazy" decoding="async" data-i18n-alt="about.alt" alt="Porträt von Govind, privater deutschsprachiger Reiseleiter in Indien">
+          <img src="images/govind.jpg" width="960" height="1200" loading="lazy" decoding="async" data-i18n-alt="about.alt" alt="Govind Singh Shekhawat, Gründer von Indivoya Tours">
         </figure>
         <div class="about-copy reveal">
-          <p class="eyebrow" data-i18n="about.eyebrow">Persönlich geführt</p>
-          <h2 id="about-title" data-i18n="about.title">Über Govind</h2>
-          <p data-i18n="about.p1">Ich heiße Govind Singh Shekhawat. Ich bin ein erfahrener und von Rajasthan Tourism anerkannter deutsch- und englischsprachiger Reiseleiter aus Rajasthan. Meine Leidenschaft gilt der indischen Geschichte, Kultur, Architektur und den lebendigen Traditionen des Landes.</p>
-          <p data-i18n="about.p2">Als gebürtiger Rajasthani kenne ich Indien nicht nur aus touristischer Perspektive. Für mich bedeutet eine Reise mehr als der Besuch berühmter Sehenswürdigkeiten. Ich möchte meinen Gästen die Geschichten, Menschen, Traditionen und den Alltag Indiens näherbringen und Ihnen einen authentischen Einblick ins Land ermöglichen.</p>
-          <p data-i18n="about.p3">Ein besonderer Bestandteil meiner Erfahrung ist auch meine enge persönliche Verbindung zu Deutschland. Ich bin bereits mehrfach nach Deutschland gereist und habe dabei die deutsche Kultur, Lebensweise und die Menschen vor Ort intensiv kennengelernt. Diese persönlichen Erfahrungen haben mir ein gutes Verständnis für die Mentalität, Erwartungen und Reisegewohnheiten deutschsprachiger Gäste vermittelt.</p>
-          <p data-i18n="about.p4">Dadurch kann ich eine besondere Brücke zwischen der indischen und der deutschen Kultur schaffen. Bei meinen Führungen erkläre ich nicht nur historische Fakten und kulturelle Zusammenhänge, sondern zeige meinen Gästen auch Gemeinsamkeiten und Unterschiede zwischen Deutschland und Indien – verständlich, persönlich und mit vielen interessanten Geschichten.</p>
-          <p data-i18n="about.p5">Ob bei einer Reise durch die historischen Städte und Festungen Rajasthans, bei kulturellen Begegnungen, auf Märkten oder bei der Entdeckung weniger bekannter Orte – ich lege großen Wert auf Authentizität, persönliche Betreuung und einen respektvollen kulturellen Austausch.</p>
-          <p data-i18n="about.p6">Mein Ziel ist es, meinen Gästen nicht einfach nur Sehenswürdigkeiten zu zeigen, sondern Ihnen ein echtes und persönliches Indien-Erlebnis zu ermöglichen.</p>
+          <p class="eyebrow" data-i18n="about.eyebrow">Wer wir sind</p>
+          <h2 id="about-title" data-i18n="about.title">Über Indivoya Tours</h2>
+          <p data-i18n="about.p1">Indivoya Tours plant private Reisen durch Indien für deutschsprachige Gäste. Unsere Leidenschaft gilt der indischen Geschichte, Kultur, Architektur und den lebendigen Traditionen des Landes – und dem Wunsch, sie unseren Gästen wirklich nahezubringen.</p>
+          <p data-i18n="about.p2">Gegründet wurde Indivoya Tours von Govind Singh Shekhawat, einem erfahrenen, von Rajasthan Tourism anerkannten deutsch- und englischsprachigen Reiseleiter. Als gebürtiger Rajasthani kennt er Indien nicht nur aus touristischer Perspektive. Für ihn bedeutet eine Reise mehr als der Besuch berühmter Sehenswürdigkeiten: Es geht um die Geschichten, Menschen, Traditionen und den Alltag des Landes.</p>
+          <p data-i18n="about.p3">Govind ist mehrfach nach Deutschland gereist und hat die deutsche Kultur, Lebensweise und die Menschen vor Ort intensiv kennengelernt. Dieses Verständnis für die Mentalität, Erwartungen und Reisegewohnheiten deutschsprachiger Gäste prägt bis heute, wie wir planen und begleiten.</p>
+          <p data-i18n="about.p4">So schaffen wir eine besondere Brücke zwischen der indischen und der deutschen Kultur. Unsere Reiseleiterinnen und Reiseleiter erklären nicht nur historische Fakten und kulturelle Zusammenhänge, sondern zeigen auch Gemeinsamkeiten und Unterschiede zwischen Deutschland und Indien – verständlich, persönlich und mit vielen interessanten Geschichten.</p>
+          <p data-i18n="about.p5">Ob auf einer Reise durch die historischen Städte und Festungen Rajasthans, bei kulturellen Begegnungen, auf Märkten oder bei der Entdeckung weniger bekannter Orte – wir legen großen Wert auf Authentizität, persönliche Betreuung und einen respektvollen kulturellen Austausch.</p>
+          <p data-i18n="about.p6">Unser Ziel ist es, unseren Gästen nicht einfach nur Sehenswürdigkeiten zu zeigen, sondern ihnen ein echtes und persönliches Indien-Erlebnis zu ermöglichen.</p>
           <blockquote class="about-quote" data-i18n="about.quote">„Indien ist nicht nur ein Reiseziel – Indien ist eine Geschichte, die man erleben und verstehen sollte.“</blockquote>
           <ul class="credentials" aria-label="Qualifikationen" data-i18n-aria-label="about.credentialsAria">
-            <li data-i18n="about.cred1">Lizenzierter privater Reiseleiter</li>
+            <li data-i18n="about.cred1">Gegründet von einem von Rajasthan Tourism anerkannten Reiseleiter</li>
             <li data-i18n="about.cred2">Deutschsprachige Reisebegleitung</li>
             <li data-i18n="about.cred3">Individuelle Routenplanung</li>
             <li data-i18n="about.cred4">Persönliche Betreuung vor und während der Reise</li>
@@ -1778,13 +1781,13 @@
       <div class="section-inner">
         <div class="section-heading reveal">
           <p class="eyebrow" data-i18n="journeys.eyebrow">Kuratierte Routen</p>
-          <h2 id="journeys-title" data-i18n="journeys.title">Meine Reisen</h2>
-          <p data-i18n="journeys.lede">Ausgewählte private Reisen durch Indien, persönlich begleitet von Govind und angepasst an Ihren Stil.</p>
+          <h2 id="journeys-title" data-i18n="journeys.title">Unsere Reisen</h2>
+          <p data-i18n="journeys.lede">Ausgewählte private Reisen durch Indien, persönlich geplant und angepasst an Ihren Stil.</p>
         </div>
         <div class="tour-grid">
           <article class="tour-card reveal">
             <div class="tour-image">
-              <img src="images/golden-triangle-taj.jpg" width="1280" height="960" loading="lazy" decoding="async" data-i18n-alt="tour.goldenTriangle.alt" alt="Das Taj Mahal in Agra, fotografiert auf einer Golden-Triangle-Reise mit Govind">
+              <img src="images/golden-triangle-taj.jpg" width="1280" height="960" loading="lazy" decoding="async" data-i18n-alt="tour.goldenTriangle.alt" alt="Das Taj Mahal in Agra, fotografiert auf einer Golden-Triangle-Reise mit Indivoya Tours">
             </div>
             <div class="tour-content">
               <h3 data-i18n="tour.goldenTriangle.title">Golden Triangle</h3>
@@ -1818,7 +1821,7 @@
           <article class="tour-card reveal">
             <div class="tour-image">
               <!-- REAL PHOTO TODO: Lush Kerala photograph with Govind guiding guests by backwaters, spice gardens or coastline. -->
-              <img src="images/kerala.jpg" width="1200" height="896" loading="lazy" decoding="async" data-i18n-alt="tour.kerala.alt" alt="Kerala Reise mit Govind entlang Backwaters, Gewürzgärten und Küste">
+              <img src="images/kerala.jpg" width="1200" height="896" loading="lazy" decoding="async" data-i18n-alt="tour.kerala.alt" alt="Kerala-Reise mit Indivoya Tours entlang Backwaters, Gewürzgärten und Küste">
             </div>
             <div class="tour-content">
               <h3 data-i18n="tour.kerala.title">Kerala</h3>
@@ -1830,7 +1833,7 @@
           <article class="tour-card reveal">
             <div class="tour-image">
               <!-- REAL PHOTO TODO: Dramatic Ladakh photograph with Govind on a high-altitude cultural route. -->
-              <img src="images/ladakh.jpg" width="1200" height="896" loading="lazy" decoding="async" data-i18n-alt="tour.ladakh.alt" alt="Ladakh Privatreise mit Govind zu Klöstern und Himalaya-Landschaften">
+              <img src="images/ladakh.jpg" width="1200" height="896" loading="lazy" decoding="async" data-i18n-alt="tour.ladakh.alt" alt="Ladakh-Privatreise mit Indivoya Tours zu Klöstern und Himalaya-Landschaften">
             </div>
             <div class="tour-content">
               <h3 data-i18n="tour.ladakh.title">Ladakh</h3>
@@ -1887,7 +1890,7 @@
         <div class="tour-dialog-inner">
           <form method="dialog"><button class="tour-dialog-close" data-i18n-aria-label="tour.close" aria-label="Schließen">&times;</button></form>
           <h3 id="tour-rajasthan-title" data-i18n="tour.rajasthan.title">Rajasthan</h3>
-          <p class="tour-dialog-lede" data-i18n="tour.rajasthan.lede">Wüstenkönigreiche, Festungen und Farbe — die Region, aus der ich selbst stamme.</p>
+          <p class="tour-dialog-lede" data-i18n="tour.rajasthan.lede">Wüstenkönigreiche, Festungen und Farbe — die Heimat unseres Gründers Govind.</p>
           <h4 data-i18n="tour.factsLabel">Gut zu wissen</h4>
           <ul class="tour-facts">
             <li data-i18n="tour.rajasthan.fact1">Jaisalmer ist eine der wenigen bewohnten Festungen der Welt: Rund 3.000 Menschen leben bis heute innerhalb der Mauern.</li>
@@ -1994,8 +1997,8 @@
         <div class="about-copy reveal">
           <p class="eyebrow" data-i18n="wellness.eyebrow">Ayurveda · Yoga · Wellness</p>
           <h2 id="wellness-title" data-i18n="wellness.title">Ayurveda, Yoga und Wellness</h2>
-          <p data-i18n="wellness.p1">Neben klassischen Rundreisen begleite ich Gäste auch zu Ayurveda-, Yoga- und Wellnessaufenthalten. Indien ist der Ursprungsort beider Traditionen, und der Unterschied zwischen einem ernsthaften Haus und einem Wellnessangebot für Touristen ist von außen kaum zu erkennen.</p>
-          <p data-i18n="wellness.p2">Ich kenne die Einrichtungen, mit denen ich arbeite, persönlich, übersetze im Erstgespräch mit den Ärztinnen und Ärzten und sorge dafür, dass Behandlungen, Ernährung und Tagesablauf wirklich zu Ihnen passen. Auch eine Kombination ist möglich: erst Kultur und Städte, danach eine ruhige Woche zur Erholung.</p>
+          <p data-i18n="wellness.p1">Neben klassischen Rundreisen begleiten wir Gäste auch zu Ayurveda-, Yoga- und Wellnessaufenthalten. Indien ist der Ursprungsort beider Traditionen, und der Unterschied zwischen einem ernsthaften Haus und einem Wellnessangebot für Touristen ist von außen kaum zu erkennen.</p>
+          <p data-i18n="wellness.p2">Wir kennen die Einrichtungen, mit denen wir arbeiten, persönlich, übersetzen im Erstgespräch mit den Ärztinnen und Ärzten und sorgen dafür, dass Behandlungen, Ernährung und Tagesablauf wirklich zu Ihnen passen. Auch eine Kombination ist möglich: erst Kultur und Städte, danach eine ruhige Woche zur Erholung.</p>
           <ul class="credentials" aria-label="Angebote" data-i18n-aria-label="wellness.listAria">
             <li data-i18n="wellness.item1">Ayurveda-Kuren in Kerala, von der Kurzbehandlung bis zur mehrwöchigen Panchakarma-Kur</li>
             <li data-i18n="wellness.item2">Yoga und Meditation in Rishikesh am Ganges, dem Ursprungsort des modernen Yoga</li>
@@ -2011,7 +2014,7 @@
       <div class="section-inner">
         <div class="section-heading reveal">
           <p class="eyebrow" data-i18n="why.eyebrow">Vertrauen vor Ort</p>
-          <h2 id="why-title" data-i18n="why.title">Warum mit Govind reisen</h2>
+          <h2 id="why-title" data-i18n="why.title">Warum mit Indivoya Tours reisen</h2>
           <p data-i18n="why.lede">Private Begleitung macht den Unterschied: direkt, aufmerksam und mit tiefem Verständnis für Indien.</p>
         </div>
         <div class="reason-grid">
@@ -2021,7 +2024,7 @@
               <svg aria-hidden="true" viewBox="0 0 48 48"><circle cx="24" cy="17" r="7"/><path d="M10 41c2.4-8 7.2-12 14-12s11.6 4 14 12"/></svg>
             </div>
             <h3 data-i18n="why.1.title">Persönliche Begleitung</h3>
-            <p data-i18n="why.1.text">Sie reisen nicht anonym. Govind ist Ihr direkter Ansprechpartner und begleitet die entscheidenden Momente persönlich.</p>
+            <p data-i18n="why.1.text">Sie reisen nicht anonym. Ein fester Ansprechpartner betreut Sie von der ersten Anfrage bis zur Rückreise.</p>
           </article>
           <article class="reason-card reveal">
             <div class="reason-top">
@@ -2056,7 +2059,7 @@
         <div class="section-heading reveal">
           <p class="eyebrow" data-i18n="gallery.eyebrow">Echte Momente</p>
           <h2 id="gallery-title" data-i18n="gallery.title">Impressionen aus Indien</h2>
-          <p data-i18n="gallery.lede">Aufnahmen von unterwegs - entstanden auf Reisen, die Govind persönlich begleitet hat.</p>
+          <p data-i18n="gallery.lede">Aufnahmen von unterwegs - entstanden auf unseren Reisen durch Indien.</p>
         </div>
         <div class="gallery-grid reveal">
           <figure class="gallery-item">
@@ -2131,7 +2134,7 @@
         </div>
         <div class="testimonial-video reveal">
           <figure class="testimonial-video-frame">
-            <video controls playsinline preload="none" poster="images/video-gast-poster.jpg" width="604" height="1080" data-i18n-aria-label="reviews.videoAria" aria-label="Videobotschaft eines Gastes über die Reise mit Govind">
+            <video controls playsinline preload="none" poster="images/video-gast-poster.jpg" width="604" height="1080" data-i18n-aria-label="reviews.videoAria" aria-label="Videobotschaft eines Gastes über die Reise mit Indivoya Tours">
               <source src="video-gast.mp4" type="video/mp4">
               <p data-i18n="reviews.videoFallback">Ihr Browser kann dieses Video leider nicht abspielen.</p>
             </video>
@@ -2139,7 +2142,7 @@
           <div class="testimonial-video-copy">
             <p class="eyebrow" data-i18n="reviews.videoEyebrow">Videobotschaft</p>
             <h3 data-i18n="reviews.videoTitle">Ein Gast erzählt</h3>
-            <p data-i18n="reviews.videoText">Ein Gast berichtet in eigenen Worten von der gemeinsamen Reise durch Indien mit Govind.</p>
+            <p data-i18n="reviews.videoText">Ein Gast berichtet in eigenen Worten von der gemeinsamen Reise durch Indien mit Indivoya Tours.</p>
           </div>
         </div>
 
@@ -2161,7 +2164,7 @@
         <div class="review-form-block reveal">
           <div class="review-form-copy">
             <h3 data-i18n="reviews.formTitle">Ihre Bewertung</h3>
-            <p data-i18n="reviews.formLede">Waren Sie mit Govind unterwegs? Erzählen Sie kurz, wie Sie die Reise erlebt haben. Ich lese jede Bewertung persönlich, bevor sie erscheint.</p>
+            <p data-i18n="reviews.formLede">Waren Sie mit uns unterwegs? Erzählen Sie kurz, wie Sie die Reise erlebt haben. Wir lesen jede Bewertung persönlich, bevor sie erscheint.</p>
           </div>
           <form class="review-form" method="post" action="/api/submit-review" data-review-form>
             <input type="checkbox" name="botcheck" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
@@ -2186,7 +2189,7 @@
               </fieldset>
               <div class="field field-full">
                 <label for="review-text" data-i18n="reviews.formText">Ihre Bewertung</label>
-                <textarea id="review-text" name="quote" minlength="20" maxlength="1200" required data-i18n-placeholder="reviews.formTextPlaceholder" placeholder="Was hat Ihre Reise mit Govind besonders gemacht?"></textarea>
+                <textarea id="review-text" name="quote" minlength="20" maxlength="1200" required data-i18n-placeholder="reviews.formTextPlaceholder" placeholder="Was hat Ihre Reise mit uns besonders gemacht?"></textarea>
               </div>
               <div class="consent">
                 <input id="review-consent" name="consent" type="checkbox" required>
@@ -2205,14 +2208,14 @@
         <div class="info-intro reveal">
           <p class="eyebrow" data-i18n="info.eyebrow">Gut vorbereitet</p>
           <h2 id="info-title" data-i18n="info.title">Reiseinfos</h2>
-          <p data-i18n="info.lede">Govind hilft Ihnen bereits vor der Ankunft, Indien entspannt zu verstehen: mit klaren Hinweisen zu Dokumenten, Reisezeit, Gesundheit und Verhalten vor Ort.</p>
+          <p data-i18n="info.lede">Wir helfen Ihnen bereits vor der Ankunft, Indien entspannt zu verstehen: mit klaren Hinweisen zu Dokumenten, Reisezeit, Gesundheit und Verhalten vor Ort.</p>
         </div>
         <div class="info-accordion reveal" aria-label="Reiseinformationen" data-i18n-aria-label="info.aria">
           <!-- TODO: Have Govind confirm these details against current official sources before launch. -->
           <details class="info-item" open>
             <summary><span data-i18n="info.visa">Visum</span><span class="info-marker" aria-hidden="true"></span></summary>
             <div class="info-panel">
-              <p data-i18n="info.visa.text">Für touristische Reisen nach Indien benötigen deutsche Staatsangehörige ein Visum. In der Regel genügt das elektronische Touristenvisum (e-Visa), das Sie vor der Abreise online beantragen. Planen Sie einige Tage Bearbeitungszeit ein; der Reisepass sollte bei der Einreise noch mindestens sechs Monate gültig sein und zwei freie Seiten haben. Ich sage Ihnen rechtzeitig, welche Unterlagen Sie brauchen.</p>
+              <p data-i18n="info.visa.text">Für touristische Reisen nach Indien benötigen deutsche Staatsangehörige ein Visum. In der Regel genügt das elektronische Touristenvisum (e-Visa), das Sie vor der Abreise online beantragen. Planen Sie einige Tage Bearbeitungszeit ein; der Reisepass sollte bei der Einreise noch mindestens sechs Monate gültig sein und zwei freie Seiten haben. Wir sagen Ihnen rechtzeitig, welche Unterlagen Sie brauchen.</p>
             </div>
           </details>
           <details class="info-item">
@@ -2230,11 +2233,11 @@
           <details class="info-item">
             <summary><span data-i18n="info.safety">Sicherheit</span><span class="info-marker" aria-hidden="true"></span></summary>
             <div class="info-panel">
-              <p data-i18n="info.safety.text">Sie reisen privat: mit festem Fahrer, vorab geprüften Unterkünften und mir als durchgehendem Ansprechpartner. Trinken Sie nur versiegeltes Wasser, kleiden Sie sich an religiösen Orten bedeckt und bewahren Sie Wertsachen so aufmerksam auf wie in jeder größeren Stadt. Alles Weitere bespreche ich vor der Reise persönlich mit Ihnen.</p>
+              <p data-i18n="info.safety.text">Sie reisen privat: mit festem Fahrer, vorab geprüften Unterkünften und einem festen Ansprechpartner für die gesamte Reise. Trinken Sie nur versiegeltes Wasser, kleiden Sie sich an religiösen Orten bedeckt und bewahren Sie Wertsachen so aufmerksam auf wie in jeder größeren Stadt. Alles Weitere besprechen wir vor der Reise persönlich mit Ihnen.</p>
             </div>
           </details>
           <a class="info-cta" href="#anfrage"><span data-i18n="info.cta">Persönliche Beratung anfragen</span> <span aria-hidden="true">→</span></a>
-          <p class="info-note" data-i18n="info.note">Alle Angaben sind allgemeine Hinweise ohne Gewähr. Bitte prüfen Sie Einreise- und Gesundheitsbestimmungen vor der Reise bei den offiziellen Stellen - ich unterstütze Sie gern dabei.</p>
+          <p class="info-note" data-i18n="info.note">Alle Angaben sind allgemeine Hinweise ohne Gewähr. Bitte prüfen Sie Einreise- und Gesundheitsbestimmungen vor der Reise bei den offiziellen Stellen - wir unterstützen Sie gern dabei.</p>
         </div>
       </div>
     </section>
@@ -2242,11 +2245,11 @@
     <section class="enquiry" id="anfrage" aria-labelledby="enquiry-title">
       <div class="section-inner enquiry-layout">
         <div class="enquiry-copy reveal">
-          <p class="eyebrow" data-i18n="enquiry.eyebrow">Direkt an Govind</p>
+          <p class="eyebrow" data-i18n="enquiry.eyebrow">Direkt an unser Team</p>
           <h2 id="enquiry-title" data-i18n="enquiry.title">Planen wir Ihre Reise</h2>
-          <p data-i18n="enquiry.lede">Erzählen Sie mir kurz, was Sie sich von Ihrer Indienreise wünschen. Ich melde mich persönlich bei Ihnen.</p>
+          <p data-i18n="enquiry.lede">Erzählen Sie uns kurz, was Sie sich von Ihrer Indienreise wünschen. Wir melden uns persönlich bei Ihnen.</p>
           <div class="enquiry-direct">
-            <a href="https://wa.me/919376335552" data-i18n-href="whatsapp.url" target="_blank" rel="noopener">
+            <a href="https://wa.me/919376335552?text=Hallo%20Indivoya%20Tours%2C%20ich%20interessiere%20mich%20f%C3%BCr%20eine%20private%20Indienreise." data-i18n-href="whatsapp.url" target="_blank" rel="noopener">
               <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M6.8 19.2 3.5 20.4l1.1-3.2A8.6 8.6 0 1 1 12 20.6a8.5 8.5 0 0 1-5.2-1.4z"/><path d="M8.8 8.6c.2-.4.4-.4.7-.4h.5c.2 0 .4.1.5.4l.7 1.7c.1.3 0 .5-.1.6l-.5.6c.7 1.3 1.7 2.2 3 2.9l.6-.8c.2-.2.4-.3.7-.2l1.7.8c.3.1.4.3.4.6v.5c0 .3-.1.5-.4.7-.5.4-1.2.6-1.9.5-3.3-.5-6.2-3.3-6.8-6.7-.1-.6.1-1.2.4-1.8z"/></svg>
               <span>WhatsApp: +91 93763 35552</span>
             </a>
@@ -2255,7 +2258,7 @@
         <form class="form-card reveal" action="https://api.web3forms.com/submit" method="post" data-enquiry-form>
           <input type="hidden" name="access_key" value="97d8b22f-eeff-4241-8cf9-9bdedc1f32de">
           <input type="hidden" name="subject" value="New Enquiry">
-          <input type="hidden" name="from_name" value="Govind Website">
+          <input type="hidden" name="from_name" value="Indivoya Tours Website">
           <input type="checkbox" name="botcheck" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
           <div class="form-grid">
             <div class="field">
@@ -2292,7 +2295,7 @@
             </div>
             <div class="consent">
               <input id="privacy" name="privacy" type="checkbox" required>
-              <label for="privacy" data-i18n="form.consent">Ich stimme zu, dass Govind meine Angaben zur persönlichen Beantwortung der Anfrage verwenden darf.</label>
+              <label for="privacy" data-i18n="form.consent">Ich stimme zu, dass Indivoya Tours meine Angaben zur persönlichen Beantwortung der Anfrage verwenden darf.</label>
             </div>
             <button class="btn btn-primary" type="submit" data-i18n="form.submit">Jetzt unverbindlich anfragen</button>
             <p class="form-status" role="status" aria-live="polite" data-form-status hidden></p>
@@ -2305,15 +2308,14 @@
   <footer class="site-footer" id="kontakt">
     <div class="footer-grid">
       <div>
-        <!-- TODO: Add Govind's e-mail address and postal details before launch. -->
-        <div class="footer-brand">Govind</div>
-        <p class="footer-note" data-i18n="footer.note">Private Indienreisen, persönlich geführt von Govind für deutschsprachige Reisende.</p>
+        <div class="footer-brand">Indivoya Tours</div>
+        <p class="footer-note" data-i18n="footer.note">Private Indienreisen von Indivoya Tours, persönlich geplant für deutschsprachige Reisende.</p>
         <span class="response-time" data-i18n="footer.response">Antwort innerhalb von 24 Stunden</span>
       </div>
       <ul class="footer-list" aria-label="Kontakt" data-i18n-aria-label="footer.contactAria">
         <li><span data-i18n="footer.phone">Telefon</span>: <a href="tel:+919376335552">+91 93763 35552</a></li>
         <li><span data-i18n="footer.email">E-Mail</span>: <a href="mailto:govind@indivoyatours.com">govind@indivoyatours.com</a></li>
-        <li><a href="https://wa.me/919376335552" data-i18n-href="whatsapp.url" target="_blank" rel="noopener" data-i18n="footer.whatsapp">WhatsApp an Govind</a></li>
+        <li><a href="https://wa.me/919376335552?text=Hallo%20Indivoya%20Tours%2C%20ich%20interessiere%20mich%20f%C3%BCr%20eine%20private%20Indienreise." data-i18n-href="whatsapp.url" target="_blank" rel="noopener" data-i18n="footer.whatsapp">Per WhatsApp schreiben</a></li>
       </ul>
       <ul class="footer-links" aria-label="Rechtliches" data-i18n-aria-label="footer.legalAria">
         <li><a href="/privacy.html" data-i18n="footer.privacy">Datenschutz</a></li>
@@ -2323,24 +2325,24 @@
     </div>
   </footer>
 
-  <a class="whatsapp-float" href="https://wa.me/919376335552" data-i18n-href="whatsapp.url" target="_blank" rel="noopener" aria-label="Govind per WhatsApp kontaktieren" data-i18n-aria-label="whatsapp.aria">
+  <a class="whatsapp-float" href="https://wa.me/919376335552?text=Hallo%20Indivoya%20Tours%2C%20ich%20interessiere%20mich%20f%C3%BCr%20eine%20private%20Indienreise." data-i18n-href="whatsapp.url" target="_blank" rel="noopener" aria-label="Indivoya Tours per WhatsApp kontaktieren" data-i18n-aria-label="whatsapp.aria">
     <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M6.8 19.2 3.5 20.4l1.1-3.2A8.6 8.6 0 1 1 12 20.6a8.5 8.5 0 0 1-5.2-1.4z"/><path d="M8.8 8.6c.2-.4.4-.4.7-.4h.5c.2 0 .4.1.5.4l.7 1.7c.1.3 0 .5-.1.6l-.5.6c.7 1.3 1.7 2.2 3 2.9l.6-.8c.2-.2.4-.3.7-.2l1.7.8c.3.1.4.3.4.6v.5c0 .3-.1.5-.4.7-.5.4-1.2.6-1.9.5-3.3-.5-6.2-3.3-6.8-6.7-.1-.6.1-1.2.4-1.8z"/></svg>
-    <span data-i18n="whatsapp.label">WhatsApp · Govind</span>
+    <span data-i18n="whatsapp.label">WhatsApp · Indivoya Tours</span>
   </a>
 
   <script>
     const TRANSLATIONS = {
       de: {
-        "meta.title": "Govind – Ihr privater Reiseleiter in Indien",
-        "meta.description": "Private Indienreisen mit Govind: persönliche Begleitung, deutschsprachige Beratung und kuratierte Routen durch Rajasthan, Kerala, Ladakh, Varanasi und den Golden Triangle.",
-        "meta.ogDescription": "Luxuriöse private Indienreisen, persönlich begleitet von Govind für deutschsprachige Reisende.",
+        "meta.title": "Indivoya Tours – Private Indienreisen",
+        "meta.description": "Private Indienreisen mit Indivoya Tours: persönliche Begleitung, deutschsprachige Beratung und kuratierte Routen durch Rajasthan, Kerala, Ladakh, Varanasi und den Golden Triangle.",
+        "meta.ogDescription": "Luxuriöse private Indienreisen von Indivoya Tours, persönlich geplant für deutschsprachige Reisende.",
 
         "nav.aria": "Hauptnavigation",
-        "nav.home": "Govind Startseite",
+        "nav.home": "Indivoya Tours Startseite",
         "nav.language": "Sprachauswahl",
         "nav.menu": "Menü öffnen",
         "nav.cta": "Anfragen",
-        "nav.about": "Über Govind",
+        "nav.about": "Über uns",
         "nav.journeys": "Reisen",
         "nav.wellness": "Wellness",
         "nav.gallery": "Galerie",
@@ -2349,7 +2351,7 @@
         "nav.contact": "Kontakt",
 
         "hero.eyebrow": "Private Reisen · Indien",
-        "hero.title": "Indien, persönlich kuratiert mit Govind",
+        "hero.title": "Indien, persönlich kuratiert mit Indivoya Tours",
         "hero.lede": "Private Reisen, persönliche Begleitung und echte Begegnungen - individuell geplant für deutschsprachige Reisende.",
         "hero.cta": "Jetzt unverbindlich anfragen",
         "hero.alt": "Kamel in den Dünen der Thar-Wüste bei Sonnenuntergang – Aufnahme von Govind",
@@ -2364,25 +2366,25 @@
         "trust.4.figure": "3",
         "trust.4.label": "Sprachen · Deutsch, Englisch, Hindi",
 
-        "about.eyebrow": "Persönlich geführt",
-        "about.title": "Über Govind",
-        "about.alt": "Porträt von Govind, privater deutschsprachiger Reiseleiter in Indien",
-        "about.p1": "Ich heiße Govind Singh Shekhawat. Ich bin ein erfahrener und von Rajasthan Tourism anerkannter deutsch- und englischsprachiger Reiseleiter aus Rajasthan. Meine Leidenschaft gilt der indischen Geschichte, Kultur, Architektur und den lebendigen Traditionen des Landes.",
-        "about.p2": "Als gebürtiger Rajasthani kenne ich Indien nicht nur aus touristischer Perspektive. Für mich bedeutet eine Reise mehr als der Besuch berühmter Sehenswürdigkeiten. Ich möchte meinen Gästen die Geschichten, Menschen, Traditionen und den Alltag Indiens näherbringen und Ihnen einen authentischen Einblick ins Land ermöglichen.",
-        "about.p3": "Ein besonderer Bestandteil meiner Erfahrung ist auch meine enge persönliche Verbindung zu Deutschland. Ich bin bereits mehrfach nach Deutschland gereist und habe dabei die deutsche Kultur, Lebensweise und die Menschen vor Ort intensiv kennengelernt. Diese persönlichen Erfahrungen haben mir ein gutes Verständnis für die Mentalität, Erwartungen und Reisegewohnheiten deutschsprachiger Gäste vermittelt.",
-        "about.p4": "Dadurch kann ich eine besondere Brücke zwischen der indischen und der deutschen Kultur schaffen. Bei meinen Führungen erkläre ich nicht nur historische Fakten und kulturelle Zusammenhänge, sondern zeige meinen Gästen auch Gemeinsamkeiten und Unterschiede zwischen Deutschland und Indien – verständlich, persönlich und mit vielen interessanten Geschichten.",
-        "about.p5": "Ob bei einer Reise durch die historischen Städte und Festungen Rajasthans, bei kulturellen Begegnungen, auf Märkten oder bei der Entdeckung weniger bekannter Orte – ich lege großen Wert auf Authentizität, persönliche Betreuung und einen respektvollen kulturellen Austausch.",
-        "about.p6": "Mein Ziel ist es, meinen Gästen nicht einfach nur Sehenswürdigkeiten zu zeigen, sondern Ihnen ein echtes und persönliches Indien-Erlebnis zu ermöglichen.",
+        "about.eyebrow": "Wer wir sind",
+        "about.title": "Über Indivoya Tours",
+        "about.alt": "Govind Singh Shekhawat, Gründer von Indivoya Tours",
+        "about.p1": "Indivoya Tours plant private Reisen durch Indien für deutschsprachige Gäste. Unsere Leidenschaft gilt der indischen Geschichte, Kultur, Architektur und den lebendigen Traditionen des Landes – und dem Wunsch, sie unseren Gästen wirklich nahezubringen.",
+        "about.p2": "Gegründet wurde Indivoya Tours von Govind Singh Shekhawat, einem erfahrenen, von Rajasthan Tourism anerkannten deutsch- und englischsprachigen Reiseleiter. Als gebürtiger Rajasthani kennt er Indien nicht nur aus touristischer Perspektive. Für ihn bedeutet eine Reise mehr als der Besuch berühmter Sehenswürdigkeiten: Es geht um die Geschichten, Menschen, Traditionen und den Alltag des Landes.",
+        "about.p3": "Govind ist mehrfach nach Deutschland gereist und hat die deutsche Kultur, Lebensweise und die Menschen vor Ort intensiv kennengelernt. Dieses Verständnis für die Mentalität, Erwartungen und Reisegewohnheiten deutschsprachiger Gäste prägt bis heute, wie wir planen und begleiten.",
+        "about.p4": "So schaffen wir eine besondere Brücke zwischen der indischen und der deutschen Kultur. Unsere Reiseleiterinnen und Reiseleiter erklären nicht nur historische Fakten und kulturelle Zusammenhänge, sondern zeigen auch Gemeinsamkeiten und Unterschiede zwischen Deutschland und Indien – verständlich, persönlich und mit vielen interessanten Geschichten.",
+        "about.p5": "Ob auf einer Reise durch die historischen Städte und Festungen Rajasthans, bei kulturellen Begegnungen, auf Märkten oder bei der Entdeckung weniger bekannter Orte – wir legen großen Wert auf Authentizität, persönliche Betreuung und einen respektvollen kulturellen Austausch.",
+        "about.p6": "Unser Ziel ist es, unseren Gästen nicht einfach nur Sehenswürdigkeiten zu zeigen, sondern ihnen ein echtes und persönliches Indien-Erlebnis zu ermöglichen.",
         "about.quote": "„Indien ist nicht nur ein Reiseziel – Indien ist eine Geschichte, die man erleben und verstehen sollte.“",
         "about.credentialsAria": "Qualifikationen",
-        "about.cred1": "Lizenzierter privater Reiseleiter",
+        "about.cred1": "Gegründet von einem von Rajasthan Tourism anerkannten Reiseleiter",
         "about.cred2": "Deutschsprachige Reisebegleitung",
         "about.cred3": "Individuelle Routenplanung",
         "about.cred4": "Persönliche Betreuung vor und während der Reise",
 
         "journeys.eyebrow": "Kuratierte Routen",
-        "journeys.title": "Meine Reisen",
-        "journeys.lede": "Ausgewählte private Reisen durch Indien, persönlich begleitet von Govind und angepasst an Ihren Stil.",
+        "journeys.title": "Unsere Reisen",
+        "journeys.lede": "Ausgewählte private Reisen durch Indien, persönlich geplant und angepasst an Ihren Stil.",
         "tour.cta": "Reise entdecken",
 
         "tour.close": "Schließen",
@@ -2392,7 +2394,7 @@
 
         "tour.goldenTriangle.title": "Golden Triangle",
         "tour.goldenTriangle.text": "Delhi, Agra und Jaipur mit privaten Einblicken, eleganten Hotels und ruhigem Reisetempo.",
-        "tour.goldenTriangle.alt": "Das Taj Mahal in Agra, fotografiert auf einer Golden-Triangle-Reise mit Govind",
+        "tour.goldenTriangle.alt": "Das Taj Mahal in Agra, fotografiert auf einer Golden-Triangle-Reise mit Indivoya Tours",
         "tour.goldenTriangle.lede": "Delhi, Agra und Jaipur — drei Städte, drei Epochen und der klassische Einstieg nach Nordindien.",
         "tour.goldenTriangle.fact1": "Das Taj Mahal entstand zwischen 1632 und 1653 als Grabmal für Mumtaz Mahal; rund 20.000 Handwerker waren beteiligt.",
         "tour.goldenTriangle.fact2": "Delhi ist auf den Resten von acht Städten gebaut, die über tausend Jahre nacheinander entstanden.",
@@ -2403,7 +2405,7 @@
         "tour.rajasthan.title": "Rajasthan",
         "tour.rajasthan.text": "Paläste, Wüstenstädte und Heritage-Aufenthalte mit viel Raum für echte Begegnungen.",
         "tour.rajasthan.alt": "Das Fort von Jaisalmer über der goldenen Altstadt in Rajasthan",
-        "tour.rajasthan.lede": "Wüstenkönigreiche, Festungen und Farbe — die Region, aus der ich selbst stamme.",
+        "tour.rajasthan.lede": "Wüstenkönigreiche, Festungen und Farbe — die Heimat unseres Gründers Govind.",
         "tour.rajasthan.fact1": "Jaisalmer ist eine der wenigen bewohnten Festungen der Welt: Rund 3.000 Menschen leben bis heute innerhalb der Mauern.",
         "tour.rajasthan.fact2": "In der Thar-Wüste sind Kamelritte über die Dünen und Nächte unter freiem Himmel möglich.",
         "tour.rajasthan.fact3": "Jodhpur heißt die blaue Stadt: Die Häuser unterhalb des Forts Mehrangarh sind traditionell indigoblau gestrichen.",
@@ -2422,7 +2424,7 @@
 
         "tour.kerala.title": "Kerala",
         "tour.kerala.text": "Backwaters, Gewürzgärten und Küste mit sanfter Planung und persönlicher Begleitung.",
-        "tour.kerala.alt": "Kerala Reise mit Govind entlang Backwaters, Gewürzgärten und Küste",
+        "tour.kerala.alt": "Kerala-Reise mit Indivoya Tours entlang Backwaters, Gewürzgärten und Küste",
         "tour.kerala.lede": "Der grüne, langsame Süden: Wasserwege, Gewürze und eine Küche, die mit Nordindien wenig gemeinsam hat.",
         "tour.kerala.fact1": "Die Backwaters sind ein Netz aus rund 900 Kilometern miteinander verbundener Kanäle, Seen und Flüsse.",
         "tour.kerala.fact2": "Kerala gilt als Heimat des Ayurveda — hier sind authentische Kuren und Behandlungen möglich.",
@@ -2432,7 +2434,7 @@
 
         "tour.ladakh.title": "Ladakh",
         "tour.ladakh.text": "Klöster, klare Höhenluft und Himalaya-Panoramen mit sorgfältiger Akklimatisierung.",
-        "tour.ladakh.alt": "Ladakh Privatreise mit Govind zu Klöstern und Himalaya-Landschaften",
+        "tour.ladakh.alt": "Ladakh-Privatreise mit Indivoya Tours zu Klöstern und Himalaya-Landschaften",
         "tour.ladakh.lede": "Hochgebirge, tibetisch-buddhistische Klöster und eine Landschaft, die eher an Tibet erinnert als an Indien.",
         "tour.ladakh.fact1": "Leh liegt auf etwa 3.500 Metern — die ersten zwei Tage dienen ausschließlich der Akklimatisierung.",
         "tour.ladakh.fact2": "Die Klöster Thiksey und Hemis gehören zu den bedeutendsten des tibetischen Buddhismus in Indien.",
@@ -2463,8 +2465,8 @@
         "wellness.eyebrow": "Ayurveda · Yoga · Wellness",
         "wellness.title": "Ayurveda, Yoga und Wellness",
         "wellness.alt": "Shiva-Statue am Ganges in Rishikesh",
-        "wellness.p1": "Neben klassischen Rundreisen begleite ich Gäste auch zu Ayurveda-, Yoga- und Wellnessaufenthalten. Indien ist der Ursprungsort beider Traditionen, und der Unterschied zwischen einem ernsthaften Haus und einem Wellnessangebot für Touristen ist von außen kaum zu erkennen.",
-        "wellness.p2": "Ich kenne die Einrichtungen, mit denen ich arbeite, persönlich, übersetze im Erstgespräch mit den Ärztinnen und Ärzten und sorge dafür, dass Behandlungen, Ernährung und Tagesablauf wirklich zu Ihnen passen. Auch eine Kombination ist möglich: erst Kultur und Städte, danach eine ruhige Woche zur Erholung.",
+        "wellness.p1": "Neben klassischen Rundreisen begleiten wir Gäste auch zu Ayurveda-, Yoga- und Wellnessaufenthalten. Indien ist der Ursprungsort beider Traditionen, und der Unterschied zwischen einem ernsthaften Haus und einem Wellnessangebot für Touristen ist von außen kaum zu erkennen.",
+        "wellness.p2": "Wir kennen die Einrichtungen, mit denen wir arbeiten, persönlich, übersetzen im Erstgespräch mit den Ärztinnen und Ärzten und sorgen dafür, dass Behandlungen, Ernährung und Tagesablauf wirklich zu Ihnen passen. Auch eine Kombination ist möglich: erst Kultur und Städte, danach eine ruhige Woche zur Erholung.",
         "wellness.listAria": "Angebote",
         "wellness.item1": "Ayurveda-Kuren in Kerala, von der Kurzbehandlung bis zur mehrwöchigen Panchakarma-Kur",
         "wellness.item2": "Yoga und Meditation in Rishikesh am Ganges, dem Ursprungsort des modernen Yoga",
@@ -2473,10 +2475,10 @@
         "wellness.cta": "Beratung anfragen",
 
         "why.eyebrow": "Vertrauen vor Ort",
-        "why.title": "Warum mit Govind reisen",
+        "why.title": "Warum mit Indivoya Tours reisen",
         "why.lede": "Private Begleitung macht den Unterschied: direkt, aufmerksam und mit tiefem Verständnis für Indien.",
         "why.1.title": "Persönliche Begleitung",
-        "why.1.text": "Sie reisen nicht anonym. Govind ist Ihr direkter Ansprechpartner und begleitet die entscheidenden Momente persönlich.",
+        "why.1.text": "Sie reisen nicht anonym. Ein fester Ansprechpartner betreut Sie von der ersten Anfrage bis zur Rückreise.",
         "why.2.title": "Indien aus erster Hand",
         "why.2.text": "Lokales Wissen, kulturelle Feinheiten und passende Empfehlungen öffnen Türen jenseits der bekannten Stationen.",
         "why.3.title": "Individuell statt von der Stange",
@@ -2486,7 +2488,7 @@
 
         "gallery.eyebrow": "Echte Momente",
         "gallery.title": "Impressionen aus Indien",
-        "gallery.lede": "Aufnahmen von unterwegs - entstanden auf Reisen, die Govind persönlich begleitet hat.",
+        "gallery.lede": "Aufnahmen von unterwegs - entstanden auf unseren Reisen durch Indien.",
         "gallery.amber": "Das nächtlich beleuchtete Amber Fort bei Jaipur",
         "gallery.taj": "Das Taj Mahal in Agra im Licht des Sonnenaufgangs",
         "gallery.gopuram": "Farbenprächtige Figuren auf einem südindischen Tempelturm",
@@ -2512,8 +2514,8 @@
         "reviews.title": "Bewertungen",
         "reviews.videoEyebrow": "Videobotschaft",
         "reviews.videoTitle": "Ein Gast erzählt",
-        "reviews.videoText": "Ein Gast berichtet in eigenen Worten von der gemeinsamen Reise durch Indien mit Govind.",
-        "reviews.videoAria": "Videobotschaft eines Gastes über die Reise mit Govind",
+        "reviews.videoText": "Ein Gast berichtet in eigenen Worten von der gemeinsamen Reise durch Indien mit Indivoya Tours.",
+        "reviews.videoAria": "Videobotschaft eines Gastes über die Reise mit Indivoya Tours",
         "reviews.videoFallback": "Ihr Browser kann dieses Video leider nicht abspielen.",
         "reviews.1.quote": "„Mit Govind wurde Indien nicht nur sichtbar, sondern wirklich erlebbar. Seine Ruhe, sein Wissen und seine persönliche Art haben die Reise besonders gemacht.”",
         "reviews.1.author": "— Anna, München",
@@ -2522,7 +2524,7 @@
         "reviews.3.quote": "„Die Gespräche mit Govind haben uns Indien nähergebracht als jeder Reiseführer. Alles war persönlich, entspannt und sehr zuverlässig organisiert.”",
         "reviews.3.author": "— Claudia, Köln",
         "reviews.formTitle": "Ihre Bewertung",
-        "reviews.formLede": "Waren Sie mit Govind unterwegs? Erzählen Sie kurz, wie Sie die Reise erlebt haben. Ich lese jede Bewertung persönlich, bevor sie erscheint.",
+        "reviews.formLede": "Waren Sie mit uns unterwegs? Erzählen Sie kurz, wie Sie die Reise erlebt haben. Wir lesen jede Bewertung persönlich, bevor sie erscheint.",
         "reviews.formName": "Name",
         "reviews.formCity": "Stadt",
         "reviews.formRating": "Sterne",
@@ -2532,31 +2534,31 @@
         "reviews.star4": "4 Sterne",
         "reviews.star5": "5 Sterne",
         "reviews.formText": "Ihre Bewertung",
-        "reviews.formTextPlaceholder": "Was hat Ihre Reise mit Govind besonders gemacht?",
+        "reviews.formTextPlaceholder": "Was hat Ihre Reise mit uns besonders gemacht?",
         "reviews.formConsent": "Ich stimme zu, dass mein Name, meine Stadt und mein Text auf dieser Website veröffentlicht werden dürfen.",
         "reviews.formSubmit": "Bewertung senden",
         "reviews.formSending": "Wird gesendet …",
-        "reviews.formSuccess": "Vielen Dank! Ihre Bewertung ist eingegangen. Sie erscheint, sobald Govind sie gesichtet hat.",
+        "reviews.formSuccess": "Vielen Dank! Ihre Bewertung ist eingegangen. Sie erscheint, sobald wir sie gesichtet haben.",
         "reviews.formError": "Die Bewertung konnte leider nicht gesendet werden. Bitte versuchen Sie es später erneut.",
 
         "info.eyebrow": "Gut vorbereitet",
         "info.title": "Reiseinfos",
-        "info.lede": "Govind hilft Ihnen bereits vor der Ankunft, Indien entspannt zu verstehen: mit klaren Hinweisen zu Dokumenten, Reisezeit, Gesundheit und Verhalten vor Ort.",
+        "info.lede": "Wir helfen Ihnen bereits vor der Ankunft, Indien entspannt zu verstehen: mit klaren Hinweisen zu Dokumenten, Reisezeit, Gesundheit und Verhalten vor Ort.",
         "info.aria": "Reiseinformationen",
         "info.visa": "Visum",
-        "info.visa.text": "Für touristische Reisen nach Indien benötigen deutsche Staatsangehörige ein Visum. In der Regel genügt das elektronische Touristenvisum (e-Visa), das Sie vor der Abreise online beantragen. Planen Sie einige Tage Bearbeitungszeit ein; der Reisepass sollte bei der Einreise noch mindestens sechs Monate gültig sein und zwei freie Seiten haben. Ich sage Ihnen rechtzeitig, welche Unterlagen Sie brauchen.",
+        "info.visa.text": "Für touristische Reisen nach Indien benötigen deutsche Staatsangehörige ein Visum. In der Regel genügt das elektronische Touristenvisum (e-Visa), das Sie vor der Abreise online beantragen. Planen Sie einige Tage Bearbeitungszeit ein; der Reisepass sollte bei der Einreise noch mindestens sechs Monate gültig sein und zwei freie Seiten haben. Wir sagen Ihnen rechtzeitig, welche Unterlagen Sie brauchen.",
         "info.season": "Beste Reisezeit",
         "info.season.text": "Für den Großteil Indiens ist Mitte August bis April die angenehmste Reisezeit. Rajasthan und der Golden Triangle zeigen sich von Oktober bis März mild und klar, Kerala und Südindien von September bis März. Ladakh ist ein Sommerziel: Die Pässe sind etwa von Juni bis September offen. Der Südwestmonsun zieht von Juni bis etwa Mitte August über weite Teile des Landes - danach wird es spürbar angenehmer, und wir legen Ihre Route entsprechend.",
         "info.health": "Impfungen",
         "info.health.text": "Für die direkte Einreise aus Deutschland sind keine Pflichtimpfungen vorgeschrieben. Ein Gelbfieber-Nachweis wird nur verlangt, wenn Sie aus einem Gelbfiebergebiet einreisen. Empfohlen werden meist die Standardimpfungen sowie Hepatitis A, je nach Reiseart auch Typhus und Hepatitis B. Lassen Sie sich vier bis sechs Wochen vor der Abreise reisemedizinisch beraten.",
         "info.safety": "Sicherheit",
-        "info.safety.text": "Sie reisen privat: mit festem Fahrer, vorab geprüften Unterkünften und mir als durchgehendem Ansprechpartner. Trinken Sie nur versiegeltes Wasser, kleiden Sie sich an religiösen Orten bedeckt und bewahren Sie Wertsachen so aufmerksam auf wie in jeder größeren Stadt. Alles Weitere bespreche ich vor der Reise persönlich mit Ihnen.",
+        "info.safety.text": "Sie reisen privat: mit festem Fahrer, vorab geprüften Unterkünften und einem festen Ansprechpartner für die gesamte Reise. Trinken Sie nur versiegeltes Wasser, kleiden Sie sich an religiösen Orten bedeckt und bewahren Sie Wertsachen so aufmerksam auf wie in jeder größeren Stadt. Alles Weitere besprechen wir vor der Reise persönlich mit Ihnen.",
         "info.cta": "Persönliche Beratung anfragen",
-        "info.note": "Alle Angaben sind allgemeine Hinweise ohne Gewähr. Bitte prüfen Sie Einreise- und Gesundheitsbestimmungen vor der Reise bei den offiziellen Stellen - ich unterstütze Sie gern dabei.",
+        "info.note": "Alle Angaben sind allgemeine Hinweise ohne Gewähr. Bitte prüfen Sie Einreise- und Gesundheitsbestimmungen vor der Reise bei den offiziellen Stellen - wir unterstützen Sie gern dabei.",
 
-        "enquiry.eyebrow": "Direkt an Govind",
+        "enquiry.eyebrow": "Direkt an unser Team",
         "enquiry.title": "Planen wir Ihre Reise",
-        "enquiry.lede": "Erzählen Sie mir kurz, was Sie sich von Ihrer Indienreise wünschen. Ich melde mich persönlich bei Ihnen.",
+        "enquiry.lede": "Erzählen Sie uns kurz, was Sie sich von Ihrer Indienreise wünschen. Wir melden uns persönlich bei Ihnen.",
         "form.name": "Name",
         "form.email": "E-Mail",
         "form.phone": "Telefon",
@@ -2568,39 +2570,39 @@
         "form.interestsPlaceholder": "Rajasthan, Kerala, Kultur, Natur",
         "form.message": "Nachricht",
         "form.messagePlaceholder": "Welche Art von Indienreise wünschen Sie sich?",
-        "form.consent": "Ich stimme zu, dass Govind meine Angaben zur persönlichen Beantwortung der Anfrage verwenden darf.",
+        "form.consent": "Ich stimme zu, dass Indivoya Tours meine Angaben zur persönlichen Beantwortung der Anfrage verwenden darf.",
         "form.submit": "Jetzt unverbindlich anfragen",
         "form.sending": "Anfrage wird gesendet …",
-        "form.success": "Vielen Dank! Ihre Anfrage ist angekommen. Ich melde mich innerhalb von 24 Stunden persönlich bei Ihnen.",
-        "form.error": "Die Anfrage konnte leider nicht gesendet werden. Bitte versuchen Sie es erneut oder schreiben Sie mir direkt über WhatsApp.",
+        "form.success": "Vielen Dank! Ihre Anfrage ist angekommen. Wir melden uns innerhalb von 24 Stunden persönlich bei Ihnen.",
+        "form.error": "Die Anfrage konnte leider nicht gesendet werden. Bitte versuchen Sie es erneut oder schreiben Sie uns direkt über WhatsApp.",
 
-        "footer.note": "Private Indienreisen, persönlich geführt von Govind für deutschsprachige Reisende.",
+        "footer.note": "Private Indienreisen von Indivoya Tours, persönlich geplant für deutschsprachige Reisende.",
         "footer.response": "Antwort innerhalb von 24 Stunden",
         "footer.contactAria": "Kontakt",
         "footer.phone": "Telefon",
         "footer.email": "E-Mail",
-        "footer.whatsapp": "WhatsApp an Govind",
+        "footer.whatsapp": "Per WhatsApp schreiben",
         "footer.legalAria": "Rechtliches",
         "footer.privacy": "Datenschutz",
         "footer.imprint": "Impressum",
         "footer.terms": "AGB",
 
-        "whatsapp.label": "WhatsApp · Govind",
-        "whatsapp.aria": "Govind per WhatsApp kontaktieren",
-        "whatsapp.url": "https://wa.me/919376335552?text=Hallo%20Govind%2C%20ich%20interessiere%20mich%20f%C3%BCr%20eine%20private%20Indienreise."
+        "whatsapp.label": "WhatsApp · Indivoya Tours",
+        "whatsapp.aria": "Indivoya Tours per WhatsApp kontaktieren",
+        "whatsapp.url": "https://wa.me/919376335552?text=Hallo%20Indivoya%20Tours%2C%20ich%20interessiere%20mich%20f%C3%BCr%20eine%20private%20Indienreise."
       },
 
       en: {
-        "meta.title": "Govind – Your private tour guide in India",
-        "meta.description": "Private journeys through India with Govind: personal guidance, German-speaking advice and curated routes through Rajasthan, Kerala, Ladakh, Varanasi and the Golden Triangle.",
-        "meta.ogDescription": "Private journeys through India, personally guided by Govind for German-speaking travellers.",
+        "meta.title": "Indivoya Tours – Private journeys through India",
+        "meta.description": "Private journeys through India with Indivoya Tours: personal guidance, German-speaking advice and curated routes through Rajasthan, Kerala, Ladakh, Varanasi and the Golden Triangle.",
+        "meta.ogDescription": "Private journeys through India by Indivoya Tours, planned personally for German-speaking travellers.",
 
         "nav.aria": "Main navigation",
-        "nav.home": "Govind home",
+        "nav.home": "Indivoya Tours home",
         "nav.language": "Language selection",
         "nav.menu": "Open menu",
         "nav.cta": "Enquire",
-        "nav.about": "About Govind",
+        "nav.about": "About us",
         "nav.journeys": "Journeys",
         "nav.wellness": "Wellness",
         "nav.gallery": "Gallery",
@@ -2609,7 +2611,7 @@
         "nav.contact": "Contact",
 
         "hero.eyebrow": "Private journeys · India",
-        "hero.title": "India, Curated Personally with Govind",
+        "hero.title": "India, Curated Personally with Indivoya Tours",
         "hero.lede": "Private journeys, personal guidance and genuine encounters - planned individually for German-speaking travellers.",
         "hero.cta": "Send a no-obligation enquiry",
         "hero.alt": "A camel in the dunes of the Thar Desert at sunset – photographed by Govind",
@@ -2624,25 +2626,25 @@
         "trust.4.figure": "3",
         "trust.4.label": "Languages · German, English, Hindi",
 
-        "about.eyebrow": "Personally guided",
-        "about.title": "About Govind",
-        "about.alt": "Portrait of Govind, private German-speaking tour guide in India",
-        "about.p1": "My name is Govind Singh Shekhawat. I am an experienced German- and English-speaking tour guide from Rajasthan, accredited by Rajasthan Tourism. My passion lies in India's history, culture, architecture and the country's living traditions.",
-        "about.p2": "As a native Rajasthani, I know India from far more than a tourist's perspective. To me, a journey means more than visiting famous sights. I want to bring my guests closer to the stories, people, traditions and everyday life of India, and to give you an authentic insight into the country.",
-        "about.p3": "A particular part of my experience is my close personal connection to Germany. I have travelled to Germany several times and have come to know German culture, ways of life and people there in depth. Those experiences have given me a real understanding of the mentality, expectations and travel habits of German-speaking guests.",
-        "about.p4": "This allows me to build a special bridge between Indian and German culture. On my tours I explain not only historical facts and cultural context, but also show my guests what Germany and India have in common and where they differ – clearly, personally and with plenty of interesting stories.",
-        "about.p5": "Whether on a journey through the historic cities and forts of Rajasthan, at cultural encounters, in the markets or discovering lesser-known places – I place great value on authenticity, personal care and respectful cultural exchange.",
-        "about.p6": "My aim is not simply to show my guests sights, but to make a genuine and personal India experience possible for you.",
+        "about.eyebrow": "Who we are",
+        "about.title": "About Indivoya Tours",
+        "about.alt": "Govind Singh Shekhawat, founder of Indivoya Tours",
+        "about.p1": "Indivoya Tours plans private journeys through India for German-speaking guests. Our passion is India's history, culture, architecture and living traditions – and bringing them genuinely close to the people who travel with us.",
+        "about.p2": "Indivoya Tours was founded by Govind Singh Shekhawat, an experienced German- and English-speaking guide accredited by Rajasthan Tourism. As a native Rajasthani, he knows India from far more than a tourist's perspective. To him, a journey means more than visiting famous sights: it is about the stories, people, traditions and everyday life of the country.",
+        "about.p3": "Govind has travelled to Germany several times and come to know its culture, ways of life and people in depth. That understanding of the mentality, expectations and travel habits of German-speaking guests still shapes how we plan and guide today.",
+        "about.p4": "That lets us build a special bridge between Indian and German culture. Our guides explain not only historical facts and cultural context, but also show what Germany and India have in common and where they differ – clearly, personally and with plenty of interesting stories.",
+        "about.p5": "Whether on a journey through the historic cities and forts of Rajasthan, at cultural encounters, in the markets or discovering lesser-known places – we place great value on authenticity, personal care and respectful cultural exchange.",
+        "about.p6": "Our aim is not simply to show our guests the sights, but to give them a genuine and personal experience of India.",
         "about.quote": "“India is not merely a destination – India is a story that should be experienced and understood.”",
         "about.credentialsAria": "Qualifications",
-        "about.cred1": "Licensed private tour guide",
-        "about.cred2": "German-speaking travel companion",
+        "about.cred1": "Founded by a guide accredited by Rajasthan Tourism",
+        "about.cred2": "German-speaking guidance",
         "about.cred3": "Individual route planning",
         "about.cred4": "Personal support before and during your journey",
 
         "journeys.eyebrow": "Curated routes",
-        "journeys.title": "My journeys",
-        "journeys.lede": "Selected private journeys through India, personally guided by Govind and adapted to your style.",
+        "journeys.title": "Our journeys",
+        "journeys.lede": "Selected private journeys through India, planned personally and adapted to your style.",
         "tour.cta": "Explore this journey",
 
         "tour.close": "Close",
@@ -2652,7 +2654,7 @@
 
         "tour.goldenTriangle.title": "Golden Triangle",
         "tour.goldenTriangle.text": "Delhi, Agra and Jaipur with private insights, elegant hotels and an unhurried pace.",
-        "tour.goldenTriangle.alt": "The Taj Mahal in Agra, photographed on a Golden Triangle journey with Govind",
+        "tour.goldenTriangle.alt": "The Taj Mahal in Agra, photographed on a Golden Triangle journey with Indivoya Tours",
         "tour.goldenTriangle.lede": "Delhi, Agra and Jaipur — three cities, three eras, and the classic introduction to northern India.",
         "tour.goldenTriangle.fact1": "The Taj Mahal was built between 1632 and 1653 as a tomb for Mumtaz Mahal; around 20,000 craftsmen worked on it.",
         "tour.goldenTriangle.fact2": "Delhi stands on the remains of eight cities, built one after another over a thousand years.",
@@ -2663,7 +2665,7 @@
         "tour.rajasthan.title": "Rajasthan",
         "tour.rajasthan.text": "Palaces, desert cities and heritage stays with plenty of room for real encounters.",
         "tour.rajasthan.alt": "The fort of Jaisalmer above the golden old town in Rajasthan",
-        "tour.rajasthan.lede": "Desert kingdoms, forts and colour — the region I come from myself.",
+        "tour.rajasthan.lede": "Desert kingdoms, forts and colour — the home region of our founder, Govind.",
         "tour.rajasthan.fact1": "Jaisalmer is one of the few living forts in the world: around 3,000 people still live inside its walls.",
         "tour.rajasthan.fact2": "In the Thar Desert you can ride camels over the dunes and spend the night under open sky.",
         "tour.rajasthan.fact3": "Jodhpur is called the blue city: the houses below Mehrangarh Fort are traditionally painted indigo.",
@@ -2682,7 +2684,7 @@
 
         "tour.kerala.title": "Kerala",
         "tour.kerala.text": "Backwaters, spice gardens and coastline with gentle planning and personal guidance.",
-        "tour.kerala.alt": "Kerala journey with Govind along backwaters, spice gardens and the coast",
+        "tour.kerala.alt": "Kerala journey with Indivoya Tours along backwaters, spice gardens and the coast",
         "tour.kerala.lede": "The green, slow south: waterways, spices and a cuisine with little in common with northern India.",
         "tour.kerala.fact1": "The backwaters are a network of around 900 kilometres of interconnected canals, lakes and rivers.",
         "tour.kerala.fact2": "Kerala is regarded as the home of Ayurveda — authentic treatments and courses are possible here.",
@@ -2692,7 +2694,7 @@
 
         "tour.ladakh.title": "Ladakh",
         "tour.ladakh.text": "Monasteries, clear mountain air and Himalayan panoramas with careful acclimatisation.",
-        "tour.ladakh.alt": "Ladakh private journey with Govind to monasteries and Himalayan landscapes",
+        "tour.ladakh.alt": "Ladakh private journey with Indivoya Tours to monasteries and Himalayan landscapes",
         "tour.ladakh.lede": "High mountains, Tibetan Buddhist monasteries and a landscape closer to Tibet than to India.",
         "tour.ladakh.fact1": "Leh sits at about 3,500 metres — the first two days are given over entirely to acclimatisation.",
         "tour.ladakh.fact2": "Thiksey and Hemis are among the most important Tibetan Buddhist monasteries in India.",
@@ -2723,8 +2725,8 @@
         "wellness.eyebrow": "Ayurveda · Yoga · Wellness",
         "wellness.title": "Ayurveda, yoga and wellness",
         "wellness.alt": "Shiva statue on the Ganges at Rishikesh",
-        "wellness.p1": "Alongside classic touring journeys, I also accompany guests on Ayurveda, yoga and wellness stays. India is where both traditions began, and from the outside it is hard to tell a serious establishment from a wellness package aimed at tourists.",
-        "wellness.p2": "I know the places I work with personally, interpret at the first consultation with the doctors, and make sure the treatments, diet and daily rhythm genuinely suit you. A combination also works well: culture and cities first, then a quiet week to recover.",
+        "wellness.p1": "Alongside classic touring journeys, we also accompany guests on Ayurveda, yoga and wellness stays. India is where both traditions began, and from the outside it is hard to tell a serious establishment from a wellness package aimed at tourists.",
+        "wellness.p2": "We know the places we work with personally, interpret at the first consultation with the doctors, and make sure the treatments, diet and daily rhythm genuinely suit you. A combination also works well: culture and cities first, then a quiet week to recover.",
         "wellness.listAria": "Services",
         "wellness.item1": "Ayurveda courses in Kerala, from short treatments to a multi-week Panchakarma programme",
         "wellness.item2": "Yoga and meditation in Rishikesh on the Ganges, where modern yoga began",
@@ -2733,10 +2735,10 @@
         "wellness.cta": "Ask for advice",
 
         "why.eyebrow": "Trust on the ground",
-        "why.title": "Why travel with Govind",
+        "why.title": "Why travel with Indivoya Tours",
         "why.lede": "Private guidance makes the difference: direct, attentive and with a deep understanding of India.",
         "why.1.title": "Personal guidance",
-        "why.1.text": "You do not travel anonymously. Govind is your direct contact and personally accompanies the moments that matter.",
+        "why.1.text": "You do not travel anonymously. One dedicated contact looks after you from your first enquiry to your journey home.",
         "why.2.title": "India first-hand",
         "why.2.text": "Local knowledge, cultural nuance and fitting recommendations open doors beyond the familiar stops.",
         "why.3.title": "Tailored, not off the shelf",
@@ -2746,7 +2748,7 @@
 
         "gallery.eyebrow": "Real moments",
         "gallery.title": "Impressions of India",
-        "gallery.lede": "Photographs from the road - taken on journeys that Govind guided personally.",
+        "gallery.lede": "Photographs from the road - taken on our journeys through India.",
         "gallery.amber": "Amber Fort near Jaipur, illuminated at night",
         "gallery.taj": "The Taj Mahal in Agra in the light of sunrise",
         "gallery.gopuram": "Brightly painted figures on a South Indian temple tower",
@@ -2772,8 +2774,8 @@
         "reviews.title": "Reviews",
         "reviews.videoEyebrow": "Video message",
         "reviews.videoTitle": "A guest speaks",
-        "reviews.videoText": "A guest describes the journey through India with Govind in their own words.",
-        "reviews.videoAria": "Video message from a guest about their journey with Govind",
+        "reviews.videoText": "A guest describes their journey through India with Indivoya Tours in their own words.",
+        "reviews.videoAria": "Video message from a guest about their journey with Indivoya Tours",
         "reviews.videoFallback": "Your browser cannot play this video.",
         "reviews.1.quote": "“With Govind, India did not just become visible - it became something we truly experienced. His calm, his knowledge and his personal manner made the journey special.”",
         "reviews.1.author": "— Anna, Munich",
@@ -2782,7 +2784,7 @@
         "reviews.3.quote": "“The conversations with Govind brought us closer to India than any guidebook. Everything was personal, relaxed and very reliably organised.”",
         "reviews.3.author": "— Claudia, Cologne",
         "reviews.formTitle": "Your review",
-        "reviews.formLede": "Have you travelled with Govind? Tell us briefly how you experienced the journey. I read every review personally before it appears.",
+        "reviews.formLede": "Have you travelled with us? Tell us briefly how you experienced the journey. We read every review personally before it appears.",
         "reviews.formName": "Name",
         "reviews.formCity": "City",
         "reviews.formRating": "Rating",
@@ -2792,31 +2794,31 @@
         "reviews.star4": "4 stars",
         "reviews.star5": "5 stars",
         "reviews.formText": "Your review",
-        "reviews.formTextPlaceholder": "What made your journey with Govind special?",
+        "reviews.formTextPlaceholder": "What made your journey with us special?",
         "reviews.formConsent": "I agree that my name, city and text may be published on this website.",
         "reviews.formSubmit": "Send review",
         "reviews.formSending": "Sending …",
-        "reviews.formSuccess": "Thank you! Your review has arrived. It will appear once Govind has read it.",
+        "reviews.formSuccess": "Thank you! Your review has arrived. It will appear once we have read it.",
         "reviews.formError": "Your review could not be sent. Please try again later.",
 
         "info.eyebrow": "Well prepared",
         "info.title": "Travel info",
-        "info.lede": "Govind helps you understand India calmly before you even arrive: with clear guidance on documents, travel seasons, health and local etiquette.",
+        "info.lede": "We help you understand India calmly before you even arrive: with clear guidance on documents, travel seasons, health and local etiquette.",
         "info.aria": "Travel information",
         "info.visa": "Visa",
-        "info.visa.text": "German citizens need a visa for tourist travel to India. In most cases the electronic tourist visa (e-Visa) is enough and is applied for online before departure. Allow a few days for processing; your passport should still be valid for at least six months on arrival and have two free pages. I will tell you in good time which documents you need.",
+        "info.visa.text": "German citizens need a visa for tourist travel to India. In most cases the electronic tourist visa (e-Visa) is enough and is applied for online before departure. Allow a few days for processing; your passport should still be valid for at least six months on arrival and have two free pages. We will tell you in good time which documents you need.",
         "info.season": "Best time to travel",
         "info.season.text": "For most of India, mid-August to April is the most comfortable period to travel. Rajasthan and the Golden Triangle are mild and clear from October to March, Kerala and South India from September to March. Ladakh is a summer destination: the passes are usually open from June to September. The south-west monsoon moves across much of the country from June until around mid-August - after that it turns noticeably more pleasant, and we shape your route accordingly.",
         "info.health": "Vaccinations",
         "info.health.text": "No vaccinations are compulsory when travelling directly from Germany. Proof of yellow fever vaccination is required only if you arrive from a yellow fever area. The usual recommendations are your standard vaccinations plus hepatitis A, and depending on the trip typhoid and hepatitis B. Please seek travel-medicine advice four to six weeks before departure.",
         "info.safety": "Safety",
-        "info.safety.text": "You travel privately: with a dedicated driver, pre-vetted accommodation and me as your constant point of contact. Drink only sealed bottled water, dress modestly at religious sites, and look after valuables as attentively as you would in any large city. Everything else I go through with you personally before the journey.",
+        "info.safety.text": "You travel privately: with a dedicated driver, pre-vetted accommodation and one dedicated point of contact for the whole journey. Drink only sealed bottled water, dress modestly at religious sites, and look after valuables as attentively as you would in any large city. Everything else we go through with you personally before the journey.",
         "info.cta": "Request personal advice",
-        "info.note": "This is general guidance, provided without liability. Please check entry and health requirements with the official authorities before you travel - I am glad to help you do so.",
+        "info.note": "This is general guidance, provided without liability. Please check entry and health requirements with the official authorities before you travel - we are glad to help you do so.",
 
-        "enquiry.eyebrow": "Straight to Govind",
+        "enquiry.eyebrow": "Straight to our team",
         "enquiry.title": "Let's plan your journey",
-        "enquiry.lede": "Tell me briefly what you would like from your journey through India. I will get back to you personally.",
+        "enquiry.lede": "Tell us briefly what you would like from your journey through India. We will get back to you personally.",
         "form.name": "Name",
         "form.email": "Email",
         "form.phone": "Phone",
@@ -2828,26 +2830,26 @@
         "form.interestsPlaceholder": "Rajasthan, Kerala, culture, nature",
         "form.message": "Message",
         "form.messagePlaceholder": "What kind of journey through India do you have in mind?",
-        "form.consent": "I agree that Govind may use my details to respond to my enquiry personally.",
+        "form.consent": "I agree that Indivoya Tours may use my details to respond to my enquiry personally.",
         "form.submit": "Send a no-obligation enquiry",
         "form.sending": "Sending your enquiry …",
-        "form.success": "Thank you! Your enquiry has arrived. I will get back to you personally within 24 hours.",
-        "form.error": "Your enquiry could not be sent. Please try again, or message me directly on WhatsApp.",
+        "form.success": "Thank you! Your enquiry has arrived. We will get back to you personally within 24 hours.",
+        "form.error": "Your enquiry could not be sent. Please try again, or message us directly on WhatsApp.",
 
-        "footer.note": "Private journeys through India, personally guided by Govind for German-speaking travellers.",
+        "footer.note": "Private journeys through India by Indivoya Tours, planned personally for German-speaking travellers.",
         "footer.response": "Reply within 24 hours",
         "footer.contactAria": "Contact",
         "footer.phone": "Phone",
         "footer.email": "Email",
-        "footer.whatsapp": "WhatsApp Govind",
+        "footer.whatsapp": "Message us on WhatsApp",
         "footer.legalAria": "Legal",
         "footer.privacy": "Privacy",
         "footer.imprint": "Legal notice",
         "footer.terms": "Terms",
 
-        "whatsapp.label": "WhatsApp · Govind",
-        "whatsapp.aria": "Contact Govind on WhatsApp",
-        "whatsapp.url": "https://wa.me/919376335552?text=Hello%20Govind%2C%20I%20am%20interested%20in%20a%20private%20journey%20through%20India."
+        "whatsapp.label": "WhatsApp · Indivoya Tours",
+        "whatsapp.aria": "Contact Indivoya Tours on WhatsApp",
+        "whatsapp.url": "https://wa.me/919376335552?text=Hello%20Indivoya%20Tours%2C%20I%20am%20interested%20in%20a%20private%20journey%20through%20India."
       }
     };
 
